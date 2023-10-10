@@ -1,11 +1,10 @@
 header{
-    position:fixed;
     top: 0;
     left: 0;
     width: 100%;
     padding: 1.3rem 10%;
-    background-color: rgba(25, 24, 37, .8);
-    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, .4);
+    backdrop-filter: blur(50px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,7 +13,7 @@ header{
 
 .logo{
     font-size: 2rem;
-    color: #FFA3FD;
+    color: #C69749;
     text-decoration: none;
     font-weight: 700;
 }
@@ -29,7 +28,7 @@ header{
 }
 
 .navbar .boton-jugar{
-    color: #FFA3FD;
+    color: #C69749;
     display: inline-block;
     cursor: pointer;
     text-decoration: none;

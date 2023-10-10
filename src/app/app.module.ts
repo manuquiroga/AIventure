@@ -8,12 +8,14 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
-import { NavBarComponent } from './components/nav-bar/nav-bar/nav-bar.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { InfoComponent } from './components/info/info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent
+    NavBarComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
