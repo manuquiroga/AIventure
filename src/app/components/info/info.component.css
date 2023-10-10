@@ -1,6 +1,5 @@
 
 
-
 main{
     margin: 2% 0;
 }
@@ -10,21 +9,46 @@ main{
     padding: 2rem 10%;
 }
 
-.info h1{
-    font-size: 3.5rem;
-    font-family: 'Gabarito', cursive;
-    font-family: 'Poppins', sans-serif;
+.title{
+    display: inline;
+    position:relative;
+    font-size: 4.5rem;
     font-weight: 900;
-    color: #ffb031;
+    color: transparent;
     margin-bottom: 2rem;
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    white-space : nowrap;
+
+    -webkit-text-stroke: 1px rgb(150, 150, 150);
+    text-transform: uppercase;
+}
+
+.title::before{
+    content: attr(title);
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 100%;
+    color: #ffaa21;
+    -webkit-text-stroke: 0px rgb(150, 150, 150);
+    border-right: 2px solid currentColor;
+    overflow: hidden;
+    animation: animate 6s linear infinite;
+}
+
+@keyframes animate{
+    0%, 10%, 100%{
+        width: 0;
+    }
+    70%, 90%{
+        width: 100%;
+    }
 }
 
 .info p{
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 400;
     color: #fff;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
@@ -33,7 +57,7 @@ main{
     color: #fff;
     text-decoration: none;
     font-weight: 500;
-    background-color: #C69749;
+    background-color: #ffaa21;
     border: none;
     padding: 0.25em 1em;
     border-radius: 0.25em;

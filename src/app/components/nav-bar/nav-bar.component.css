@@ -13,9 +13,9 @@ header{
 
 .logo{
     font-size: 2rem;
-    color: #C69749;
+    color: #ffaa21;
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 
@@ -23,12 +23,12 @@ header{
     font-size: 1.15rem;
     color: #fff;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 400;
     margin-left: 2.5rem;
 }
 
 .navbar .boton-jugar{
-    color: #C69749;
+    color: #ffaa21;
     display: inline-block;
     cursor: pointer;
     text-decoration: none;
