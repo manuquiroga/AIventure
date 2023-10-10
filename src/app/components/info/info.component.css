@@ -1,11 +1,21 @@
+
+
+
 main{
-    margin: 10% 10%;
+    margin: 2% 0;
+}
+
+.info{
+    
+    padding: 2rem 10%;
 }
 
 .info h1{
     font-size: 3.5rem;
+    font-family: 'Gabarito', cursive;
+    font-family: 'Poppins', sans-serif;
     font-weight: 900;
-    color: #C69749;
+    color: #ffb031;
     margin-bottom: 2rem;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
