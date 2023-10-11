@@ -1,6 +1,6 @@
 # AI adventure
 
-Juego "elije tu propia aventura" de historias generadas por IA
+Juego "elige tu propia aventura" de historias generadas por IA
 
 ## Landing page
 
