@@ -54,14 +54,13 @@ main{
 
 .info button{
     font-size: 1.15rem;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    background-color: #ffaa21;
-    border: none;
+    color: #ffaa21;
+    cursor: pointer;
+    border: currentColor 4px solid;
+    font-weight: 700;
+    background-color: transparent;
     padding: 0.25em 1em;
     border-radius: 0.25em;
-    cursor: pointer;
 }
 
 .info button:hover{
