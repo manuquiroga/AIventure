@@ -10,12 +10,15 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { InfoComponent } from './components/info/info.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    InfoComponent
+    InfoComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,

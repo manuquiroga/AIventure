@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Auth, getAuth, GoogleAuthProvider, signInWithPopup } from '@firebase/auth';
 
 @Component({
   selector: 'nav-bar',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-
+  
 }

@@ -5,15 +5,4 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    
-}
-
-body{
-    min-height: 100vh;
-    background: url('src\assets\images\background.jpeg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.5);
 }
