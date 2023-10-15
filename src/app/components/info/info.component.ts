@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./info.component.css']
 })
 export class InfoComponent {
-
+  slogan: string = 'CREA TU AVENTURA...'
 }
