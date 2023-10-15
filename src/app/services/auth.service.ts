@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Auth, signInWithPopup, signOut, GoogleAuthProvider } from '@angular/fire/auth';
 
+
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
   constructor(private auth: Auth) { }
 
   loginWithGoogle(){
@@ -15,5 +17,6 @@ export class AuthService {
   logout(){
     return signOut(this.auth);
   }
+
 }
   

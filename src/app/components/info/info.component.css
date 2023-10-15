@@ -32,7 +32,7 @@ main{
     -webkit-text-stroke: 0px rgb(150, 150, 150);
     border-right: 2px solid currentColor;
     overflow: hidden;
-    animation: animate 6s linear infinite;
+    animation: animate 5s linear infinite;
 }
 
 @keyframes animate{

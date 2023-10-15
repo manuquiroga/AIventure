@@ -1,0 +1,45 @@
+header{
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.3rem 10%;
+    background-color: rgba(0, 0, 0, .4);
+    backdrop-filter: blur(50px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo{
+    font-size: 2rem;
+    color: #ffaa21;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.historias{
+    font-size: 1.15rem;
+    color: #ffaa21;
+    text-decoration: none;
+    font-weight: 400;
+    margin-left: 2.5rem;
+    border: #ffaa21 2px solid;
+    padding: 10px;
+    border-radius: 0.5rem;
+}
+
+.usuario img{
+    background-color: #ffaa21;
+    width: 3.3rem;
+    height: 3.3rem;
+    border-radius: 50%;
+    margin-left: 2.5rem;
+}
+

@@ -11,6 +11,12 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { InfoComponent } from './components/info/info.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { CharacterMenuComponent } from './pages/character-menu/character-menu.component';
+import { PrivateNavbarComponent } from './components/private-navbar/private-navbar.component';
+import { CharacterDisplayComponent } from './components/character-display/character-display.component';
+import { NonCharacterCardComponent } from './components/non-character-card/non-character-card.component';
+
+
 
 
 @NgModule({
@@ -19,6 +25,10 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
     NavBarComponent,
     InfoComponent,
     LandingPageComponent,
+    CharacterMenuComponent,
+    PrivateNavbarComponent,
+    CharacterDisplayComponent,
+    NonCharacterCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +38,9 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage())
   ],
-  providers: [],
+  providers: [
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
