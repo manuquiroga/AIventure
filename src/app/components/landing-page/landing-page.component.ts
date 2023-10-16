@@ -9,5 +9,4 @@ import { Router } from '@angular/router';
 })
 export class LandingPageComponent {
   constructor(private router: Router) {}
-
 }
