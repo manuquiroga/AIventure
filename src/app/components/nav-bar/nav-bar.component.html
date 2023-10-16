@@ -1,12 +1,32 @@
-<header>
-    <a href="#" class="logo">
-        <!--<img src="" alt="AIventure logo"> -->
-        AIVENTURE
-    </a>
+<div *ngIf="auth.user$ | async; then authenticated else guest">
+    <!-- template will replace this div -->
+</div>
 
-    <nav class="navbar">
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-        <a (click)="onClick()" class="boton-jugar">Ingresar</a>
-    </nav>
-</header>
+<ng-template #guest>
+    <header>
+        <a href="#" class="logo">
+            <!--<img src="" alt="AIventure logo"> -->
+            AIVENTURE
+        </a>
+    
+        <nav class="navbar">
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a (click)="auth.googleSignin()" class="boton-jugar">Ingresar</a>
+        </nav>
+    </header>
+</ng-template>
+
+<ng-template #authenticated>
+    <header>
+        <a href="#" class="logo">
+            <!--<img src="" alt="AIventure logo"> -->
+            AIVENTURE
+        </a>
+    
+        <nav class="navbar">
+            <a class="historias" href="#">{{historias_restantes}} Historias restantes</a>
+            <a class="usuario" href="#" (click)="auth.signOut()"><img [src]="icono_path" alt="Perfil"></a>
+        </nav>
+    </header>
+</ng-template>

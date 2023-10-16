@@ -1,22 +1,63 @@
-import { Injectable } from '@angular/core';
-import { Auth, signInWithPopup, signOut, GoogleAuthProvider } from '@angular/fire/auth';
-
-
+import { Injectable, NgZone } from '@angular/core';
+import { GoogleAuthProvider } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
+import { User } from '../models/user.model';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
-  constructor(private auth: Auth) { }
+  user$: Observable<User | null | undefined>;
 
-  loginWithGoogle(){
-    return signInWithPopup(this.auth, new GoogleAuthProvider());
+  constructor(
+    private firebaseAuthenticationService: AngularFireAuth,
+    private router: Router,
+    private afs: AngularFirestore,
+  ) {
+
+    this.user$ = this.firebaseAuthenticationService.authState.pipe(
+      switchMap(user => {
+          // Logged in
+        if (user) {
+          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+        } else {
+          // Logged out
+          return of(null);
+        }
+      })
+    )
   }
 
-  logout(){
-    return signOut(this.auth);
+  async googleSignin() {
+    const provider = new GoogleAuthProvider();
+    const credential = await this.firebaseAuthenticationService.signInWithPopup(provider);
+    return this.updateUserData(credential.user);
   }
 
-}
+  private updateUserData(user) {
+    // Sets user data to firestore on login
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+
+    const data = { 
+      uid: user.uid, 
+      email: user.email, 
+      displayName: user.displayName, 
+      photoURL: user.photoURL,
+    } 
+    
+    return userRef.set(data, { merge: true })
+  }
+
+  async signOut() {
+    await this.firebaseAuthenticationService.signOut();
+    this.router.navigate(['/']);
+  }
   
+}
+

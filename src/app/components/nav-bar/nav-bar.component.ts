@@ -9,18 +9,10 @@ import { User } from 'firebase/auth';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-  user: User | null = null;
+  historias_restantes: number = 0;
+  icono_path: string = '../../../assets/images/user.png';
 
-  constructor( private auth: AuthService, private router: Router) {
-    };
-  
-
-  onClick(){
-    this.auth.loginWithGoogle()
-    .then(response => {
-      console.log(response);
-      this.router.navigate(['/characters']);
-    })
-    .catch(error => console.log(error))
-  }
+  constructor(public auth: AuthService) {
+    
+   }
 }

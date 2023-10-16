@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -15,9 +20,7 @@ import { CharacterMenuComponent } from './pages/character-menu/character-menu.co
 import { PrivateNavbarComponent } from './components/private-navbar/private-navbar.component';
 import { CharacterDisplayComponent } from './components/character-display/character-display.component';
 import { NonCharacterCardComponent } from './components/non-character-card/non-character-card.component';
-
-
-
+import { CharacterCreationComponent } from './pages/character-creation/character-creation.component';
 
 @NgModule({
   declarations: [
@@ -29,18 +32,25 @@ import { NonCharacterCardComponent } from './components/non-character-card/non-c
     PrivateNavbarComponent,
     CharacterDisplayComponent,
     NonCharacterCardComponent,
+    CharacterCreationComponent,
   ],
   imports: [
+    AngularFireModule,
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+
     BrowserModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
   ],
   providers: [
     
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}

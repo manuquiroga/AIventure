@@ -18,6 +18,11 @@ header{
     font-weight: 600;
 }
 
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 .navbar a{
     font-size: 1.15rem;
@@ -46,5 +51,25 @@ header{
     box-shadow: inset 0 0 0.5em currentColor, 0 0 0.5em 0 currentColor;
     position: relative;
     transition: all 0.2s ease; 
+}
+
+.historias{
+    font-size: 1.15rem;
+    color: #ffaa21;
+    text-decoration: none;
+    font-weight: 400;
+    margin-left: 2.5rem;
+    border: #ffaa21 2px solid;
+    padding: 10px;
+    border-radius: 0.5rem;
+}
+
+.usuario img{
+    background-color: #ffaa21;
+    width: 3.3rem;
+    height: 3.3rem;
+    border-radius: 50%;
+    margin-left: 2.5rem;
+    border: #ffaa21 2px solid;
 }
 
