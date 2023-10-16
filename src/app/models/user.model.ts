@@ -5,8 +5,8 @@ export interface User {
     email: string;
     displayName: string;
     photoURL: string;
-    character1?: Character;
-    character2?: Character;
-    character3?: Character;
+    character1?: Character | null;
+    character2?: Character | null;
+    character3?: Character | null;
     historias?: number;
 }
