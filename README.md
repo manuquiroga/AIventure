@@ -4,5 +4,6 @@ Juego "elige tu propia aventura" de historias generadas por IA
 
 ## Landing page
 
-![image](https://github.com/manuquiroga/AIventure/assets/90061145/66d73788-5bc7-4860-8bd4-738884494ae8)
+![image](https://github.com/manuquiroga/AIventure/assets/90061145/aebece4a-483c-4dcc-a0b4-29ade974ffba)
+
 
