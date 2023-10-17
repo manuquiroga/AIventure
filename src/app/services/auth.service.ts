@@ -1,11 +1,12 @@
 import { Injectable, NgZone } from '@angular/core';
-import { GoogleAuthProvider } from '@angular/fire/auth';
+import { GoogleAuthProvider, user } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { User } from '../models/user.model';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreDocument,AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+
 
 
 @Injectable({
@@ -13,13 +14,18 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 })
 
 export class AuthService {
+
   user$: Observable<User | null | undefined>;
+  private usersCollection: AngularFirestoreCollection<User>;
+  users$: Observable<User[]>;
 
   constructor(
     private firebaseAuthenticationService: AngularFireAuth,
     private router: Router,
     private afs: AngularFirestore,
   ) {
+    this.usersCollection = this.afs.collection<User>('users');
+    this.users$ = this.usersCollection.valueChanges();
 
     this.user$ = this.firebaseAuthenticationService.authState.pipe(
       switchMap(user => {
@@ -76,11 +82,36 @@ export class AuthService {
     }
   }
   
+  getUsers(): void {
+    this.users$.subscribe(users => {
+      console.log(users);
+    });
+  }
+
+  searchUser(): void {
+    this.user$.subscribe(user => {
+      if (user) {
+        const user2: User = { uid: user.uid, email: '', displayName: '', photoURL: '' }; // Utiliza el uid del usuario actual
+  
+        this.users$.subscribe(users => {
+          const foundUser = users.find(u => u.uid === user2.uid);
+          if (foundUser) {
+             console.log(foundUser);
+             return;
+          } else {
+            console.log('User not found');
+          }
+        });
+      }
+    });
+  }
+
+
 
   async signOut() {
     await this.firebaseAuthenticationService.signOut();
     this.router.navigate(['/']);
   }
-  
+
 }
 

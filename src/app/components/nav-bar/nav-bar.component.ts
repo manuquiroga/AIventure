@@ -15,4 +15,8 @@ export class NavBarComponent {
   constructor(public auth: AuthService) {
     
    }
+
+   ngOnInit(){
+    this.auth.searchUser();
+   }
 }
