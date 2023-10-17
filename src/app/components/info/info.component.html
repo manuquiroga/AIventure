@@ -1,28 +1,21 @@
-<div *ngIf="auth.user$ | async; then authenticated else guest">
-    
-</div>
+<main>
+    <div class="info">
+        <h1 class="title" [title]="slogan">{{slogan}}</h1>
+        <p>Historias generadas por una IA.</p>
+        <p>Tú decides quién eres.</p> 
+        <p>Tú decides el final.</p>
+        <div *ngIf="auth.user$ | async; then authenticated else guest">
+            <!-- start button -->
+        </div>
+    </div> 
+</main>
 
 
 <ng-template #guest>
-    <main>
-        <div class="info">
-            <h1 class="title" [title]="slogan">{{slogan}}</h1>
-            <p>Historias generadas por una IA.</p>
-            <p>Tú decides quién eres.</p> 
-            <p>Tú decides el final.</p>
-            <button (click)="auth.googleSignin()">Comienza ahora</button>
-        </div> 
-    </main>
+    <button (click)="auth.googleSignin()">Comienza ahora</button>
 </ng-template>
 
 <ng-template #authenticated>
-    <main>
-        <div class="info">
-            <h1 class="title" [title]="slogan">{{slogan}}</h1>
-            <p>Historias generadas por una IA.</p>
-            <p>Tú decides quién eres.</p> 
-            <p>Tú decides el final.</p>
-            <button [routerLink]="['/characters']">Crear personaje</button>
-        </div> 
-    </main>
+    <button [routerLink]="['/characters']">Crear personaje</button>
 </ng-template>
+

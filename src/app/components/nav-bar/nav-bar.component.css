@@ -10,8 +10,8 @@ header{
     align-items: center;
     z-index: 100;
 
-    --nav-load-time: 300ms;
-    --nav-link-load-time: 500ms;
+    /* --nav-load-time: 300ms;
+    --nav-link-load-time: 500ms; */
 }
 
 .logo{
