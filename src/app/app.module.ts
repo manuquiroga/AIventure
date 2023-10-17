@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AuthGuard } from './guards/auth.guard';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
@@ -48,7 +49,7 @@ import { CharacterCreationComponent } from './pages/character-creation/character
     provideStorage(() => getStorage()),
   ],
   providers: [
-    
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })
