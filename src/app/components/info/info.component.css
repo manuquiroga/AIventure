@@ -1,13 +1,18 @@
-
-
 main{
     margin: 2% 0;
+    --article-load-delay: 800ms;
 }
 
-.info{
-    
+.info {
     padding: 2rem 10%;
+
+    animation: article-load 300ms ease-in var(--article-load-delay);
+    animation-fill-mode: forwards;
+    transform: translateY(-20px);
+    opacity: 0;
 }
+
+/* -----------------------------------------TITLE ANIMATION----------------------------------------- */
 
 .title{
     display: inline;
@@ -44,6 +49,8 @@ main{
     }
 }
 
+/* -----------------------------------------TITLE ANIMATION----------------------------------------- */
+
 .info p{
     font-size: 1.5rem;
     font-weight: 400;
@@ -72,3 +79,17 @@ main{
     position: relative;
     transition: all 0.2s ease; 
 }
+
+/* load animation */
+
+@keyframes article-load {
+    0% {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }

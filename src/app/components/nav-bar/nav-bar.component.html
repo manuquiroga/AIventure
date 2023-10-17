@@ -1,5 +1,5 @@
 <div *ngIf="auth.user$ | async; then authenticated else guest">
-    <!-- template will replace this div -->
+    
 </div>
 
 <ng-template #guest>
@@ -25,8 +25,8 @@
         </a>
     
         <nav class="navbar">
-            <a class="historias" href="#">{{historias_restantes}} Historias restantes</a>
-            <a class="usuario" href="#" (click)="auth.signOut()"><img [src]="icono_path" alt="Perfil"></a>
+            <a class="historias" >{{historias_restantes}} Historias restantes</a>
+            <a class="usuario" (click)="auth.signOut()"><img [src]="icono_path" alt="Perfil"></a>
         </nav>
     </header>
 </ng-template>
