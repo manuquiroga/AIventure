@@ -9,6 +9,9 @@ header{
     justify-content: space-between;
     align-items: center;
     z-index: 100;
+
+    --nav-load-time: 300ms;
+    --nav-link-load-time: 500ms;
 }
 
 .logo{
@@ -22,6 +25,9 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    animation: nav-load var(--nav-load-time) ease-in;
+    
 }
 
 .navbar a{
@@ -30,6 +36,13 @@ header{
     text-decoration: none;
     font-weight: 400;
     margin-left: 2.5rem;
+
+    animation-name: nav-link-load;
+    animation-duration: var(--nav-link-load-time);
+    animation-timing-function: ease-in;
+    animation-delay: var(--nav-load-time);
+    animation-fill-mode: forwards;
+    transform: scale(0);
 }
 
 .navbar .boton-jugar{
@@ -72,4 +85,60 @@ header{
     margin-left: 2.5rem;
     border: #ffaa21 2px solid;
 }
+
+/* NAV LOAD ANIMATIONS */
+
+@keyframes nav-load {
+0% {
+    transform: translateY(-100%);
+}
+
+100% {
+    transform: translateY(0);
+}
+}
+
+@keyframes nav-link-load {
+0% {
+    transform: scale(0);
+}
+
+90% {
+    transform: scale(1.1);
+}
+
+100% {
+    transform: scale(1);
+}
+}
+
+@keyframes nav-first-link-load {
+0% {
+    transform: translateX(-1000%);
+}
+
+90% {
+    transform: translateX(50%);
+}
+
+100% {
+    transform: translateX(0);
+}
+}
+
+@keyframes nav-last-link-load {
+0% {
+    transform: translateX(1000%);
+}
+
+90% {
+    transform: translateX(-50%);
+}
+
+100% {
+    transform: translateX(0);
+}
+}
+  
+  
 
