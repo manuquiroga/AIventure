@@ -12,11 +12,19 @@ export class NavBarComponent {
   historias_restantes: number = 0;
   icono_path: string = '../../../assets/images/user.png';
 
+  name:string = '';
+  email:string = '';
+  historias:number|undefined = 0;
   constructor(public auth: AuthService) {
-    
-   }
+    this.auth.searchUser().subscribe(user => {
+      if (user) {
+        this.name = user.displayName;
+        this.email = user.email;
+        this.historias = user.historias;
+      } else {
+        console.log('User not found');
+      }
+    });
+  }
 
-   ngOnInit(){
-    this.auth.searchUser();
-   }
 }
