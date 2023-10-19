@@ -1,0 +1,16 @@
+.dropdown{
+    min-height: 100vh;
+    background: url('../../../assets/images/background.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+.mat-select {
+    background-color: #f0f0f0; /* Cambia el color de fondo a tu preferencia */
+    border: 2px solid #ccc; /* Agrega un borde personalizado */
+    border-radius: 5px; /* Redondea las esquinas */
+    padding: 10px; /* Añade relleno */
+    font-size: 16px; /* Tamaño de fuente personalizado */
+  }
