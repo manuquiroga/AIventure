@@ -1,0 +1,56 @@
+<div class="dropdown">
+    <nav-bar></nav-bar>
+    <mat-form-field appearance="outline" class="rol">
+
+        <mat-label>Rol</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let rol of rols" [value]="rol.value">
+            {{rol.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="especie">
+        <mat-label>Especie</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let especie of especies" [value]="especie.value">
+            {{especie.viewValue}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="sexo">
+        <mat-label>Sexo</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let sexo of sexos" [value]="sexo.value">
+            {{sexo.viewValue}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="cabello">
+        <mat-label>Cabello</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let cabello of cabellos" [value]="cabello.value">
+            {{cabello.viewValue}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class = "musculatura">
+        <mat-label>Musculatura</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let musculatura of musculaturas" [value]="musculatura.value">
+            {{musculatura.viewValue}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+      <mat-form-field appearance="outline" class="nombre">
+        <mat-label>Nombre:</mat-label>
+        <input matInput placeholder="Ronaldo">
+        <mat-icon matSuffix>face</mat-icon>
+      </mat-form-field>
+
+      <a [routerLink]="['/attributesdistribution']">Guardar</a>
+</div>
