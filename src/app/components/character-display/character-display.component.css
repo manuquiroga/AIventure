@@ -3,18 +3,41 @@
     justify-content: space-between;
     align-items: center;
     height: 100%;
+
+    animation: title-load 500ms ease-in 1000ms;
+    animation-fill-mode: forwards;
+    transform: translateY(-20px);
+    opacity: 0;
 }
 
 main{
-    padding: 1% 10%;
+    padding: 0 10%;
 }
 
 h3{
-    font-size: 1.5rem;
+    font-size: 2rem;
     text-align: center;
-    font-weight: 700;
+    font-weight: 500;
     color: #fff;
-    margin-bottom: 1.5rem;
+    margin: 3rem 0;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+
+    animation: title-load 300ms ease-in 800ms;
+    animation-fill-mode: forwards;
+    transform: translateY(-20px);
+    opacity: 0;
 }
+
+@keyframes title-load {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
 
