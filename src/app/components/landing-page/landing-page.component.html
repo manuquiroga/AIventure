@@ -1,17 +1,8 @@
-<div>
-    <ng-template [ngIf]="!showLoadedTemplate" [ngIfThen]="loading">
-      </ng-template>
-    
-      <ng-template [ngIf]="showLoadedTemplate" [ngIfThen]="loaded">
-      </ng-template>
-</div>
-
-<ng-template #loading>
-    <div class="loading-page">
+    <div class="loading-page"  [ngClass]="{'show': isLoading}">
     
         <svg id="svg" version="1.0" xmlns="http://www.w3.org/2000/svg"
         width="300.000000pt" height="337.000000pt" viewBox="0 0 300.000000 337.000000"
-        preserveAspectRatio="xMidYMid meet">
+        preserveAspectRatio="xMidYMid meet" (animationend)="onAnimationComplete()">
         <metadata>
         Created by potrace 1.10, written by Peter Selinger 2001-2011
         </metadata>
@@ -81,17 +72,16 @@
             <div class="logo-name">AIVENTURE</div>
         </div>
     </div>
-</ng-template>
+<div>
 
-<ng-template #loaded>
-    <div class="imagen">
-        <nav-bar></nav-bar>
-        <app-info></app-info>
-    </div>
-    <div class="next">
+<div class="imagen">
+    <nav-bar></nav-bar>
+    <app-info></app-info>
+</div>
+<div class="next">
 
-    </div>
-</ng-template>
+</div>
+
 
 
 
