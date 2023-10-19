@@ -7,6 +7,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -21,7 +22,18 @@ import { CharacterMenuComponent } from './pages/character-menu/character-menu.co
 import { PrivateNavbarComponent } from './components/private-navbar/private-navbar.component';
 import { CharacterDisplayComponent } from './components/character-display/character-display.component';
 import { NonCharacterCardComponent } from './components/non-character-card/non-character-card.component';
-import { CharacterCreationComponent } from './pages/character-creation/character-creation.component';
+import { CharacterCreationComponent } from './components/character-creation/character-creation.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -47,6 +59,11 @@ import { CharacterCreationComponent } from './pages/character-creation/character
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    FormsModule,
   ],
   providers: [
     AuthGuard,
