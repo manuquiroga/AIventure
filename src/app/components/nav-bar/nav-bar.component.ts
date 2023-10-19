@@ -10,7 +10,7 @@ import { User } from 'firebase/auth';
 })
 export class NavBarComponent {
   historias_restantes: number = 0;
-  icono_path: string = '../../../assets/images/user.png';
+  icono_path: string = '../../../assets/images/account.png';
 
   name:string = '';
   email:string = '';

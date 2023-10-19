@@ -67,23 +67,26 @@ header{
 }
 
 .historias{
-    font-size: 1.15rem;
-    color: #ffaa21;
+    font-size: 1rem !important;
     text-decoration: none;
-    font-weight: 400;
-    margin-left: 2.5rem;
-    border: #ffaa21 2px solid;
+    font-weight: 300 !important;
+    border: rgba(255,170,33, .8 ) 2px solid;
     padding: 10px;
     border-radius: 0.5rem;
 }
 
 .usuario img{
-    background-color: #ffaa21;
+    background: transparent;
+    color:#fff;
+    opacity: .9;
     width: 3.3rem;
     height: 3.3rem;
-    border-radius: 50%;
-    margin-left: 2.5rem;
-    border: #ffaa21 2px solid;
+}
+
+.historias:hover{
+    background-color: rgba(255,170,33, .8 );
+    color: #000;
+    transition: all 0.5s ease;
 }
 
 /* NAV LOAD ANIMATIONS */
