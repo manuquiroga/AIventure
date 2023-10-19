@@ -6,6 +6,8 @@ import {NgFor} from '@angular/common';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { Character } from 'src/app/models/character.model';
+import { MatSelectChange } from '@angular/material/select';
+
 
 interface Rol{
   value:string;
@@ -63,6 +65,44 @@ export class CharacterCreationComponent {
   nombre?:string | null;*/
 
 
+  selectedRol:string = '';
+  selectedEspecie:string = ''
+  selectedSexo:string = '';
+  selectedCabello:string = '';
+  selectedMusculatura:string = '';
+  nombre:string = '';
+
+  onRolChange(event: MatSelectChange) {
+    this.selectedRol = event.value;
+    console.log(this.selectedRol);
+  }
+
+  onEspecieChange(event: MatSelectChange) {
+    this.selectedEspecie = event.value;
+    console.log(this.selectedEspecie);
+  }
+
+  onSexoChange(event: MatSelectChange) {
+    this.selectedSexo = event.value;
+    console.log(this.selectedSexo);
+  }
+
+  onCabelloChange(event: MatSelectChange) {
+    this.selectedCabello = event.value;
+    console.log(this.selectedCabello);
+  }
+
+  onMusculaturaChange(event: MatSelectChange) {
+    this.selectedMusculatura = event.value;
+    console.log(this.selectedMusculatura);
+  }
+
+  onNombreChange(event: any) {
+    this.nombre = event.target.value;
+    console.log(this.nombre);
+  }
+
+
   rols:Rol[]=[
     {value: 'mago-0', viewValue: 'Mago'},
     {value: 'guerrero-1', viewValue: 'Guerrero'},
@@ -99,7 +139,4 @@ export class CharacterCreationComponent {
     {value: 'gordo-3', viewValue: 'Gordo'},
   ]
 
-
-  
-  
 }
