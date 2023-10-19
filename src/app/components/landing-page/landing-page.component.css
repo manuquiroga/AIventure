@@ -1,4 +1,4 @@
-body{
+.imagen{
     min-height: 100vh;
     background: url('../../../assets/images/background.jpeg');
     background-repeat: no-repeat;
@@ -6,5 +6,9 @@ body{
     background-position: center;
     background-size: cover;
     box-shadow: inset 0 0 0 1080px rgba(0,0,0,.5);
+}
 
+.next{
+    background: rgb(190,116,0);
+    background: linear-gradient(160deg, rgba(190,116,0,1) 0%, rgba(110,49,0,1) 40%);
 }
