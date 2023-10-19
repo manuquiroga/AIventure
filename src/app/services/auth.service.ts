@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { User } from '../models/user.model';
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap,map } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreDocument,AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 
 
@@ -88,22 +88,19 @@ export class AuthService {
     });
   }
 
-  searchUser(): void {
-    this.user$.subscribe(user => {
-      if (user) {
-        const user2: User = { uid: user.uid, email: '', displayName: '', photoURL: '' }; // Utiliza el uid del usuario actual
-  
-        this.users$.subscribe(users => {
-          const foundUser = users.find(u => u.uid === user2.uid);
-          if (foundUser) {
-             console.log(foundUser);
-             return;
-          } else {
-            console.log('User not found');
-          }
-        });
-      }
-    });
+  searchUser(): Observable<User | null | undefined> {
+    return this.user$.pipe(
+      switchMap(user => {
+        if (user) {
+          const user2: User = { uid: user.uid, email: user.email, displayName: user.email, photoURL: user.photoURL, historias: user.historias };
+          return this.users$.pipe(
+            map(users => users.find(u => u.uid === user2.uid))
+          );
+        } else {
+          return of(null);
+        }
+      })
+    );
   }
 
 
