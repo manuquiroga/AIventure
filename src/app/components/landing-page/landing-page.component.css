@@ -8,7 +8,51 @@
     box-shadow: inset 0 0 0 1080px rgba(0,0,0,.5);
 }
 
-.next{
-    background: rgb(190,116,0);
-    background: linear-gradient(160deg, rgba(190,116,0,1) 0%, rgba(110,49,0,1) 40%);
+.loading-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #000;
+
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  color: #191654;
+}
+
+#svg {
+  height: 300px;
+  width: 300px;
+  stroke: #ffdfb3;
+  fill-opacity: 0;
+  stroke-width: 25px;
+  animation: draw 2.5s ease;
+}
+
+@keyframes draw {
+  0% {
+    stroke-dashoffset: 4500;
+    stroke-dasharray: 6500;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 9500;
+  }
+}
+
+.name-container {
+  height: 30px;
+  overflow: hidden;
+}
+
+.logo-name {
+  color: #ffdfb3;
+  font-size: 20px;
+  letter-spacing: 12px;
+  text-transform: uppercase;
+  font-weight: bolder;
 }
