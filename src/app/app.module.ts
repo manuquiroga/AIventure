@@ -31,6 +31,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
+import { AttributeDistributionComponent } from './components/attribute-distribution/attribute-distribution.component';
+
 
 
 
@@ -47,6 +49,8 @@ import { HttpClientModule } from '@angular/common/http';
     CharacterDisplayComponent,
     NonCharacterCardComponent,
     CharacterCreationComponent,
+    AttributeDistributionComponent,
+
   ],
   imports: [
     AngularFireModule,

@@ -4,12 +4,13 @@ import { CharacterMenuComponent } from './pages/character-menu/character-menu.co
 import { CharacterCreationComponent } from './components/character-creation/character-creation.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { AuthGuard } from './guards/auth.guard';
-
+import { AttributeDistributionComponent } from './components/attribute-distribution/attribute-distribution.component';
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'characters', component: CharacterMenuComponent, canActivate: [AuthGuard] },
   { path: 'charactercreation', component: CharacterCreationComponent, canActivate: [AuthGuard] },
-
+  { path: 'attributedistribution', component: AttributeDistributionComponent, canActivate: [AuthGuard] }
+  
 ];
 
 @NgModule({

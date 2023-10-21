@@ -7,6 +7,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { Character } from 'src/app/models/character.model';
 import { MatSelectChange } from '@angular/material/select';
+import { Inject } from '@angular/core';
 
 
 interface Rol{
@@ -64,6 +65,7 @@ export class CharacterCreationComponent {
 
   nombre?:string | null;*/
 
+  
 
   selectedRol:string = '';
   selectedEspecie:string = ''
@@ -138,5 +140,17 @@ export class CharacterCreationComponent {
     {value: 'flaco_escopeta-2', viewValue: 'Flaco Escopeta'},
     {value: 'gordo-3', viewValue: 'Gordo'},
   ]
+
+  sendCharacterToImageAI()
+  {
+    /* TO DO */
+  }
+
+  constructor(@Inject('personaje') personaje:Character)
+  {
+      personaje.rol=this.selectedRol;
+      personaje.sexo=this.selectedSexo;
+      personaje.nombre=this.nombre;
+  }
 
 }
