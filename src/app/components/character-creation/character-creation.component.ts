@@ -146,11 +146,17 @@ export class CharacterCreationComponent {
     /* TO DO */
   }
 
-  constructor(@Inject('personaje') personaje:Character)
+  personaje : Character | null | undefined;
+  
+  assignValues (personaje){
+    personaje.rol=this.selectedRol;
+    personaje.sexo=this.selectedSexo;
+    personaje.nombre=this.nombre;
+  }
+
+  constructor()
   {
-      personaje.rol=this.selectedRol;
-      personaje.sexo=this.selectedSexo;
-      personaje.nombre=this.nombre;
+   
   }
 
 }
