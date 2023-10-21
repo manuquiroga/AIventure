@@ -24,6 +24,7 @@ import { CharacterDisplayComponent } from './components/character-display/charac
 import { NonCharacterCardComponent } from './components/non-character-card/non-character-card.component';
 import { CharacterCreationComponent } from './components/character-creation/character-creation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
 
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
@@ -57,6 +58,7 @@ import { AttributeDistributionComponent } from './components/attribute-distribut
     AngularFirestoreModule,
     AngularFireAuthModule,
 
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
