@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { User } from 'firebase/auth';
+import { OpenaiService } from 'src/app/services/openai.service';
 
 @Component({
   selector: 'nav-bar',
@@ -9,13 +10,15 @@ import { User } from 'firebase/auth';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
+  resultado: any;
+
   historias_restantes: number = 0;
   icono_path: string = '../../../assets/images/account.png';
 
   name:string = '';
   email:string = '';
   historias:number|undefined = 0;
-  constructor(public auth: AuthService) {
+  constructor(public auth: AuthService, private openai: OpenaiService) {
     this.auth.searchUser().subscribe(user => {
       if (user) {
         this.name = user.displayName;
@@ -25,6 +28,17 @@ export class NavBarComponent {
         console.log('User not found');
       }
     });
+  }
+
+  enviarSolicitud() {
+    const texto = 'Devolveme una frase de 10 palabras';
+    this.openai.enviarPrompt(texto)
+      .subscribe(response => {
+        this.resultado = response;
+        console.log(this.resultado);
+      }, error => {
+        console.error('Error:', error);
+      });
   }
 
 }
