@@ -30,6 +30,7 @@ import {MatInputModule} from '@angular/material/input';
 
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -64,6 +65,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatSelectModule,
     MatInputModule,
     FormsModule,
+    HttpClientModule,
   ],
   providers: [
     AuthGuard,

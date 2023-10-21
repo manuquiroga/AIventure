@@ -103,8 +103,6 @@ export class AuthService {
     );
   }
 
-
-
   async signOut() {
     await this.firebaseAuthenticationService.signOut();
     this.router.navigate(['/']);

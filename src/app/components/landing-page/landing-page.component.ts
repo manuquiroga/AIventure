@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -10,7 +10,11 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LandingPageComponent{
   isLoading = false;
-  constructor(private router: Router, private auth: AuthService) {}
+  constructor(private router: Router, private auth: AuthService) {
+
+  }
+
+  
 
   onAnimationComplete() {
     this.isLoading = true;

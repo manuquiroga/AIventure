@@ -7,6 +7,10 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  resultado: any;
+
   constructor(private auth: AuthService){}
   title = 'AIVENTURE';
+
+  
 }
