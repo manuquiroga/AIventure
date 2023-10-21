@@ -32,7 +32,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { AttributeDistributionComponent } from './components/attribute-distribution/attribute-distribution.component';
-
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -50,13 +51,14 @@ import { AttributeDistributionComponent } from './components/attribute-distribut
     NonCharacterCardComponent,
     CharacterCreationComponent,
     AttributeDistributionComponent,
+    UserProfileComponent,
 
   ],
   imports: [
     AngularFireModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
-
+    MatMenuModule,
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
