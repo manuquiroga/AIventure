@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { User } from 'firebase/auth';
 import { OpenaiService } from 'src/app/services/openai.service';
+import { Inject } from '@angular/core';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'nav-bar',
@@ -19,7 +24,7 @@ export class NavBarComponent {
   email:string = '';
   historias:number|undefined = 0;
   constructor(public auth: AuthService, private openai: OpenaiService) {
-    this.auth.searchUser().subscribe(user => {
+    this.auth.getCurrentUser().subscribe(user => {
       if (user) {
         this.name = user.displayName;
         this.email = user.email;

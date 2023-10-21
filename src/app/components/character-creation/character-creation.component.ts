@@ -8,6 +8,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { Character } from 'src/app/models/character.model';
 import { MatSelectChange } from '@angular/material/select';
 import { Inject } from '@angular/core';
+import { Routes } from '@angular/router'; 
 
 
 interface Rol{
@@ -64,8 +65,7 @@ export class CharacterCreationComponent {
   musculatura:string[]=['Trembo', 'Gymbro', 'Flaco Escopeta', 'Gordo'];
 
   nombre?:string | null;*/
-
-  
+   
 
   selectedRol:string = '';
   selectedEspecie:string = ''

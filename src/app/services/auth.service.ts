@@ -88,6 +88,10 @@ export class AuthService {
     });
   }
 
+  getCurrentUser(): Observable<User | null | undefined>{
+    return this.user$;
+  }
+
   searchUser(): Observable<User | null | undefined> {
     return this.user$.pipe(
       switchMap(user => {
