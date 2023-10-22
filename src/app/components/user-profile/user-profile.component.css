@@ -1,0 +1,25 @@
+.profile {
+    background-color: #ffffff; 
+    border-radius: 4px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    padding: 16px;
+}
+
+.profile p {
+    margin: 0; 
+    font-size: 14px; 
+    margin-bottom: 8px; 
+}
+
+.logOutButton {
+    background-color: #007bff; 
+    color: #fff; 
+    border: none; 
+    padding: 8px 16px; 
+    border-radius: 4px; 
+    cursor: pointer; 
+}
+
+.logOutButton:hover {
+    background-color: #0056b3; 
+}

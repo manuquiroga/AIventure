@@ -28,8 +28,8 @@
             <a class="historias" >{{historias}} Historias restantes</a>
             <a class="usuario" (click)="auth.getCurrentUser()" [matMenuTriggerFor]="profileMenu"><img [src]="icono_path" alt="Perfil"></a>
         </nav>
-        <mat-menu #profileMenu="matMenu">
-            <app-user-profile></app-user-profile> <!-- Agrega el componente user-profile aquí -->
+        <mat-menu #profileMenu="matMenu" class="profile">
+            <app-user-profile></app-user-profile> 
         </mat-menu>
     </header>
 </ng-template>

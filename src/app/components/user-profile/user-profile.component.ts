@@ -15,10 +15,9 @@ export class UserProfileComponent {
   constructor(public auth:AuthService){
    auth.getCurrentUser().subscribe(user => {
       if (user) {
-        this.userName = user.displayName; // Nombre del usuario
-        this.userEmail = user.email; // Correo electrónico del usuario
+        this.userName = user.displayName; 
+        this.userEmail = user.email; 
       } else {
-        // El usuario no está autenticado
         this.userName = null;
         this.userEmail = null;
       }
