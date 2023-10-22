@@ -2,68 +2,50 @@
     <nav-bar></nav-bar>
     <div class="form">
       <div class="drop" id="rol">
-        <mat-form-field appearance="outline">
-
-          <mat-label>Rol</mat-label>
-          <mat-select (selectionChange)="onRolChange($event)">
-            <mat-option *ngFor="let rol of rols" [value]="rol.value">
-              {{rol.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
+        <label for="rolSelect">Rol:</label>
+          <select id="rolSelect" [(ngModel)]="selectedRol">
+            <option *ngFor="let rol of rols" [value]="rol.value">{{ rol.viewValue }}</option>
+          </select>
+          <span class="arrow"></span>
+      <div>
 
       <div class="drop" id="especie">
-        <mat-form-field appearance="outline" >
-          <mat-label>Especie</mat-label>
-          <mat-select (selectionChange)="onEspecieChange($event)">
-            <mat-option *ngFor="let especie of especies" [value]="especie.value">
-              {{especie.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <label for="especieSelect">Especie:</label>
+        <select id="especieSelect" [(ngModel)]="selectedEspecie">
+          <option *ngFor="let especie of especies" [value]="especie.value">{{ especie.viewValue }}</option>
+        </select>
+        <span class="arrow"></span>
       </div>
 
       <div class="drop" id="sexo">
-        <mat-form-field appearance="outline" >
-          <mat-label>Sexo</mat-label>
-          <mat-select (selectionChange)="onSexoChange($event)">
-            <mat-option *ngFor="let sexo of sexos" [value]="sexo.value">
-              {{sexo.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <label for="sexoSelect">Sexo:</label>
+        <select id="sexoSelect" [(ngModel)]="selectedSexo">
+          <option *ngFor="let sexo of sexos" [value]="sexo.value">{{ sexo.viewValue }}</option>
+        </select>
+        <span class="arrow"></span>
       </div>
 
     <div class="drop" id="cabello">
-      <mat-form-field appearance="outline" >
-        <mat-label>Cabello</mat-label>
-        <mat-select (selectionChange)="onCabelloChange($event)">
-          <mat-option *ngFor="let cabello of cabellos" [value]="cabello.value">
-            {{cabello.viewValue}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <label for="cabelloSelect">Tipo de Cabello:</label>
+      <select id="cabelloSelect" [(ngModel)]="selectedCabello">
+        <option *ngFor="let cabello of cabellos" [value]="cabello.value">{{ cabello.viewValue }}</option>
+      </select>
+      <span class="arrow"></span>
     </div>
 
     <div class = "drop" id="musculatura">
-      <mat-form-field appearance="outline" >
-        <mat-label>Musculatura</mat-label>
-        <mat-select (selectionChange)="onMusculaturaChange($event)">
-          <mat-option *ngFor="let musculatura of musculaturas" [value]="musculatura.value">
-            {{musculatura.viewValue}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <label for="musculaturaSelect">Cuerpo:</label>
+      <select id="musculaturaSelect" [(ngModel)]="selectedMusculatura">
+        <option *ngFor="let musculatura of musculaturas" [value]="musculatura.value">{{ musculatura.viewValue }}</option>
+      </select>
+      <span class="arrow"></span>
     </div>
 
     <div class="drop" id="nombre">
-      <mat-form-field appearance="outline" >
-        <mat-label>Nombre:</mat-label>
-        <input matInput (input)="onNombreChange($event)">
-      </mat-form-field>
+      <label for="nombreSelect">Nombre:</label>
+        <input matInput (input)="onNombreChange($event)">    
     </div>
 
-    <a [routerLink]="['/attributesdistribution']">Guardar</a>
+    <a>Siguiente</a>
     </div>
 </div>

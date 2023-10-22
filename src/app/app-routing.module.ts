@@ -9,7 +9,6 @@ const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'characters', component: CharacterMenuComponent, canActivate: [AuthGuard] },
   { path: 'charactercreation', component: CharacterCreationComponent, canActivate: [AuthGuard] },
-  { path: 'attributedistribution', component: AttributeDistributionComponent, canActivate: [AuthGuard] }
   
 ];
 
