@@ -9,6 +9,9 @@ import { Character } from 'src/app/models/character.model';
 import { MatSelectChange } from '@angular/material/select';
 import { Inject } from '@angular/core';
 import { Routes } from '@angular/router'; 
+import { AuthService } from 'src/app/services/auth.service'; 
+
+
 
 
 interface Rol{
@@ -146,17 +149,41 @@ export class CharacterCreationComponent {
     /* TO DO */
   }
 
-  personaje : Character | null | undefined;
+  personaje: Character | null | undefined;
   
-  assignValues (personaje){
-    personaje.rol=this.selectedRol;
-    personaje.sexo=this.selectedSexo;
-    personaje.nombre=this.nombre;
+  assignValues(personaje: Character | null | undefined) {
+    if (personaje) {
+      personaje.rol = this.selectedRol;
+      personaje.sexo = this.selectedSexo;
+      personaje.nombre = this.nombre;
+      personaje.especie = this.selectedEspecie;
+      personaje.cabello = this.selectedCabello;
+      personaje.musculatura = this.selectedMusculatura;
+    }
+  }
+  
+  logCharacterData() {
+    this.assignValues(this.personaje);
+  
+    // Asegúrate de que el personaje tenga un ID único, puedes usar la fecha actual como ejemplo
+    if(this.personaje){
+      this.personaje.id = new Date().getTime().toString();
+  
+    this.authService.saveCharacter(this.personaje)
+      .then(() => {
+        console.log('Datos del personaje guardados en Firebase:', this.personaje);
+      })
+      .catch(error => {
+        console.error('Error al guardar los datos del personaje:', error);
+      });
+    }
   }
 
-  constructor()
+
+
+  constructor(private authService: AuthService)
   {
-   
+    this.personaje = {} as Character;
   }
 
 }
