@@ -149,5 +149,30 @@ export class AuthService {
     }
   }
 
+  getUserCharacters(): Observable<Character[]> {
+    return this.user$.pipe(
+      switchMap(user => {
+        if (user) {
+          const characters: Character[] = [];
+          if (user.character1 && !characters.includes(user.character1)) {
+            characters.push(user.character1);
+            console.log(user.character1);
+          }
+          if (user.character2 && !characters.includes(user.character2)) {
+            characters.push(user.character2);
+            console.log(user.character2);
+          }
+          if (user.character3 && !characters.includes(user.character3)) {
+            characters.push(user.character3);
+            console.log(user.character3);
+          }
+          return of(characters);
+        } else {
+          return of([]);
+        }
+      })
+    );
+  }
+
 }
 
