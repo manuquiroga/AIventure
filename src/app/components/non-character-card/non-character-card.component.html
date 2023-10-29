@@ -1,5 +1,14 @@
-<div class="card" [routerLink]="['/charactercreation']">
-    <a>+</a>
-    
-    <p class="crear"> Crear personaje</p>
-</div>
+<div class="card-container">
+    <!-- Mostrar tarjetas de personajes -->
+    <div class="card" *ngFor="let character of characters">
+      <p>{{ character.nombre }}</p>
+      <!-- Otros detalles del personaje si es necesario -->
+    </div>
+  
+    <!-- Tarjeta para crear un personaje (si no se ha alcanzado el límite) -->
+    <div class="card" [routerLink]="['/charactercreation']" *ngIf="characters.length < maxCharacterCount">
+      <a>+</a>
+      <p class="crear">Crear personaje</p>
+    </div>
+  </div>
+  
