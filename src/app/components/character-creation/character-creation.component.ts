@@ -9,6 +9,7 @@ import { Character } from 'src/app/models/character.model';
 import { MatSelectChange } from '@angular/material/select';
 import { Inject } from '@angular/core';
 import { Routes } from '@angular/router'; 
+import { AuthService } from 'src/app/services/auth.service';
 
 
 interface Rol{
@@ -51,6 +52,8 @@ interface Nombre{
   styleUrls: ['./character-creation.component.css']
 })
 export class CharacterCreationComponent {
+
+  personaje: Character | null | undefined;
 
   dropdown: boolean = true;
   distribution: boolean = false;
@@ -161,13 +164,7 @@ export class CharacterCreationComponent {
     /* TO DO */
   }
 
-  personaje : Character | null | undefined;
   
-  assignValues (personaje){
-    personaje.rol=this.selectedRol;
-    personaje.sexo=this.selectedSexo;
-    personaje.nombre=this.nombre;
-  }
 
   imprimir(){
     console.log(this.selectedRol);
@@ -248,9 +245,45 @@ export class CharacterCreationComponent {
     }
   }
 
-  constructor()
+  
+  assignValues(personaje: Character | null | undefined) {
+    if (personaje) {
+      personaje.rol = this.selectedRol;
+      personaje.sexo = this.selectedSexo;
+      personaje.nombre = this.nombre;
+      personaje.especie = this.selectedEspecie;
+      personaje.cabello = this.selectedCabello;
+      personaje.musculatura = this.selectedMusculatura;
+      personaje.fuerza = this.fuerza;
+      personaje.inteligencia = this.inteligencia;
+      personaje.coraje = this.valentia;
+      personaje.destreza = this.destreza;
+      personaje.carisma = this.carisma;
+    }
+  }
+  
+  logCharacterData() {
+    this.assignValues(this.personaje);
+  
+    // Asegúrate de que el personaje tenga un ID único, puedes usar la fecha actual como ejemplo
+    if(this.personaje){
+      this.personaje.id = new Date().getTime().toString();
+  
+    this.authService.saveCharacter(this.personaje)
+      .then(() => {
+        console.log('Datos del personaje guardados en Firebase:', this.personaje);
+      })
+      .catch(error => {
+        console.error('Error al guardar los datos del personaje:', error);
+      });
+    }
+  }
+
+
+
+  constructor(private authService: AuthService)
   {
-   
+    this.personaje = {} as Character;
   }
 
 }
