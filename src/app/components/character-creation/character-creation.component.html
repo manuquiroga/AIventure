@@ -45,9 +45,90 @@
             <input matInput (input)="onNombreChange($event)">    
         </div>
 
-    <a>Siguiente</a>
+        <a id="next" (click)="nextButton()">Siguiente</a>
+      </div>
     </div>
-</div>
+
+    <div class="distribution" *ngIf="distribution">
+      <p class="title" *ngIf="distribution">Administre sus puntos. Quedan: {{puntos}}</p>
+      <div class="attributes">
+        <div class="attribute fuerza" (data-value)="fuerza">
+          <p>Fuerza:</p>
+          <div class="lineas">
+            <div class="linea" [ngClass]="{ 'linea-activa': fuerza >= 1 }"></div>
+            <div class="linea" [ngClass]="{ 'linea-activa': fuerza >= 2 }"></div>
+            <div class="linea" [ngClass]="{ 'linea-activa': fuerza >= 3 }"></div>
+            <div class="linea" [ngClass]="{ 'linea-activa': fuerza >= 4 }"></div>
+            <div class="linea" [ngClass]="{ 'linea-activa': fuerza >= 5 }"></div>
+            <div class="linea" [ngClass]="{ 'linea-activa': fuerza >= 6 }"></div>
+          </div>
+          <div>
+            <button (click)="addFuerza()">+</button>
+            <button (click)="removeFuerza()">-</button>
+          </div>
+      </div>
+        <div class="attribute destreza" (data-value)="destreza">
+            <p>Destreza:</p>
+            <div class="lineas">
+              <div class="linea" [ngClass]="{ 'linea-activa': destreza >= 1 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': destreza >= 2 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': destreza >= 3 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': destreza >= 4 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': destreza >= 5 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': destreza >= 6 }"></div>
+            </div>
+            <div>
+              <button (click)="addDestreza()">+</button>
+              <button (click)="removeDestreza()">-</button>
+            </div>
+        </div>
+        <div class="attribute inteligencia">
+            <p>Inteligencia:</p>
+            <div class="lineas">
+              <div class="linea" [ngClass]="{ 'linea-activa': inteligencia >= 1 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': inteligencia >= 2 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': inteligencia >= 3 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': inteligencia >= 4 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': inteligencia >= 5 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': inteligencia >= 6 }"></div>
+            </div>
+            <div>
+              <button (click)="addInteligencia()">+</button>
+              <button (click)="removeInteligencia()">-</button>
+            </div>
+        </div>
+        <div class="attribute carisma">
+            <p>Carisma:</p>
+            <div class="lineas">
+              <div class="linea" [ngClass]="{ 'linea-activa': carisma >= 1 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': carisma >= 2 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': carisma >= 3 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': carisma >= 4 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': carisma >= 5 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': carisma >= 6 }"></div>
+            </div>
+            <div>
+              <button (click)="addCarisma()">+</button>
+              <button (click)="removeCarisma()">-</button>
+            </div>
+        </div>
+        <div class="attribute valentia">
+            <p>Valentia:</p>
+            <div class="lineas">
+              <div class="linea" [ngClass]="{ 'linea-activa': valentia >= 1 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': valentia >= 2 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': valentia >= 3 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': valentia >= 4 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': valentia >= 5 }"></div>
+              <div class="linea" [ngClass]="{ 'linea-activa': valentia >= 6 }"></div>
+              
+            </div>
+            <div>
+              <button (click)="addValentia()">+</button>
+              <button (click)="removeValentia()">-</button>
+            </div>
+        </div>
+      </div>
 
       <a id="crear">Crear Personaje</a>
     </div>
