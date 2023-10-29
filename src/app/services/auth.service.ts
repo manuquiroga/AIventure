@@ -6,6 +6,7 @@ import { User } from '../models/user.model';
 import { Observable, of } from 'rxjs';
 import { switchMap,map } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreDocument,AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Character } from '../models/character.model';
 
 
 
@@ -110,6 +111,42 @@ export class AuthService {
   async signOut() {
     await this.firebaseAuthenticationService.signOut();
     this.router.navigate(['/']);
+  }
+
+
+  async saveCharacter(character: Character) {
+    try {
+      // Obtén el usuario autenticado actual
+      const user = await this.firebaseAuthenticationService.currentUser;
+  
+      if (user) {
+        // Define la referencia al documento del usuario
+        const userRef = this.afs.doc(`users/${user.uid}`);
+  
+        // Obtiene el documento actual del usuario
+        const userDoc = await userRef.get().toPromise();
+  
+        // Obtiene los campos de personajes
+        const character1 = userDoc?.get('character1');
+        const character2 = userDoc?.get('character2');
+        const character3 = userDoc?.get('character3');
+  
+        // Realiza la comprobación y guarda el personaje en el primer campo disponible
+        if (!character1) {
+          await userRef.update({ character1: character });
+        } else if (!character2) {
+          await userRef.update({ character2: character });
+        } else if (!character3) {
+          await userRef.update({ character3: character });
+        } else {
+          console.error('Todos los campos de personajes están ocupados. No se puede guardar un nuevo personaje.');
+        }
+      } else {
+        console.error('Usuario no autenticado. No se puede guardar el personaje.');
+      }
+    } catch (error) {
+      console.error('Error al guardar el personaje:', error);
+    }
   }
 
 }

@@ -9,6 +9,9 @@ import { Character } from 'src/app/models/character.model';
 import { MatSelectChange } from '@angular/material/select';
 import { Inject } from '@angular/core';
 import { Routes } from '@angular/router'; 
+import { AuthService } from 'src/app/services/auth.service'; 
+
+
 
 
 interface Rol{
@@ -161,91 +164,12 @@ export class CharacterCreationComponent {
     /* TO DO */
   }
 
-  personaje : Character | null | undefined;
+  personaje: Character | null | undefined;
   
   assignValues (personaje){
     personaje.rol=this.selectedRol;
     personaje.sexo=this.selectedSexo;
     personaje.nombre=this.nombre;
-  }
-
-  imprimir(){
-    console.log(this.selectedRol);
-    console.log(this.selectedSexo);
-    console.log(this.selectedEspecie);
-    console.log(this.selectedCabello);
-    console.log(this.selectedMusculatura);
-    console.log(this.nombre);
-  }
-
-  addFuerza(){
-    if(this.puntos>0 && this.fuerza<6){
-      this.fuerza++;
-      this.puntos--;
-    }
-  }
-
-  addInteligencia(){
-    if(this.puntos>0 && this.inteligencia<6){
-      this.inteligencia++;
-      this.puntos--;
-    }
-  }
-
-  addDestreza(){
-    if(this.puntos>0 && this.destreza<6){
-      this.destreza++;
-      this.puntos--;
-    }
-  }
-
-  addValentia(){
-    if(this.puntos>0 && this.valentia<6){
-      this.valentia++;
-      this.puntos--;
-    }
-  }
-
-  addCarisma(){
-    if(this.puntos>0 && this.carisma<6){
-      this.carisma++;
-      this.puntos--;
-    }
-  }
-
-  removeFuerza(){
-    if(this.fuerza>1){
-      this.fuerza--;
-      this.puntos++;
-    }
-  }
-
-  removeInteligencia(){
-    if(this.inteligencia>1){
-      this.inteligencia--;
-      this.puntos++;
-    }
-  }
-
-  removeDestreza(){
-    if(this.destreza>1){
-      this.destreza--;
-      this.puntos++;
-    }
-  }
-
-  removeValentia(){
-    if(this.valentia>1){
-      this.valentia--;
-      this.puntos++;
-    }
-  }
-
-  removeCarisma(){
-    if(this.carisma>1){
-      this.carisma--;
-      this.puntos++;
-    }
   }
 
   constructor()
