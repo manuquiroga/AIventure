@@ -19,11 +19,8 @@ interface Sexo{
   value:string;
   viewValue:string;
 }
+
 interface Especie{
-  value:string;
-  viewValue:string;
-}
-interface Cabello{
   value:string;
   viewValue:string;
 }
@@ -32,6 +29,7 @@ interface Cabello{
   value:string;
   viewValue:string;
 }
+
 interface Musculatura{
   value:string;
   viewValue:string;
@@ -54,6 +52,9 @@ interface Nombre{
 })
 export class CharacterCreationComponent {
 
+  dropdown: boolean = true;
+  distribution: boolean = false;
+
   /*rol:string[] = ['Mago', 'Guerrero', 'Cazador', 'Asesino', 'Doctor'];
   sexo:string[]= ['Masculino', 'Femenino'];
   especie:string[]= ['Humano', 'Elfo', 'Enano', 'Elfo Oscuro', 'Hada', 'Semi-Humano'];
@@ -73,6 +74,19 @@ export class CharacterCreationComponent {
   selectedCabello:string = '';
   selectedMusculatura:string = '';
   nombre:string = '';
+
+  puntos: number = 7;
+
+  fuerza: number = 1;
+  inteligencia: number = 1;
+  destreza: number = 1;
+  valentia: number = 1;
+  carisma: number = 1;
+
+  nextButton(){
+    this.dropdown = false;
+    this.distribution = true;
+  }
 
   onRolChange(event: MatSelectChange) {
     this.selectedRol = event.value;
@@ -106,11 +120,12 @@ export class CharacterCreationComponent {
 
 
   rols:Rol[]=[
-    {value: 'mago-0', viewValue: 'Mago'},
-    {value: 'guerrero-1', viewValue: 'Guerrero'},
-    {value: 'Cazador-2', viewValue: 'Cazador'},
-    {value: 'Asesino-3', viewValue: 'Asesino'},
-    {value: 'Doctor-4', viewValue: 'Doctor'},
+    {value: 'Mago', viewValue: 'Mago'},
+    {value: 'Guerrero', viewValue: 'Guerrero'},
+    {value: 'Cazador', viewValue: 'Cazador'},
+    {value: 'Asesino', viewValue: 'Asesino'},
+    {value: 'Doctor1', viewValue: 'Doctor'},
+
   ]
 
   sexos:Sexo[]=[
@@ -152,6 +167,85 @@ export class CharacterCreationComponent {
     personaje.rol=this.selectedRol;
     personaje.sexo=this.selectedSexo;
     personaje.nombre=this.nombre;
+  }
+
+  imprimir(){
+    console.log(this.selectedRol);
+    console.log(this.selectedSexo);
+    console.log(this.selectedEspecie);
+    console.log(this.selectedCabello);
+    console.log(this.selectedMusculatura);
+    console.log(this.nombre);
+  }
+
+  addFuerza(){
+    if(this.puntos>0 && this.fuerza<6){
+      this.fuerza++;
+      this.puntos--;
+    }
+  }
+
+  addInteligencia(){
+    if(this.puntos>0 && this.inteligencia<6){
+      this.inteligencia++;
+      this.puntos--;
+    }
+  }
+
+  addDestreza(){
+    if(this.puntos>0 && this.destreza<6){
+      this.destreza++;
+      this.puntos--;
+    }
+  }
+
+  addValentia(){
+    if(this.puntos>0 && this.valentia<6){
+      this.valentia++;
+      this.puntos--;
+    }
+  }
+
+  addCarisma(){
+    if(this.puntos>0 && this.carisma<6){
+      this.carisma++;
+      this.puntos--;
+    }
+  }
+
+  removeFuerza(){
+    if(this.fuerza>1){
+      this.fuerza--;
+      this.puntos++;
+    }
+  }
+
+  removeInteligencia(){
+    if(this.inteligencia>1){
+      this.inteligencia--;
+      this.puntos++;
+    }
+  }
+
+  removeDestreza(){
+    if(this.destreza>1){
+      this.destreza--;
+      this.puntos++;
+    }
+  }
+
+  removeValentia(){
+    if(this.valentia>1){
+      this.valentia--;
+      this.puntos++;
+    }
+  }
+
+  removeCarisma(){
+    if(this.carisma>1){
+      this.carisma--;
+      this.puntos++;
+    }
   }
 
   constructor()

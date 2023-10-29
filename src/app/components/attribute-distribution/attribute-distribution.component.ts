@@ -1,11 +1,4 @@
-import { Component } from '@angular/core';
-import {CdkMenuItemRadio,
-  CdkMenuItemCheckbox,
-  CdkMenuGroup,
-  CdkMenu,
-  CdkMenuTrigger,
-  CdkMenuItem,
-  CdkMenuBar,} from '@angular/cdk/menu';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-attribute-distribution',
@@ -13,5 +6,4 @@ import {CdkMenuItemRadio,
   styleUrls: ['./attribute-distribution.component.css']
 })
 export class AttributeDistributionComponent {
-
 }
