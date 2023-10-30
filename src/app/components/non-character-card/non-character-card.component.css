@@ -1,5 +1,7 @@
 .card-container {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
 
 .card {
@@ -11,11 +13,17 @@
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
     transition: all 0.3s ease-in-out;
 
+    margin-right: 2rem;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     
+}
+
+.card:last-child{
+    margin-right: 0;
 }
 
 .card a{
