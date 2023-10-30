@@ -1,8 +1,38 @@
-<div class="card-container">
+<!-- <div class="card-container">
   <div class="card" *ngFor="let character of characters">
     <p>{{ character.nombre }}</p>
   </div>
   <div class="card" *ngIf="characters.length < maxCharacterCount">
+    <a [routerLink]="['/charactercreation']">+</a>
+    <p class="crear">Crear personaje</p>
+  </div>
+</div> -->
+
+<div class="card-container">
+
+  <!-- PERSONAJE 1 -->
+  <div class="card" *ngIf="character1">
+    <p>{{ character1.nombre }}</p>
+  </div>
+  <div class="card" *ngIf="character1 === undefined">
+    <a [routerLink]="['/charactercreation']">+</a>
+    <p class="crear">Crear personaje</p>
+  </div>
+  
+  <!-- PERSONAJE 2 -->
+  <div class="card" *ngIf="character2">
+    <p>{{ character2.nombre }}</p>
+  </div>
+  <div class="card" *ngIf="character2 === undefined">
+    <a [routerLink]="['/charactercreation']">+</a>
+    <p class="crear">Crear personaje</p>
+  </div>
+
+  <!-- PERSONAJE 3 -->
+  <div class="card" *ngIf="character3">
+    <p>{{ character3.nombre }}</p>
+  </div>
+  <div class="card" *ngIf="character3 === undefined">
     <a [routerLink]="['/charactercreation']">+</a>
     <p class="crear">Crear personaje</p>
   </div>

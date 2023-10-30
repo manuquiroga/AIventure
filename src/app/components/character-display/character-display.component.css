@@ -1,8 +1,7 @@
 .character-cards{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    height: 100%;
 
     animation: title-load 500ms ease-in 1000ms;
     animation-fill-mode: forwards;

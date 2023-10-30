@@ -11,8 +11,9 @@ import { take } from 'rxjs/operators';
 })
 
 export class NonCharacterCardComponent implements OnInit, OnDestroy {
-  characters: Character[] = []; // Arreglo para almacenar los personajes
-  maxCharacterCount: number = 3; // Número máximo de personajes permitidos
+  character1!: Character;
+  character2!: Character;
+  character3!: Character;
 
   private userSubscription: Subscription | undefined;
 
@@ -22,8 +23,9 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
     this.userSubscription = this.authService.getUserCharacters()
       .pipe(take(1)) // Utiliza take(1) para limitar las emisiones a una sola
       .subscribe(characters => {
-        this.characters = characters;
-        console.log(characters);
+        this.character1 = characters[0];
+        this.character2 = characters[1];
+        this.character3 = characters[2];
       });
   }
 
