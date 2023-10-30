@@ -3,6 +3,7 @@ import { Character } from 'src/app/models/character.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-non-character-card',
@@ -11,17 +12,17 @@ import { take } from 'rxjs/operators';
 })
 
 export class NonCharacterCardComponent implements OnInit, OnDestroy {
-  character1!: Character;
-  character2!: Character;
-  character3!: Character;
+  character1!: Character| null | undefined;
+  character2!: Character| null | undefined;
+  character3!: Character| null | undefined;
 
   private userSubscription: Subscription | undefined;
 
-  constructor(private authService: AuthService) {}
+  constructor(public authService: AuthService, private router:Router) {}
 
   ngOnInit() {
     this.userSubscription = this.authService.getUserCharacters()
-      .pipe(take(1)) // Utiliza take(1) para limitar las emisiones a una sola
+      .pipe(take(1)) 
       .subscribe(characters => {
         this.character1 = characters[0];
         this.character2 = characters[1];
@@ -29,9 +30,17 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
       });
   }
 
+ async deleteUserChar(numberChar:number)
+  {
+    await this.authService.deleteUserCharacter(numberChar);
+    window.location.reload();
+  }
+
   ngOnDestroy() {
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }
   }
+
+
 }

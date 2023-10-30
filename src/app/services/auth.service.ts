@@ -119,6 +119,7 @@ export class AuthService {
     );
   }
 
+
   async signOut() {
     await this.firebaseAuthenticationService.signOut();
     this.router.navigate(['/']);
@@ -150,16 +151,17 @@ export class AuthService {
     return this.user$.pipe(
       switchMap(user => {
         if (user) {
-          const characters: Character[] = [];
-          if (user.character1 && !characters.includes(user.character1)) {
-            characters.push(user.character1);
-          }
-          if (user.character2 && !characters.includes(user.character2)) {
-            characters.push(user.character2);
-          }
-          if (user.character3 && !characters.includes(user.character3)) {
-            characters.push(user.character3);
-          }
+          const characters: any[] = [];
+          
+          if (user.character1 && !characters.includes(user.character1)) characters.push(user.character1);
+          else characters.push(undefined);
+
+          if (user.character2 && !characters.includes(user.character2)) characters.push(user.character2);
+          else characters.push(undefined);
+          
+          if (user.character3 && !characters.includes(user.character3)) characters.push(user.character3);
+          else characters.push(undefined);
+          
           return of(characters);
         } else {
           return of([]);
@@ -167,4 +169,26 @@ export class AuthService {
       })
     );
   }
+
+
+ async deleteUserCharacter(slot:number)
+  {
+      const user = await this.firebaseAuthenticationService.currentUser;
+      if (user) {
+        const userRef = this.afs.doc(`users/${user.uid}`);
+        const userDoc = await userRef.get().toPromise();
+        const character1 = userDoc?.get('character1');
+        const character2 = userDoc?.get('character2');
+        const character3 = userDoc?.get('character3');
+        if (slot===1) {
+          await userRef.update({ character1: null });
+        } else if (slot===2) {
+          await userRef.update({ character2: null });
+        } else if (slot===3) {
+          await userRef.update({ character3: null });
+        }
+      } else {
+        console.error('Usuario no autenticado. No se puede borrar el personaje.');
+      }
+    }
 }
