@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Component,OnInit,OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { User } from 'firebase/auth';
@@ -8,13 +8,14 @@ import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit, OnDestroy{
   resultado: any;
 
   historias_restantes: number = 0;
@@ -23,8 +24,15 @@ export class NavBarComponent {
   name:string = '';
   email:string = '';
   historias:number|undefined = 0;
+
+  private userSubscription: Subscription | undefined;
+
   constructor(public auth: AuthService, private openai: OpenaiService) {
-    this.auth.getCurrentUser().subscribe(user => {
+    
+  }
+
+  ngOnInit() {
+    this.userSubscription = this.auth.user$.subscribe(user => {
       if (user) {
         this.name = user.displayName;
         this.email = user.email;
@@ -33,6 +41,13 @@ export class NavBarComponent {
         console.log('User not found');
       }
     });
+  }
+
+  ngOnDestroy() {
+    // Asegúrate de cancelar la suscripción al destruir el componente
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
 
   enviarSolicitud() {
