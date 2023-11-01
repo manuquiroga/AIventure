@@ -11,9 +11,11 @@
 <div class="card-container">
 
   <!-- PERSONAJE 1 -->
-  <div class="card" *ngIf="character1">
+  <div class="card character" *ngIf="character1">
+    <img [src]="getCharacterImage(1)" alt="Sin imagen">
     <p>{{ character1.nombre }}</p>
-    <button (click)="deleteUserChar(1)">Borrar</button>
+    
+    <button class="delete-btn" (click)="deleteUserChar(1)">Borrar</button>
   </div>
   <div class="card" *ngIf="character1 === undefined">
     <a [routerLink]="['/charactercreation']">+</a>
@@ -21,9 +23,11 @@
   </div>
   
   <!-- PERSONAJE 2 -->
-  <div class="card" *ngIf="character2">
+  <div class="card character" *ngIf="character2">
+    <img [src]="getCharacterImage(2)" alt="Sin imagen">
     <p>{{ character2.nombre }}</p>
-    <button (click)="deleteUserChar(2)" >Borrar</button>
+    
+    <button class="delete-btn" (click)="deleteUserChar(2)" >Borrar</button>
   </div>
   <div class="card" *ngIf="character2 === undefined">
     <a [routerLink]="['/charactercreation']">+</a>
@@ -31,9 +35,11 @@
   </div>
 
   <!-- PERSONAJE 3 -->
-  <div class="card" *ngIf="character3">
+  <div class="card character" *ngIf="character3">
+    <img [src]="getCharacterImage(3)" alt="Sin imagen">
     <p>{{ character3.nombre }}</p>
-    <button (click)="deleteUserChar(3)">Borrar</button>
+    
+    <button class="delete-btn" (click)="deleteUserChar(3)">Borrar</button>
   </div>
   <div class="card" *ngIf="character3 === undefined">
     <a [routerLink]="['/charactercreation']">+</a>

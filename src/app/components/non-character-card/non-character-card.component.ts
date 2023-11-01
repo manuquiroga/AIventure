@@ -42,5 +42,41 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
     }
   }
 
+  getCharacterImage(numberChar:number){
+    let sexo = "";
+    let especie = "";
+    let rol = "";
+
+    switch(numberChar){
+      case 1: {
+        sexo = this.character1?.sexo || "";
+        especie = this.character1?.especie || "";
+        rol = this.character1?.rol || "";
+        break;
+      }
+        
+      case 2: {
+        sexo = this.character2?.sexo || "";
+        especie = this.character2?.especie || "";
+        rol = this.character2?.rol || "";
+        break;
+      }
+        
+      case 3: {
+        sexo = this.character3?.sexo || "";
+        especie = this.character3?.especie || "";
+        rol = this.character3?.rol || "";
+        break;
+      }
+    }
+
+    let url = "";
+
+    if(sexo !== "" && especie !== "" && rol !== ""){
+      url = `https://aiventure-images.up.railway.app/imagen/${sexo}/${especie}/${rol}/`;
+    }
+    
+    return url;
+  }
 
 }
