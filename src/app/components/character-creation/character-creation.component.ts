@@ -123,31 +123,31 @@ export class CharacterCreationComponent {
 
 
   rols:Rol[]=[
-    {value: 'Mago', viewValue: 'Mago'},
-    {value: 'Guerrero', viewValue: 'Guerrero'},
-    {value: 'Cazador', viewValue: 'Cazador'},
-    {value: 'Asesino', viewValue: 'Asesino'},
-    {value: 'Doctor1', viewValue: 'Doctor'},
+    {value: 'mago', viewValue: 'Mago'},
+    {value: 'guerrero', viewValue: 'Guerrero'},
+    {value: 'cazador', viewValue: 'Cazador'},
+    {value: 'asesino', viewValue: 'Asesino'},
+    {value: 'doctor', viewValue: 'Doctor'},
 
   ]
 
   sexos:Sexo[]=[
-    {value: 'masculino-0', viewValue: 'Masculino'},
-    {value: 'femenino-1', viewValue: 'Femenino'},
+    {value: 'hombre', viewValue: 'Masculino'},
+    {value: 'mujer', viewValue: 'Femenino'},
   ]
 
   especies:Especie[]=[
-    {value: 'humano-0', viewValue: 'Humano'},
-    {value: 'elfo-1', viewValue: 'Elfo'},
-    {value: 'enano-2', viewValue: 'Enano'},
-    {value: 'elfo_oscuro-3', viewValue: 'Elfo Oscuro'},
-    {value: 'hada-4', viewValue: 'Hada'},
-    {value: 'semi_humano-5', viewValue: 'Semi Humano'},
+    {value: 'humano', viewValue: 'Humano'},
+    {value: 'elfo', viewValue: 'Elfo'},
+    {value: 'enano', viewValue: 'Enano'},
+    {value: 'elfo_oscuro', viewValue: 'Elfo Oscuro'},
+    {value: 'hada', viewValue: 'Hada'},
+    {value: 'semi_humano', viewValue: 'Semi Humano'},
   ]
 
-  cabellos:Cabello[]=[
-    {value: 'corto-0', viewValue: 'Corto'},
-    {value: 'largo-1', viewValue: 'Largo'},
+/*   cabellos:Cabello[]=[
+    {value: 'corto', viewValue: 'Corto'},
+    {value: 'largo', viewValue: 'Largo'},
     {value: 'rapado_militar-2', viewValue: 'Rapado Militar'},
     {value: 'alopecia-3', viewValue: 'Alopecia'},
   ]
@@ -157,15 +157,8 @@ export class CharacterCreationComponent {
     {value: 'gymbro-1', viewValue: 'Gymbro'},
     {value: 'flaco_escopeta-2', viewValue: 'Flaco Escopeta'},
     {value: 'gordo-3', viewValue: 'Gordo'},
-  ]
-
-  sendCharacterToImageAI()
-  {
-    /* TO DO */
-  }
-
+  ] */
   
-
   imprimir(){
     console.log(this.selectedRol);
     console.log(this.selectedSexo);
@@ -262,20 +255,21 @@ export class CharacterCreationComponent {
     }
   }
   
-  logCharacterData() {
+  async logCharacterData() {
     this.assignValues(this.personaje);
   
-    // Asegúrate de que el personaje tenga un ID único, puedes usar la fecha actual como ejemplo
     if(this.personaje){
       this.personaje.id = new Date().getTime().toString();
   
-    this.authService.saveCharacter(this.personaje)
+    await this.authService.saveCharacter(this.personaje)
       .then(() => {
         console.log('Datos del personaje guardados en Firebase:', this.personaje);
       })
       .catch(error => {
         console.error('Error al guardar los datos del personaje:', error);
       });
+      
+    window.location.reload();
     }
   }
 
