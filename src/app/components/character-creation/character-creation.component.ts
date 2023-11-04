@@ -12,6 +12,8 @@ import { Routes } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 
+
+
 interface Rol{
   value:string;
   viewValue:string;
@@ -49,10 +51,9 @@ interface Nombre{
 @Component({
   selector: 'app-character-creation',
   templateUrl: './character-creation.component.html',
-  styleUrls: ['./character-creation.component.css']
+  styleUrls: ['./character-creation.component.css'],
 })
 export class CharacterCreationComponent {
-
   personaje: Character | null | undefined;
 
   dropdown: boolean = true;
@@ -69,16 +70,16 @@ export class CharacterCreationComponent {
   musculatura:string[]=['Trembo', 'Gymbro', 'Flaco Escopeta', 'Gordo'];
 
   nombre?:string | null;*/
-   
 
-  selectedRol:string = '';
-  selectedEspecie:string = ''
-  selectedSexo:string = '';
-  selectedCabello:string = '';
-  selectedMusculatura:string = '';
-  nombre:string = '';
+  selectedRol: string = '';
+  selectedEspecie: string = '';
+  selectedSexo: string = '';
+  selectedCabello: string = '';
+  selectedMusculatura: string = '';
+  nombre: string = '';
 
   puntos: number = 7;
+  randomInt: number = this.getRandomInt();
 
   fuerza: number = 1;
   inteligencia: number = 1;
@@ -86,7 +87,7 @@ export class CharacterCreationComponent {
   valentia: number = 1;
   carisma: number = 1;
 
-  nextButton(){
+  nextButton() {
     this.dropdown = false;
     this.distribution = true;
   }
@@ -121,31 +122,28 @@ export class CharacterCreationComponent {
     console.log(this.nombre);
   }
 
+  rols: Rol[] = [
+    { value: 'mago', viewValue: 'Mago' },
+    { value: 'guerrero', viewValue: 'Guerrero' },
+    { value: 'cazador', viewValue: 'Cazador' },
+    { value: 'asesino', viewValue: 'Asesino' },
+    { value: 'doctor', viewValue: 'Doctor' },
+  ];
 
-  rols:Rol[]=[
-    {value: 'mago', viewValue: 'Mago'},
-    {value: 'guerrero', viewValue: 'Guerrero'},
-    {value: 'cazador', viewValue: 'Cazador'},
-    {value: 'asesino', viewValue: 'Asesino'},
-    {value: 'doctor', viewValue: 'Doctor'},
+  sexos: Sexo[] = [
+    { value: 'hombre', viewValue: 'Masculino' },
+    { value: 'mujer', viewValue: 'Femenino' },
+  ];
 
-  ]
+  especies: Especie[] = [
+    { value: 'humano', viewValue: 'Humano' },
+    { value: 'elfo', viewValue: 'Elfo' },
+    { value: 'orco', viewValue: 'Orco' },
+    { value: 'hada', viewValue: 'Hada' },
+    { value: 'semi_humano', viewValue: 'Semi Humano'},
+  ];
 
-  sexos:Sexo[]=[
-    {value: 'hombre', viewValue: 'Masculino'},
-    {value: 'mujer', viewValue: 'Femenino'},
-  ]
-
-  especies:Especie[]=[
-    {value: 'humano', viewValue: 'Humano'},
-    {value: 'elfo', viewValue: 'Elfo'},
-    {value: 'enano', viewValue: 'Enano'},
-    {value: 'elfo_oscuro', viewValue: 'Elfo Oscuro'},
-    {value: 'hada', viewValue: 'Hada'},
-    {value: 'semi_humano', viewValue: 'Semi Humano'},
-  ]
-
-/*   cabellos:Cabello[]=[
+  /*   cabellos:Cabello[]=[
     {value: 'corto', viewValue: 'Corto'},
     {value: 'largo', viewValue: 'Largo'},
     {value: 'rapado_militar-2', viewValue: 'Rapado Militar'},
@@ -158,8 +156,8 @@ export class CharacterCreationComponent {
     {value: 'flaco_escopeta-2', viewValue: 'Flaco Escopeta'},
     {value: 'gordo-3', viewValue: 'Gordo'},
   ] */
-  
-  imprimir(){
+
+  imprimir() {
     console.log(this.selectedRol);
     console.log(this.selectedSexo);
     console.log(this.selectedEspecie);
@@ -168,77 +166,80 @@ export class CharacterCreationComponent {
     console.log(this.nombre);
   }
 
-  addFuerza(){
-    if(this.puntos>0 && this.fuerza<6){
+  addFuerza() {
+    if (this.puntos > 0 && this.fuerza < 6) {
       this.fuerza++;
       this.puntos--;
     }
   }
 
-  addInteligencia(){
-    if(this.puntos>0 && this.inteligencia<6){
+  addInteligencia() {
+    if (this.puntos > 0 && this.inteligencia < 6) {
       this.inteligencia++;
       this.puntos--;
     }
   }
 
-  addDestreza(){
-    if(this.puntos>0 && this.destreza<6){
+  addDestreza() {
+    if (this.puntos > 0 && this.destreza < 6) {
       this.destreza++;
       this.puntos--;
     }
   }
 
-  addValentia(){
-    if(this.puntos>0 && this.valentia<6){
+  addValentia() {
+    if (this.puntos > 0 && this.valentia < 6) {
       this.valentia++;
       this.puntos--;
     }
   }
 
-  addCarisma(){
-    if(this.puntos>0 && this.carisma<6){
+  addCarisma() {
+    if (this.puntos > 0 && this.carisma < 6) {
       this.carisma++;
       this.puntos--;
     }
   }
 
-  removeFuerza(){
-    if(this.fuerza>1){
+  removeFuerza() {
+    if (this.fuerza > 1) {
       this.fuerza--;
       this.puntos++;
     }
   }
 
-  removeInteligencia(){
-    if(this.inteligencia>1){
+  removeInteligencia() {
+    if (this.inteligencia > 1) {
       this.inteligencia--;
       this.puntos++;
     }
   }
 
-  removeDestreza(){
-    if(this.destreza>1){
+  removeDestreza() {
+    if (this.destreza > 1) {
       this.destreza--;
       this.puntos++;
     }
   }
 
-  removeValentia(){
-    if(this.valentia>1){
+  removeValentia() {
+    if (this.valentia > 1) {
       this.valentia--;
       this.puntos++;
     }
   }
 
-  removeCarisma(){
-    if(this.carisma>1){
+  removeCarisma() {
+    if (this.carisma > 1) {
       this.carisma--;
       this.puntos++;
     }
   }
 
-  
+  getRandomInt() {
+    return Math.floor(Math.random() * 8) + 1;
+  }
+
   assignValues(personaje: Character | null | undefined) {
     if (personaje) {
       personaje.rol = this.selectedRol;
@@ -252,32 +253,33 @@ export class CharacterCreationComponent {
       personaje.coraje = this.valentia;
       personaje.destreza = this.destreza;
       personaje.carisma = this.carisma;
+      personaje.photoURL = `https://aiventure-images.up.railway.app/imagen/${personaje.sexo}-${personaje.especie}-${personaje.rol}-${this.randomInt}.jpeg`;
     }
   }
-  
+
   async logCharacterData() {
     this.assignValues(this.personaje);
-  
-    if(this.personaje){
+
+    if (this.personaje) {
       this.personaje.id = new Date().getTime().toString();
-  
-    await this.authService.saveCharacter(this.personaje)
-      .then(() => {
-        console.log('Datos del personaje guardados en Firebase:', this.personaje);
-      })
-      .catch(error => {
-        console.error('Error al guardar los datos del personaje:', error);
-      });
-      
-    window.location.reload();
+
+      await this.authService
+        .saveCharacter(this.personaje)
+        .then(() => {
+          console.log(
+            'Datos del personaje guardados en Firebase:',
+            this.personaje
+          );
+        })
+        .catch((error) => {
+          console.error('Error al guardar los datos del personaje:', error);
+        });
+
+      window.location.reload();
     }
   }
 
-
-
-  constructor(private authService: AuthService)
-  {
+  constructor(private authService: AuthService) {
     this.personaje = {} as Character;
   }
-
 }
