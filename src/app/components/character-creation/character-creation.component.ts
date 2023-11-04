@@ -237,7 +237,7 @@ export class CharacterCreationComponent {
   }
 
   getRandomInt() {
-    return Math.floor(Math.random() * 8);
+    return Math.floor(Math.random() * 8) + 1;
   }
 
   assignValues(personaje: Character | null | undefined) {
@@ -253,7 +253,7 @@ export class CharacterCreationComponent {
       personaje.coraje = this.valentia;
       personaje.destreza = this.destreza;
       personaje.carisma = this.carisma;
-      personaje.photoURL = `https://aiventure-images.up.railway.app/imagen/${personaje.sexo}/${personaje.especie}/${personaje.rol}/${this.randomInt}.jpeg`;
+      personaje.photoURL = `https://aiventure-images.up.railway.app/imagen/${personaje.sexo}-${personaje.especie}-${personaje.rol}-${this.randomInt}.jpeg`;
     }
   }
 
