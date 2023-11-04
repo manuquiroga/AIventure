@@ -190,5 +190,7 @@ export class AuthService {
       } else {
         console.error('Usuario no autenticado. No se puede borrar el personaje.');
       }
-    }
+  }
+
+  
 }

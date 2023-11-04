@@ -16,6 +16,16 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
   character2!: Character| null | undefined;
   character3!: Character| null | undefined;
 
+  showCharacter1Stats: boolean = false;
+  showCharacter2Stats: boolean = false;
+  showCharacter3Stats: boolean = false;
+
+  fuerza:number = 0;
+  inteligencia:number = 0;
+  destreza:number = 0;
+  coraje:number = 0;
+  carisma:number = 0;
+
   private userSubscription: Subscription | undefined;
 
   constructor(public authService: AuthService, private router:Router) {}
@@ -29,6 +39,58 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
         this.character3 = characters[2];
       });
   }
+
+
+  showStatsButton(characterNumber: number) {
+    
+    switch (characterNumber) {
+      case 1:
+        this.showCharacter1Stats = true;
+        if(this.showCharacter1Stats){
+          this.fuerza = this.character1?.fuerza || 0;
+          this.inteligencia = this.character1?.inteligencia || 0;
+          this.carisma = this.character1?.carisma || 0;
+          this.destreza = this.character1?.destreza || 0;
+          this.coraje = this.character1?.coraje || 0;
+        }
+        break;
+      case 2:
+        this.showCharacter2Stats = true;
+        if(this.showCharacter2Stats){
+          this.fuerza = this.character2?.fuerza || 0;
+          this.inteligencia = this.character2?.inteligencia || 0;
+          this.carisma = this.character2?.carisma || 0;
+          this.destreza = this.character2?.destreza || 0;
+          this.coraje = this.character2?.coraje || 0;
+        }
+        break;
+      case 3:
+        this.showCharacter3Stats = true;
+        if(this.showCharacter3Stats){
+          this.fuerza = this.character3?.fuerza || 0;
+          this.inteligencia = this.character3?.inteligencia || 0;
+          this.carisma = this.character3?.carisma || 0;
+          this.destreza = this.character3?.destreza || 0;
+          this.coraje = this.character3?.coraje || 0;
+        }
+        break;
+    }
+  }
+  
+  hideStatistics(characterNumber: number) {
+    switch (characterNumber) {
+      case 1:
+        this.showCharacter1Stats = false;
+        break;
+      case 2:
+        this.showCharacter2Stats = false;
+        break;
+      case 3:
+        this.showCharacter3Stats = false;
+        break;
+    }
+  }
+  
 
  async deleteUserChar(numberChar:number)
   {
