@@ -11,7 +11,7 @@
 <div class="card-container">
   <!-- PERSONAJE 1 -->
   <div class="card character" *ngIf="character1">
-    <img [src]="getCharacterImage(1)" alt="Sin imagen">
+    <img [src]="character1.photoURL" alt="Sin imagen">
     <p>Nombre: {{ character1.nombre }}</p>
     <p>Especie: {{character1.especie}}</p>
     <p>Rol: {{character1.rol}}</p>
@@ -33,7 +33,7 @@
   
   <!-- PERSONAJE 2 -->
   <div class="card character" *ngIf="character2">
-    <img [src]="getCharacterImage(2)" alt="Sin imagen">
+    <img [src]="character2.photoURL" alt="Sin imagen">
     <p>Nombre: {{ character2.nombre }}</p>
     <p>Especie: {{character2.especie}}</p>
     <p>Rol: {{character2.rol}}</p>
@@ -55,7 +55,7 @@
 
   <!-- PERSONAJE 3 -->
   <div class="card character" *ngIf="character3">
-    <img [src]="getCharacterImage(3)" alt="Sin imagen">
+    <img [src]="character3.photoURL" alt="Sin imagen">
     <p>{{ character3.nombre }}-{{character3.especie}}-{{character3.rol}}</p>
     <button class="delete-btn" (click)="deleteUserChar(3)">Borrar</button>
     <button (click)="showStatsButton(3)">Ver Estadísticas</button>
