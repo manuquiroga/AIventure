@@ -51,14 +51,7 @@ export class NavBarComponent implements OnInit, OnDestroy{
   }
 
   enviarSolicitud() {
-    const texto = 'Devolveme una frase de 10 palabras';
-    this.openai.enviarPrompt(texto)
-      .subscribe(response => {
-        this.resultado = response;
-        console.log(this.resultado);
-      }, error => {
-        console.error('Error:', error);
-      });
+    this.openai.main();
   }
 
 }
