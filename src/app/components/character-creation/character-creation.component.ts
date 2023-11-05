@@ -275,7 +275,7 @@ export class CharacterCreationComponent {
           console.error('Error al guardar los datos del personaje:', error);
         });
 
-      window.location.reload();
+      
     }
   }
 
