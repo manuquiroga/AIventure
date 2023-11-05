@@ -12,11 +12,14 @@
   <!-- PERSONAJE 1 -->
   <div class="card character" *ngIf="character1">
     <img [src]="character1.photoURL" alt="Sin imagen">
-    <p>Nombre: {{ character1.nombre }}</p>
-    <p>Especie: {{character1.especie}}</p>
-    <p>Rol: {{character1.rol}}</p>
-    <button class="delete-btn" (click)="deleteUserChar(1)">Borrar</button>
-    <button (click)="showStatsButton(1)">Ver Estadísticas</button>
+    <p>{{ character1.nombre }} </p>
+    <p class="char-info"> {{character1.especie}} - {{character1.rol}}</p>
+
+    <div class="buttons">
+      <button class="delete-btn" (click)="deleteUserChar(1)">Borrar</button>
+      <button class="stats-btn" (click)="showStatsButton(1)">Stats</button>
+      <button class="play-btn">Jugar</button>
+    </div>
   <div *ngIf="showCharacter1Stats">
     <p>Fuerza: {{fuerza}}</p>
     <p>inteligencia: {{inteligencia}}</p>
@@ -28,17 +31,20 @@
   </div>
   <div class="card" *ngIf="character1 === undefined">
     <a [routerLink]="['/charactercreation']">+</a>
-    <p class="crear">Crear personaje</p>
+    <p class="crear">NUEVO</p>
   </div>
   
   <!-- PERSONAJE 2 -->
   <div class="card character" *ngIf="character2">
     <img [src]="character2.photoURL" alt="Sin imagen">
-    <p>Nombre: {{ character2.nombre }}</p>
-    <p>Especie: {{character2.especie}}</p>
-    <p>Rol: {{character2.rol}}</p>
-    <button class="delete-btn" (click)="deleteUserChar(2)" >Borrar</button>
-    <button (click)="showStatsButton(2)">Ver Estadísticas</button>
+    <p>{{ character2.nombre }} </p>
+    <p class="char-info">{{character2.especie}} - {{character2.rol}}</p>
+
+    <div class="buttons">
+      <button class="delete-btn" (click)="deleteUserChar(2)" >Borrar</button>
+      <button class="stats-btn" (click)="showStatsButton(2)">Stats</button>
+      <button class="play-btn">Jugar</button>
+    </div>
   <div *ngIf="showCharacter2Stats">
     <p>Fuerza: {{fuerza}}</p>
     <p>inteligencia: {{inteligencia}}</p>
@@ -50,15 +56,20 @@
   </div>
   <div class="card" *ngIf="character2 === undefined">
     <a [routerLink]="['/charactercreation']">+</a>
-    <p class="crear">Crear personaje</p>
+    <p class="crear">NUEVO</p>
   </div>
 
   <!-- PERSONAJE 3 -->
   <div class="card character" *ngIf="character3">
     <img [src]="character3.photoURL" alt="Sin imagen">
-    <p>{{ character3.nombre }}-{{character3.especie}}-{{character3.rol}}</p>
-    <button class="delete-btn" (click)="deleteUserChar(3)">Borrar</button>
-    <button (click)="showStatsButton(3)">Ver Estadísticas</button>
+    <p>{{ character3.nombre }} </p>
+    <p class="char-info"> {{character3.especie}} - {{character3.rol}}</p>
+
+    <div class="buttons">
+      <button class="delete-btn" (click)="deleteUserChar(3)">Borrar</button>
+      <button class="stats-btn" (click)="showStatsButton(3)">Stats</button>
+      <button class="play-btn">Jugar</button>
+    </div>
   <div *ngIf="showCharacter3Stats">
     <p>Fuerza: {{fuerza}}</p>
     <p>inteligencia: {{inteligencia}}</p>
@@ -70,6 +81,6 @@
   </div>
   <div class="card" *ngIf="character3 === undefined">
     <a [routerLink]="['/charactercreation']">+</a>
-    <p class="crear">Crear personaje</p>
+    <p class="crear">NUEVO</p>
   </div>
 </div>
