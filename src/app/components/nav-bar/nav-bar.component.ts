@@ -13,26 +13,24 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styleUrls: ['./nav-bar.component.css'],
 })
-export class NavBarComponent implements OnInit, OnDestroy{
-  resultado: any;
+export class NavBarComponent implements OnInit, OnDestroy {
+  response!: string;
 
   historias_restantes: number = 0;
   icono_path: string = '../../../assets/images/account.png';
 
-  name:string = '';
-  email:string = '';
-  historias:number|undefined = 0;
+  name: string = '';
+  email: string = '';
+  historias: number | undefined = 0;
 
   private userSubscription: Subscription | undefined;
 
-  constructor(public auth: AuthService, private openai: OpenaiService) {
-    
-  }
+  constructor(public auth: AuthService, private openai: OpenaiService) {}
 
   ngOnInit() {
-    this.userSubscription = this.auth.user$.subscribe(user => {
+    this.userSubscription = this.auth.user$.subscribe((user) => {
       if (user) {
         this.name = user.displayName;
         this.email = user.email;
@@ -44,14 +42,20 @@ export class NavBarComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy() {
-    // Asegúrate de cancelar la suscripción al destruir el componente
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }
   }
 
-  enviarSolicitud() {
-    this.openai.main();
+  enviarSolicitud(question: string) {
+     this.openai.postData(question).subscribe(
+      (data: any) => {
+        this.response = data.response; 
+        console.log(data.response);
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
   }
-
 }
