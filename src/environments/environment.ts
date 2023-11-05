@@ -9,7 +9,7 @@ export const environment = {
     measurementId: 'G-19NHTHXYCN',
   },
   openai: {
-    apiKey: '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',
+    apiKey: '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',
   }
 };
 
