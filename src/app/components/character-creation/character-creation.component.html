@@ -35,14 +35,9 @@
           <label for="nombreSelect">Nombre:</label>
           <input matInput (input)="onNombreChange($event)" required />
         </div>
-
-        <button id="next" (click)="nextButton()" class="nextButton">Siguiente</button>
-          <p class="error-message" *ngIf="showErrorMessage">Completa todos los campos</p>
-          <p class="error-message" *ngIf="shownErrorName">El nombre debe contener solo letras y espacios</p>
+          <p class="error-message" *ngIf="showErrorMessage">*Completa todos los campos</p>
+          <p class="error-message" *ngIf="shownErrorName">*No permitimos caracteres especiales</p>
         <a id="next" (click)="nextButton()" class="nextButton">Siguiente</a>
-        <p class="error-message" *ngIf="showErrorMessage">
-          *Completa todos los campos
-        </p>
         <a class="back" (click)="volver()">Volver</a>
       </div>
     </div>
