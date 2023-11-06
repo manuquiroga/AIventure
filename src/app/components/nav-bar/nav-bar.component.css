@@ -9,9 +9,6 @@ header{
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-
-    /* --nav-load-time: 300ms;
-    --nav-link-load-time: 500ms; */
 }
 
 .logo{
@@ -19,7 +16,6 @@ header{
     color: #ffaa21;
     text-decoration: none;
     font-weight: 600;
-    letter-spacing: 3px;
 }
 
 .navbar{
@@ -73,7 +69,7 @@ header{
     font-weight: 300 !important;
     border: rgba(255,170,33, .8 ) 2px solid;
     padding: 5px 10px;
-    border-radius: 0.5rem;
+    border-radius: 4px;
 }
 
 .usuario img{
