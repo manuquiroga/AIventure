@@ -45,6 +45,10 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
 
   showStatsButton(characterNumber: number) {
     
+    this.showCharacter1Stats = false;
+    this.showCharacter2Stats = false;
+    this.showCharacter3Stats = false;
+
     switch (characterNumber) {
       case 1:
         this.showCharacter1Stats = true;
