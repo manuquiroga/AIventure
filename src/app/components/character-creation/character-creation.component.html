@@ -33,6 +33,7 @@
 
         <button id="next" (click)="nextButton()" class="nextButton">Siguiente</button>
           <p class="error-message" *ngIf="showErrorMessage">Completa todos los campos</p>
+          <p class="error-message" *ngIf="shownErrorName">El nombre debe contener solo letras y espacios</p>
       </div>
     </div>
 
