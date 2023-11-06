@@ -11,14 +11,14 @@
 <div class="card-container">
   <!-- PERSONAJE 1 -->
   <div class="card character" *ngIf="character1">
-    <img [src]="character1.photoURL" alt="Sin imagen">
+    <img [src]="character1.photoURL" alt="Sin imagen" *ngIf="!showCharacter1Stats">
     <p>{{ character1.nombre }} </p>
     <p class="char-info"> {{character1.especie}} - {{character1.rol}}</p>
 
     <div class="buttons">
-      <button class="delete-btn" (click)="deleteUserChar(1)">Borrar</button>
-      <button class="stats-btn" (click)="showStatsButton(1)">Stats</button>
-      <button class="play-btn">Jugar</button>
+      <button class="delete-btn" (click)="deleteUserChar(1)" *ngIf="!showCharacter1Stats">Borrar</button>
+      <button class="stats-btn" (click)="showStatsButton(1)" *ngIf="!showCharacter1Stats">Stats</button>
+      <button class="play-btn" *ngIf="!showCharacter1Stats">Jugar</button>
     </div>
   <div *ngIf="showCharacter1Stats">
     <p>Fuerza: {{fuerza}}</p>
@@ -36,14 +36,14 @@
   
   <!-- PERSONAJE 2 -->
   <div class="card character" *ngIf="character2">
-    <img [src]="character2.photoURL" alt="Sin imagen">
+    <img [src]="character2.photoURL" alt="Sin imagen" *ngIf="!showCharacter2Stats">
     <p>{{ character2.nombre }} </p>
     <p class="char-info">{{character2.especie}} - {{character2.rol}}</p>
 
     <div class="buttons">
-      <button class="delete-btn" (click)="deleteUserChar(2)" >Borrar</button>
-      <button class="stats-btn" (click)="showStatsButton(2)">Stats</button>
-      <button class="play-btn">Jugar</button>
+      <button class="delete-btn" (click)="deleteUserChar(2)" *ngIf="!showCharacter2Stats">Borrar</button>
+      <button class="stats-btn" (click)="showStatsButton(2)" *ngIf="!showCharacter2Stats">Stats</button>
+      <button class="play-btn" *ngIf="!showCharacter2Stats">Jugar</button>
     </div>
   <div *ngIf="showCharacter2Stats">
     <p>Fuerza: {{fuerza}}</p>
@@ -61,14 +61,14 @@
 
   <!-- PERSONAJE 3 -->
   <div class="card character" *ngIf="character3">
-    <img [src]="character3.photoURL" alt="Sin imagen">
+    <img [src]="character3.photoURL" alt="Sin imagen" *ngIf="!showCharacter3Stats">
     <p>{{ character3.nombre }} </p>
     <p class="char-info"> {{character3.especie}} - {{character3.rol}}</p>
 
     <div class="buttons">
-      <button class="delete-btn" (click)="deleteUserChar(3)">Borrar</button>
-      <button class="stats-btn" (click)="showStatsButton(3)">Stats</button>
-      <button class="play-btn">Jugar</button>
+      <button class="delete-btn" (click)="deleteUserChar(3)" *ngIf="!showCharacter3Stats">Borrar</button>
+      <button class="stats-btn" (click)="showStatsButton(3)" *ngIf="!showCharacter3Stats">Stats</button>
+      <button class="play-btn" *ngIf="!showCharacter3Stats">Jugar</button>
     </div>
   <div *ngIf="showCharacter3Stats">
     <p>Fuerza: {{fuerza}}</p>

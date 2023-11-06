@@ -7,31 +7,32 @@
       <div class="form">
         <div class="drop" id="rol">
           <label for="rolSelect">Rol:</label>
-          <select id="rolSelect" [(ngModel)]="selectedRol">
+          <select id="rolSelect" [(ngModel)]="selectedRol" required>
             <option *ngFor="let rol of rols" [value]="rol.value">{{ rol.viewValue }}</option>
           </select>
         </div>
 
         <div class="drop" id="especie">
           <label for="especieSelect">Especie:</label>
-          <select id="especieSelect" [(ngModel)]="selectedEspecie">
+          <select id="especieSelect" [(ngModel)]="selectedEspecie" required>
             <option *ngFor="let especie of especies" [value]="especie.value">{{ especie.viewValue }}</option>
           </select>
         </div>
 
         <div class="drop" id="sexo">
           <label for="sexoSelect">Sexo:</label>
-          <select id="sexoSelect" [(ngModel)]="selectedSexo">
+          <select id="sexoSelect" [(ngModel)]="selectedSexo" required>
             <option *ngFor="let sexo of sexos" [value]="sexo.value">{{ sexo.viewValue }}</option>
           </select>
         </div>
 
         <div class="drop" id="nombre">
           <label for="nombreSelect">Nombre:</label>
-            <input matInput (input)="onNombreChange($event)">    
+            <input matInput (input)="onNombreChange($event)" required>    
         </div>
 
-        <a id="next" (click)="nextButton()">Siguiente</a>
+        <button id="next" (click)="nextButton()" class="nextButton">Siguiente</button>
+          <p class="error-message" *ngIf="showErrorMessage">Completa todos los campos</p>
       </div>
     </div>
 

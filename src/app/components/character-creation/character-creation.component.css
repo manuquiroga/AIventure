@@ -127,7 +127,7 @@ button {
 
 /* BOTON CREAR */
 
-a{
+.nextButton{
     color: #ffaa21;
     display: inline-block;
     cursor: pointer;
@@ -139,7 +139,7 @@ a{
     text-align: center;
 }
 
-a:hover{
+.nextButton:hover{
     text-shadow:
         0 0 0.125em hsl(0 0% 100% / 0.3),
         0 0 0.45em currentColor;
@@ -148,6 +148,13 @@ a:hover{
     position: relative;
     transition: all 0.2s ease; 
 }
+
+.error-message {
+    margin-top: 5rem;
+    color: red;
+    display: flex; 
+  }
+  
 
 #crear{
     width: 100%;
