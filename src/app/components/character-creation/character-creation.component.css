@@ -9,11 +9,18 @@
 .dropdown {
   margin-left: auto;
   margin-right: auto;
+  width: 300px;
 }
 
 .distribution {
   margin-left: auto;
   margin-right: auto;
+}
+
+
+.drop label{
+  display: block;
+  color: #fff; 
 }
 
 .form {
@@ -25,17 +32,25 @@
 }
 
 select {
+  appearance: none;
   width: 100%;
   padding: 8px;
   border-radius: 4px;
   font-size: 16px;
   margin-bottom: 1.5rem;
-  background-color: #dbdbdb;
+  background-color: transparent;
   border: none;
+  color: #fff;
+  border: #2c2c2c 2px solid;
 }
 
 select:focus {
   outline: none;
+}
+
+option{
+  background-color: rgba(0, 0, 0, 0.95);
+  color: #fff;
 }
 
 input {
@@ -43,18 +58,15 @@ input {
   padding: 8px;
   border-radius: 4px;
   font-size: 16px;
-  background-color: #dbdbdb;
+  background-color: transparent;
   border: none;
   margin-bottom: 10px;
+  color: #fff;
+  border: #2c2c2c 2px solid;
 }
 
 input:focus {
   outline: none;
-}
-
-label {
-  color: #fff;
-  display: block;
 }
 
 /* DISTRIBUCION */

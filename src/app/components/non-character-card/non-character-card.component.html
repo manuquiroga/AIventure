@@ -41,6 +41,7 @@
   </div>
 
   <app-character-creation class="card" *ngIf="crear1 && ocultar" (ocultar)="ocultarComponente($event)"></app-character-creation>
+  
 
   <!-- PERSONAJE 2 -->
   <div class="card character" *ngIf="character2">
@@ -85,7 +86,7 @@
   <app-character-creation class="card" *ngIf="crear2 && ocultar" (ocultar)="ocultarComponente($event)"></app-character-creation>
 
   <!-- PERSONAJE 3 -->
-  <div class="card character" *ngIf="character3">
+  <div class="card character" *ngIf="character3" >
     <img
       [src]="character3.photoURL"
       alt="Sin imagen"
@@ -125,4 +126,6 @@
     <p class="crear">NUEVO</p>
   </div>
   <app-character-creation class="card" *ngIf="crear3 && ocultar" (ocultar)="ocultarComponente($event)"></app-character-creation>
+
+  
 </div>
