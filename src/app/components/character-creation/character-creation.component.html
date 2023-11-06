@@ -117,8 +117,8 @@
         </div>
       </div>
 
-      <a id="crear" [routerLink]="['/characters']" (click)="logCharacterData()">Crear Personaje</a>
-      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+      <button id="crear" (click)="finishCharButton()">Crear Personaje</button>
+      <p class="error-message" *ngIf="notGoThrough">Asigna por lo menos 4 puntos</p>
     </div>
   </div>
 </body>

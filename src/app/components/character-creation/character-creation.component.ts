@@ -8,7 +8,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { Character } from 'src/app/models/character.model';
 import { MatSelectChange } from '@angular/material/select';
 import { Inject } from '@angular/core';
-import { Routes } from '@angular/router'; 
+import { Routes, Router } from '@angular/router'; 
 import { AuthService } from 'src/app/services/auth.service';
 
 
@@ -88,14 +88,7 @@ export class CharacterCreationComponent {
   valentia: number = 1;
   carisma: number = 1;
 
-  nextButton() {
-    if (!this.isFormComplete()) {
-      this.showErrorMessage = true;
-    } else {
-      this.dropdown = false;
-      this.distribution = true;
-    }
-  }
+  
 
   onRolChange(event: MatSelectChange) {
     this.selectedRol = event.value;
@@ -249,18 +242,21 @@ export class CharacterCreationComponent {
   }
 
   errorMessage:string='';
-  goThrough:boolean=false;
+  notGoThrough:boolean=false;
+
+  
+
   async logCharacterData() {
     this.assignValues(this.personaje);
 
     if (this.personaje) {
       this.personaje.id = new Date().getTime().toString();
 
-      if(this.puntos <= 3){
-        this.goThrough=true;
+      if(!this.isAttributesDistributed() && this.puntos <=3 ){
         await this.authService
         .saveCharacter(this.personaje)
         .then(() => {
+          this.router.navigate(['/characters'])
           console.log(
             'Datos del personaje guardados en Firebase:',
             this.personaje
@@ -269,11 +265,33 @@ export class CharacterCreationComponent {
         .catch((error) => {
           console.error('Error al guardar los datos del personaje:', error);
         });
-      }else if(this.goThrough===false){
-        console.log('error');
-        this.errorMessage='Debe asignar por lo menos 4 puntos'
-        console.log(this.errorMessage);
       }
+    }
+  }
+
+  finishCharButton() {
+    if (this.isAttributesDistributed() || this.puntos >=4) {
+      this.notGoThrough = true;
+    } else {
+      this.logCharacterData();
+    }
+  }
+
+  isAttributesDistributed(){
+    if(this.personaje?.carisma===1 && this.personaje?.destreza===1 && this.personaje?.inteligencia===1 && this.personaje?.fuerza===1 && this.personaje?.coraje===1)
+    {
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  nextButton() {
+    if (!this.isFormComplete()) {
+      this.showErrorMessage = true;
+    } else {
+      this.dropdown = false;
+      this.distribution = true;
     }
   }
 
@@ -283,7 +301,7 @@ export class CharacterCreationComponent {
 
   
     
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router:Router) {
     this.personaje = {} as Character;
   }
 }
