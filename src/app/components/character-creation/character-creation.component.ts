@@ -1,52 +1,41 @@
-import { Component } from '@angular/core';
-import { NavBarComponent } from '../nav-bar/nav-bar.component';
-import {FormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {NgFor} from '@angular/common';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Character } from 'src/app/models/character.model';
 import { MatSelectChange } from '@angular/material/select';
-import { Inject } from '@angular/core';
-import { Routes, Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
-
-
-
-interface Rol{
-  value:string;
-  viewValue:string;
+interface Rol {
+  value: string;
+  viewValue: string;
 }
-interface Sexo{
-  value:string;
-  viewValue:string;
+interface Sexo {
+  value: string;
+  viewValue: string;
 }
 
-interface Especie{
-  value:string;
-  viewValue:string;
+interface Especie {
+  value: string;
+  viewValue: string;
 }
 
-interface Cabello{
-  value:string;
-  viewValue:string;
+interface Cabello {
+  value: string;
+  viewValue: string;
 }
 
-interface Musculatura{
-  value:string;
-  viewValue:string;
+interface Musculatura {
+  value: string;
+  viewValue: string;
 }
-interface Bello_Facial{
-  value:string;
-  viewValue:string;
-}
-
-interface Nombre{
-  value:string;
-  viewValue:string;
+interface Bello_Facial {
+  value: string;
+  viewValue: string;
 }
 
+interface Nombre {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-character-creation',
@@ -54,24 +43,14 @@ interface Nombre{
   styleUrls: ['./character-creation.component.css'],
 })
 export class CharacterCreationComponent {
+  @Output() ocultar = new EventEmitter<boolean>();
+
   personaje: Character | null | undefined;
 
   dropdown: boolean = true;
   distribution: boolean = false;
-  showErrorMessage:boolean = false;
+  showErrorMessage: boolean = false;
   shownErrorName:boolean = false;
-
-  /*rol:string[] = ['Mago', 'Guerrero', 'Cazador', 'Asesino', 'Doctor'];
-  sexo:string[]= ['Masculino', 'Femenino'];
-  especie:string[]= ['Humano', 'Elfo', 'Enano', 'Elfo Oscuro', 'Hada', 'Semi-Humano'];
-  
-  A partir de aca es los atributos a para la foto, incluyendo los 3 de arriba 
-
-  cabello:string[]= ['Corto', 'Largo', 'Rapado Militar', 'Alopecia'];
-  bello_facial:string[]=['Barba', 'Bigote', 'Sin bello facial'];
-  musculatura:string[]=['Trembo', 'Gymbro', 'Flaco Escopeta', 'Gordo'];
-
-  nombre?:string | null;*/
 
   selectedRol: string = '';
   selectedEspecie: string = '';
@@ -88,8 +67,6 @@ export class CharacterCreationComponent {
   destreza: number = 1;
   valentia: number = 1;
   carisma: number = 1;
-
-  
 
   onRolChange(event: MatSelectChange) {
     this.selectedRol = event.value;
@@ -139,7 +116,7 @@ export class CharacterCreationComponent {
     { value: 'elfo', viewValue: 'Elfo' },
     { value: 'orco', viewValue: 'Orco' },
     { value: 'hada', viewValue: 'Hada' },
-    { value: 'semi_humano', viewValue: 'Semi Humano'},
+    { value: 'semi_humano', viewValue: 'Semi Humano' },
   ];
 
   imprimir() {
@@ -242,10 +219,8 @@ export class CharacterCreationComponent {
     }
   }
 
-  errorMessage:string='';
-  notGoThrough:boolean=false;
-
-  
+  errorMessage: string = '';
+  notGoThrough: boolean = false;
 
   async logCharacterData() {
     this.assignValues(this.personaje);
@@ -253,36 +228,47 @@ export class CharacterCreationComponent {
     if (this.personaje) {
       this.personaje.id = new Date().getTime().toString();
 
-      if(!this.isAttributesDistributed() && this.puntos <=3 ){
+      if (!this.isAttributesDistributed() && this.puntos <= 3) {
         await this.authService
-        .saveCharacter(this.personaje)
-        .then(() => {
-          this.router.navigate(['/characters'])
-          console.log(
-            'Datos del personaje guardados en Firebase:',
-            this.personaje
-          );
-        })
-        .catch((error) => {
-          console.error('Error al guardar los datos del personaje:', error);
-        });
+          .saveCharacter(this.personaje)
+          .then(() => {
+            this.router.navigate(['/characters']);
+            console.log(
+              'Datos del personaje guardados en Firebase:',
+              this.personaje
+            );
+          })
+          .catch((error) => {
+            console.error('Error al guardar los datos del personaje:', error);
+          });
       }
     }
   }
 
   finishCharButton() {
-    if (this.isAttributesDistributed() || this.puntos >=4) {
+    if (this.isAttributesDistributed() || this.puntos >= 4) {
       this.notGoThrough = true;
-    } else {
+    } 
+    else {
       this.logCharacterData();
+      this.ocultar.emit(true);
     }
   }
 
-  isAttributesDistributed(){
-    if(this.personaje?.carisma===1 && this.personaje?.destreza===1 && this.personaje?.inteligencia===1 && this.personaje?.fuerza===1 && this.personaje?.coraje===1)
-    {
+  volver() {
+    this.ocultar.emit(true);
+  }
+
+  isAttributesDistributed() {
+    if (
+      this.personaje?.carisma === 1 &&
+      this.personaje?.destreza === 1 &&
+      this.personaje?.inteligencia === 1 &&
+      this.personaje?.fuerza === 1 &&
+      this.personaje?.coraje === 1
+    ) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
@@ -308,12 +294,15 @@ export class CharacterCreationComponent {
   }
 
   isFormComplete(): boolean {
-    return !!this.selectedRol && !!this.selectedEspecie && !!this.selectedSexo && !!this.nombre;
+    return (
+      !!this.selectedRol &&
+      !!this.selectedEspecie &&
+      !!this.selectedSexo &&
+      !!this.nombre
+    );
   }
 
-  
-    
-  constructor(private authService: AuthService, private router:Router) {
+  constructor(private authService: AuthService, private router: Router) {
     this.personaje = {} as Character;
   }
 }
