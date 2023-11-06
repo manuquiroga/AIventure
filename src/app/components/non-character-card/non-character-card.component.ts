@@ -148,4 +148,6 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
     this.crear2 = false;
     this.crear3 = false;
   }
+
+  
 }
