@@ -32,6 +32,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { StoryCreationComponent } from './components/story-creation/story-creation.component';
 
 
 
@@ -48,6 +49,7 @@ import { MatMenuModule } from '@angular/material/menu';
     NonCharacterCardComponent,
     CharacterCreationComponent,
     UserProfileComponent,
+    StoryCreationComponent,
 
   ],
   imports: [
