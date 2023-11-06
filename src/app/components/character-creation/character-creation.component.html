@@ -36,7 +36,8 @@
           <input matInput (input)="onNombreChange($event)" required />
         </div>
           <p class="error-message" *ngIf="showErrorMessage">*Completa todos los campos</p>
-          <p class="error-message" *ngIf="shownErrorName">*No permitimos caracteres especiales</p>
+          <p class="error-message" *ngIf="showErrorName">*No permitimos caracteres especiales</p>
+          <p class="error-message" *ngIf="showErrorCaracter">*No supere los 16 caracteres</p>
         <a id="next" (click)="nextButton()" class="nextButton">Siguiente</a>
         <a class="back" (click)="volver()">Volver</a>
       </div>

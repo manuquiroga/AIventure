@@ -50,7 +50,8 @@ export class CharacterCreationComponent {
   dropdown: boolean = true;
   distribution: boolean = false;
   showErrorMessage: boolean = false;
-  shownErrorName:boolean = false;
+  showErrorName:boolean = false;
+  showErrorCaracter:boolean = false;
 
   selectedRol: string = '';
   selectedEspecie: string = '';
@@ -273,21 +274,34 @@ export class CharacterCreationComponent {
     }
   }
 
+  validateCaracters(nombre:string): boolean{
+    const maxLength = 16;
+    if (nombre.length > maxLength) {
+      return false; // Supera los 16 caracteres
+    }else{
+      return true
+    }
+  }
 
   validateName(nombre: string): boolean {
     const regex = /^[A-Za-z\s]+$/;
+    
+  
     return regex.test(nombre);
   }
 
   nextButton() {
     if (!this.isFormComplete()) {
       this.showErrorMessage = true;
-      this.shownErrorName = false;
-    }else if(!this.validateName(this.nombre)){
+      this.showErrorName = false;
+      this.showErrorCaracter = false;
+    } else if (!this.validateName(this.nombre)){
       this.showErrorMessage = false;
-      this.shownErrorName = true;
-    }
-    else {
+      this.showErrorName = true;
+    } else if(!this.validateCaracters(this.nombre)){
+      this.showErrorCaracter = true;
+      this.showErrorName = false
+    }else {
       this.dropdown = false;
       this.distribution = true;
     }
