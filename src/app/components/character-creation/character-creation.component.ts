@@ -248,13 +248,17 @@ export class CharacterCreationComponent {
     }
   }
 
+  errorMessage:string='';
+  goThrough:boolean=false;
   async logCharacterData() {
     this.assignValues(this.personaje);
 
     if (this.personaje) {
       this.personaje.id = new Date().getTime().toString();
 
-      await this.authService
+      if(this.puntos <= 3){
+        this.goThrough=true;
+        await this.authService
         .saveCharacter(this.personaje)
         .then(() => {
           console.log(
@@ -265,8 +269,11 @@ export class CharacterCreationComponent {
         .catch((error) => {
           console.error('Error al guardar los datos del personaje:', error);
         });
-
-      window.location.reload();
+      }else if(this.goThrough===false){
+        console.log('error');
+        this.errorMessage='Debe asignar por lo menos 4 puntos'
+        console.log(this.errorMessage);
+      }
     }
   }
 
@@ -274,6 +281,8 @@ export class CharacterCreationComponent {
     return !!this.selectedRol && !!this.selectedEspecie && !!this.selectedSexo && !!this.nombre;
   }
 
+  
+    
   constructor(private authService: AuthService) {
     this.personaje = {} as Character;
   }

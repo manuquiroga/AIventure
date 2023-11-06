@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { ChangeDetectorRef, NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-non-character-card',
@@ -28,18 +29,19 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
 
   private userSubscription: Subscription | undefined;
 
-  constructor(public authService: AuthService, private router:Router) {}
+  constructor(public authService: AuthService, private router:Router, private cd: ChangeDetectorRef, private ngZone: NgZone) {}
 
   ngOnInit() {
-    this.userSubscription = this.authService.getUserCharacters()
-      .pipe(take(1)) 
+    this.userSubscription = this.authService.getUserCharacters() 
       .subscribe(characters => {
         this.character1 = characters[0];
         this.character2 = characters[1];
         this.character3 = characters[2];
       });
+      this.refreshComponent();
   }
 
+  
 
   showStatsButton(characterNumber: number) {
     
@@ -95,7 +97,7 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
  async deleteUserChar(numberChar:number)
   {
     await this.authService.deleteUserCharacter(numberChar);
-    window.location.reload();
+    this.refreshComponent();
   }
 
   ngOnDestroy() {
@@ -104,5 +106,7 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
     }
   }
 
-
+  refreshComponent() {
+       this.cd.detectChanges();
+   }
 }

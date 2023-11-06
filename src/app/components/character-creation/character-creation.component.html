@@ -118,6 +118,7 @@
       </div>
 
       <a id="crear" [routerLink]="['/characters']" (click)="logCharacterData()">Crear Personaje</a>
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
     </div>
   </div>
 </body>
