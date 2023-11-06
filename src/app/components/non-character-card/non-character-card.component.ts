@@ -100,8 +100,11 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
 
  async deleteUserChar(numberChar:number)
   {
-    await this.authService.deleteUserCharacter(numberChar);
-    this.refreshComponent();
+    const confirmed = window.confirm('¿Seguro que deseas eliminar este personaje?');
+    if(confirmed){
+      await this.authService.deleteUserCharacter(numberChar);
+      this.refreshComponent();
+    }
   }
 
   ngOnDestroy() {

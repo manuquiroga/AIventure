@@ -59,6 +59,7 @@ export class CharacterCreationComponent {
   dropdown: boolean = true;
   distribution: boolean = false;
   showErrorMessage:boolean = false;
+  shownErrorName:boolean = false;
 
   /*rol:string[] = ['Mago', 'Guerrero', 'Cazador', 'Asesino', 'Doctor'];
   sexo:string[]= ['Masculino', 'Femenino'];
@@ -286,10 +287,21 @@ export class CharacterCreationComponent {
     }
   }
 
+
+  validateName(nombre: string): boolean {
+    const regex = /^[A-Za-z\s]+$/;
+    return regex.test(nombre);
+  }
+
   nextButton() {
     if (!this.isFormComplete()) {
       this.showErrorMessage = true;
-    } else {
+      this.shownErrorName = false;
+    }else if(!this.validateName(this.nombre)){
+      this.showErrorMessage = false;
+      this.shownErrorName = true;
+    }
+    else {
       this.dropdown = false;
       this.distribution = true;
     }
