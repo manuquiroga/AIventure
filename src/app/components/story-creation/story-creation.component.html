@@ -1,0 +1,20 @@
+<p class="title">CREÁ TU HISTORIA</p>
+<div class="form">
+    <div class="drop" id="tipo">
+        <label for="tipoSelect">Tipo:</label>
+        <select id="tipoSelect" [(ngModel)]="selectedTipo" required>
+        <option *ngFor="let tipo of tipos" [value]="tipo.value">
+            {{ tipo.viewValue }}
+        </option>
+        </select>
+    </div>
+
+    <div class="drop" id="lugar">
+        <label for="lugarSelect">Lugar:</label>
+        <select id="lugarSelect" [(ngModel)]="selectedLugar" required>
+        <option *ngFor="let lugar of lugares" [value]="lugar.value">
+            {{ lugar.viewValue }}
+        </option>
+        </select>
+    </div>
+</div>

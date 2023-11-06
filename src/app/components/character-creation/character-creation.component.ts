@@ -1,6 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Character } from 'src/app/models/character.model';
-import { MatSelectChange } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -14,20 +13,6 @@ interface Sexo {
 }
 
 interface Especie {
-  value: string;
-  viewValue: string;
-}
-
-interface Cabello {
-  value: string;
-  viewValue: string;
-}
-
-interface Musculatura {
-  value: string;
-  viewValue: string;
-}
-interface Bello_Facial {
   value: string;
   viewValue: string;
 }
@@ -55,8 +40,6 @@ export class CharacterCreationComponent {
   selectedRol: string = '';
   selectedEspecie: string = '';
   selectedSexo: string = '';
-  selectedCabello: string = '';
-  selectedMusculatura: string = '';
   nombre: string = '';
 
   puntos: number = 7;
@@ -67,31 +50,6 @@ export class CharacterCreationComponent {
   destreza: number = 1;
   valentia: number = 1;
   carisma: number = 1;
-
-  onRolChange(event: MatSelectChange) {
-    this.selectedRol = event.value;
-    console.log(this.selectedRol);
-  }
-
-  onEspecieChange(event: MatSelectChange) {
-    this.selectedEspecie = event.value;
-    console.log(this.selectedEspecie);
-  }
-
-  onSexoChange(event: MatSelectChange) {
-    this.selectedSexo = event.value;
-    console.log(this.selectedSexo);
-  }
-
-  onCabelloChange(event: MatSelectChange) {
-    this.selectedCabello = event.value;
-    console.log(this.selectedCabello);
-  }
-
-  onMusculaturaChange(event: MatSelectChange) {
-    this.selectedMusculatura = event.value;
-    console.log(this.selectedMusculatura);
-  }
 
   onNombreChange(event: any) {
     this.nombre = event.target.value;
@@ -118,15 +76,6 @@ export class CharacterCreationComponent {
     { value: 'hada', viewValue: 'Hada' },
     { value: 'semi_humano', viewValue: 'Semi Humano' },
   ];
-
-  imprimir() {
-    console.log(this.selectedRol);
-    console.log(this.selectedSexo);
-    console.log(this.selectedEspecie);
-    console.log(this.selectedCabello);
-    console.log(this.selectedMusculatura);
-    console.log(this.nombre);
-  }
 
   addFuerza() {
     if (this.puntos > 0 && this.fuerza < 6) {
@@ -208,8 +157,6 @@ export class CharacterCreationComponent {
       personaje.sexo = this.selectedSexo;
       personaje.nombre = this.nombre;
       personaje.especie = this.selectedEspecie;
-      personaje.cabello = this.selectedCabello;
-      personaje.musculatura = this.selectedMusculatura;
       personaje.fuerza = this.fuerza;
       personaje.inteligencia = this.inteligencia;
       personaje.coraje = this.valentia;

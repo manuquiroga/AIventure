@@ -1,0 +1,42 @@
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+}
+
+.drop label{
+  display: block;
+  color: #fff; 
+}
+
+.form {
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+}
+
+select {
+  appearance: none;
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 1.5rem;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  border: #2c2c2c 2px solid;
+}
+
+select:focus {
+  outline: none;
+}
+
+option{
+  background-color: rgba(0, 0, 0, 0.95);
+  color: #fff;
+}
