@@ -58,6 +58,7 @@ export class CharacterCreationComponent {
 
   dropdown: boolean = true;
   distribution: boolean = false;
+  showErrorMessage:boolean = false;
 
   /*rol:string[] = ['Mago', 'Guerrero', 'Cazador', 'Asesino', 'Doctor'];
   sexo:string[]= ['Masculino', 'Femenino'];
@@ -88,8 +89,12 @@ export class CharacterCreationComponent {
   carisma: number = 1;
 
   nextButton() {
-    this.dropdown = false;
-    this.distribution = true;
+    if (!this.isFormComplete()) {
+      this.showErrorMessage = true;
+    } else {
+      this.dropdown = false;
+      this.distribution = true;
+    }
   }
 
   onRolChange(event: MatSelectChange) {
@@ -142,20 +147,6 @@ export class CharacterCreationComponent {
     { value: 'hada', viewValue: 'Hada' },
     { value: 'semi_humano', viewValue: 'Semi Humano'},
   ];
-
-  /*   cabellos:Cabello[]=[
-    {value: 'corto', viewValue: 'Corto'},
-    {value: 'largo', viewValue: 'Largo'},
-    {value: 'rapado_militar-2', viewValue: 'Rapado Militar'},
-    {value: 'alopecia-3', viewValue: 'Alopecia'},
-  ]
-
-  musculaturas:Musculatura[]=[
-    {value: 'trembo-0', viewValue: 'Trembo'},
-    {value: 'gymbro-1', viewValue: 'Gymbro'},
-    {value: 'flaco_escopeta-2', viewValue: 'Flaco Escopeta'},
-    {value: 'gordo-3', viewValue: 'Gordo'},
-  ] */
 
   imprimir() {
     console.log(this.selectedRol);
@@ -277,6 +268,10 @@ export class CharacterCreationComponent {
 
       window.location.reload();
     }
+  }
+
+  isFormComplete(): boolean {
+    return !!this.selectedRol && !!this.selectedEspecie && !!this.selectedSexo && !!this.nombre;
   }
 
   constructor(private authService: AuthService) {
