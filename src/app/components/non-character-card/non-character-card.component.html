@@ -1,6 +1,6 @@
 <div class="card-container">
   <!-- PERSONAJE 1 -->
-  <div class="card character" *ngIf="character1">
+  <div class="card character" *ngIf="character1 && !jugar1">
     <img
       [src]="character1.photoURL"
       alt="Sin imagen"
@@ -24,7 +24,7 @@
       >
         Stats
       </button>
-      <button class="play-btn" *ngIf="!showCharacter1Stats">Jugar</button>
+      <button class="play-btn" *ngIf="!showCharacter1Stats" (click)="jugar(1)">Jugar</button>
     </div>
     <div *ngIf="showCharacter1Stats">
       <p>Fuerza: {{ fuerza }}</p>
@@ -40,11 +40,11 @@
     <p class="crear">NUEVO</p>
   </div>
 
-  <app-character-creation class="card" *ngIf="crear1 && ocultar" (ocultar)="ocultarComponente($event)"></app-character-creation>
-  
+  <app-character-creation class="card" *ngIf="crear1 && ocultarCreacion" (ocultar)="ocultarComponente($event)"></app-character-creation>
+  <app-story-creation class="card" *ngIf="jugar1" (ocultar)="ocultarJugarComponente($event)"></app-story-creation> 
 
   <!-- PERSONAJE 2 -->
-  <div class="card character" *ngIf="character2">
+  <div class="card character" *ngIf="character2 && !jugar2">
     <img
       [src]="character2.photoURL"
       alt="Sin imagen"
@@ -68,7 +68,7 @@
       >
         Stats
       </button>
-      <button class="play-btn" *ngIf="!showCharacter2Stats">Jugar</button>
+      <button class="play-btn" *ngIf="!showCharacter2Stats" (click)="jugar(2)">Jugar</button>
     </div>
     <div *ngIf="showCharacter2Stats">
       <p>Fuerza: {{ fuerza }}</p>
@@ -83,10 +83,11 @@
     <a (click)="showCharacterComponent(2)">+</a>
     <p class="crear">NUEVO</p>
   </div>
-  <app-character-creation class="card" *ngIf="crear2 && ocultar" (ocultar)="ocultarComponente($event)"></app-character-creation>
+  <app-character-creation class="card" *ngIf="crear2 && ocultarCreacion" (ocultar)="ocultarComponente($event)"></app-character-creation>
+  <app-story-creation class="card" *ngIf="jugar2" (ocultar)="ocultarJugarComponente($event)"></app-story-creation> 
 
   <!-- PERSONAJE 3 -->
-  <div class="card character" *ngIf="character3" >
+  <div class="card character" *ngIf="character3 && !jugar3" >
     <img
       [src]="character3.photoURL"
       alt="Sin imagen"
@@ -110,7 +111,7 @@
       >
         Stats
       </button>
-      <button class="play-btn" *ngIf="!showCharacter3Stats">Jugar</button>
+      <button class="play-btn" *ngIf="!showCharacter3Stats" (click)="jugar(3)">Jugar</button>
     </div>
     <div *ngIf="showCharacter3Stats">
       <p>Fuerza: {{ fuerza }}</p>
@@ -125,7 +126,8 @@
     <a (click)="showCharacterComponent(3)">+</a>
     <p class="crear">NUEVO</p>
   </div>
-  <app-character-creation class="card" *ngIf="crear3 && ocultar" (ocultar)="ocultarComponente($event)"></app-character-creation>
+  <app-character-creation class="card" *ngIf="crear3 && ocultarCreacion" (ocultar)="ocultarComponente($event)"></app-character-creation>
+  <app-story-creation class="card" *ngIf="jugar3" (ocultar)="ocultarJugarComponente($event)"></app-story-creation> 
 
   
 </div>
