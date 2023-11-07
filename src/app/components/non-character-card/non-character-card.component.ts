@@ -18,6 +18,10 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
   crear2: boolean = false;
   crear3: boolean = false;
 
+  jugar1: boolean = false;
+  jugar2: boolean = false;
+  jugar3: boolean = false;
+
   showCharacter1Stats: boolean = false;
   showCharacter2Stats: boolean = false;
   showCharacter3Stats: boolean = false;
@@ -64,6 +68,26 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
         this.crear1 = false;
         this.crear2 = false;
         this.crear3 = true;
+        break;
+    }
+  }
+
+  jugar(characterNumber: number) {
+    switch (characterNumber) {
+      case 1:
+        this.jugar1 = true;
+        this.jugar2 = false;
+        this.jugar3 = false;
+        break;
+      case 2:
+        this.jugar1 = false;
+        this.jugar2 = true;
+        this.jugar3 = false;
+        break;
+      case 3:
+        this.jugar1 = false;
+        this.jugar2 = false;
+        this.jugar3 = true;
         break;
     }
   }
@@ -141,13 +165,19 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
   }
 
   //oculta la creacion de un personaje al crearlo
-  ocultar = true;
+  ocultarCreacion = true;
   ocultarComponente(ocultar: boolean) {
-    this.ocultar = !ocultar;
+    this.ocultarCreacion = !ocultar;
     this.crear1 = false;
     this.crear2 = false;
     this.crear3 = false;
   }
 
-  
+  ocultarJugar = true;
+  ocultarJugarComponente(ocultar: boolean) {
+    this.ocultarJugar = !ocultar;
+    this.jugar1 = false;
+    this.jugar2 = false;
+    this.jugar3 = false;
+  }
 }

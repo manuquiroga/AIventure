@@ -1,5 +1,6 @@
-<p class="title">CREÁ TU HISTORIA</p>
-<div class="form">
+
+<div class="form" *ngIf="firstSection">
+    <p class="title">CREÁ TU HISTORIA</p>
     <div class="drop" id="tipo">
         <label for="tipoSelect">Tipo:</label>
         <select id="tipoSelect" [(ngModel)]="selectedTipo" required>
@@ -17,4 +18,20 @@
         </option>
         </select>
     </div>
+
+    <a (click)="next()">Siguiente</a>
+    <a class="back" (click)="volver()">Volver</a>
+</div>
+
+<p class="title" *ngIf="tagsSection">ELIGE TAGS</p>
+<div class="tags-container" *ngIf="tagsSection">
+  <label
+    *ngFor="let tag of arrayTags"
+    class="tag-label"
+    [ngClass]="{ 'selected': selectedTags.includes(tag) }"
+    (click)="toggleTagSelection(tag)"
+  >
+    {{ tag }}
+  </label>
+  <a >Comenzar</a>
 </div>
