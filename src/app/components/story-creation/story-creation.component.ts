@@ -134,6 +134,11 @@ export class StoryCreationComponent {
   }
 
   constructor() {
+    this.refillArrayTags();
+  }
+
+  refillArrayTags() {
+    this.arrayTags = [];
     this.arrayTags = this.getRandomTags(20, this.tagValues);
   }
 }
