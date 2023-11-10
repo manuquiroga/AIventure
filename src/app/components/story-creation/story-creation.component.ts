@@ -138,6 +138,7 @@ export class StoryCreationComponent {
   }
 
   refillArrayTags() {
+    this.selectedTags = [];
     this.arrayTags = [];
     this.arrayTags = this.getRandomTags(20, this.tagValues);
   }

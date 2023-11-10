@@ -1,13 +1,6 @@
 import { Component,OnInit,OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
-import { User } from 'firebase/auth';
 import { OpenaiService } from 'src/app/services/openai.service';
-import { Inject } from '@angular/core';
-import { UserProfileComponent } from '../user-profile/user-profile.component';
-import { MatMenuModule } from '@angular/material/menu';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatMenuTrigger } from '@angular/material/menu';
 import { Subscription } from 'rxjs';
 
 @Component({
