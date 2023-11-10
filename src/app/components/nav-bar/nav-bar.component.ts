@@ -1,7 +1,8 @@
-import { Component,OnInit,OnDestroy } from '@angular/core';
+import { Component,OnInit,OnDestroy, Renderer2, ElementRef } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { OpenaiService } from 'src/app/services/openai.service';
 import { Subscription } from 'rxjs';
+import { FAQComponent } from '../faq/faq.component';
 
 @Component({
   selector: 'nav-bar',
@@ -20,7 +21,11 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   private userSubscription: Subscription | undefined;
 
-  constructor(public auth: AuthService, private openai: OpenaiService) {}
+  constructor(
+    public auth: AuthService,
+    private openai: OpenaiService,
+    private FAQ: FAQComponent,
+  ) {}
 
   ngOnInit() {
     this.userSubscription = this.auth.user$.subscribe((user) => {
@@ -41,14 +46,21 @@ export class NavBarComponent implements OnInit, OnDestroy {
   }
 
   enviarSolicitud(question: string) {
-     this.openai.postData(question).subscribe(
+    this.openai.postData(question).subscribe(
       (data: any) => {
-        this.response = data.response; 
+        this.response = data.response;
         console.log(data.response);
       },
       (error) => {
         console.error('Error:', error);
       }
     );
+  }
+
+  scrollToFAQ() {
+
+    const vh = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    window.scrollBy({ top: vh, behavior: 'smooth' });
+
   }
 }
