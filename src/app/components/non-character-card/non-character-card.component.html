@@ -41,7 +41,7 @@
   </div>
 
   <app-character-creation class="card" *ngIf="crear1 && ocultarCreacion" (ocultar)="ocultarComponente($event)"></app-character-creation>
-  <app-story-creation class="card" *ngIf="jugar1" (ocultar)="ocultarJugarComponente($event)"></app-story-creation> 
+  <app-story-creation [charSlot]="1" class="card" *ngIf="jugar1" (ocultar)="ocultarJugarComponente($event)"></app-story-creation> 
 
   <!-- PERSONAJE 2 -->
   <div class="card character" *ngIf="character2 && !jugar2">
@@ -84,7 +84,7 @@
     <p class="crear">NUEVO</p>
   </div>
   <app-character-creation class="card" *ngIf="crear2 && ocultarCreacion" (ocultar)="ocultarComponente($event)"></app-character-creation>
-  <app-story-creation class="card" *ngIf="jugar2" (ocultar)="ocultarJugarComponente($event)"></app-story-creation> 
+  <app-story-creation [charSlot]="2" class="card" *ngIf="jugar2" (ocultar)="ocultarJugarComponente($event)"></app-story-creation> 
 
   <!-- PERSONAJE 3 -->
   <div class="card character" *ngIf="character3 && !jugar3" >
@@ -127,8 +127,7 @@
     <p class="crear">NUEVO</p>
   </div>
   <app-character-creation class="card" *ngIf="crear3 && ocultarCreacion" (ocultar)="ocultarComponente($event)"></app-character-creation>
-  
-  <app-story-creation class="card" *ngIf="jugar3" (ocultar)="ocultarJugarComponente($event)"></app-story-creation> 
+  <app-story-creation [charSlot]="3" class="card" *ngIf="jugar3" (ocultar)="ocultarJugarComponente($event)"></app-story-creation> 
 
   
 </div>
