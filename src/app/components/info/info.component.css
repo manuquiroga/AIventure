@@ -1,10 +1,11 @@
 main{
-    margin: 10% 0;
+    margin: 10% 4%;
     --article-load-delay: 800ms;
+    height: 80vh;
 }
 
 .info {
-    padding: 2rem 10%;
+    padding: 0 10%;
 
     animation: article-load 300ms ease-in var(--article-load-delay);
     animation-fill-mode: forwards;
@@ -93,3 +94,5 @@ main{
       opacity: 1;
     }
   }
+
+
