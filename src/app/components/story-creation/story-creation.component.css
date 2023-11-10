@@ -2,7 +2,7 @@
     font-size: 1.5rem;
     font-weight: 700;
     color: #fff;
-    margin: 0 0 1.5rem 0;
+    margin: 1rem 0 3rem 0;
     text-align: center;
 }
 
@@ -64,47 +64,20 @@ a:hover {
     margin: 1rem 0 !important;
 }
 
-/* Added code */
-/* .tag-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.tag {
-    background-color: rgba(0, 0, 0, 0.95);
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 8px;
-    cursor: pointer;
-    transition: 0.3s ease-out;
-}
-
-.tag:hover {
-    background-color: #2c2c2c;
-}
-
-.tag:checked {
-    background-color: #2c2c2c;
-}
-.tag:checked + label {
-    background-color: #2c2c2c;
-}
-
-.tag + label {
-    margin-left: 5px;
-    cursor: pointer;
-    user-select: none;
-} */
-/* End of added code */
 
 .tags-container {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin: -5px; 
   width: 80%;
+}
+
+.tag-labels {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 400px;
+  overflow-y: auto;
 }
 
 .tag-label {
