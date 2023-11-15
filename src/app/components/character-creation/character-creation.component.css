@@ -159,3 +159,37 @@ a:hover {
   color: red;
   display: block;
 }
+
+@media (max-width: 1400px) {
+.dropdown{
+width: 200px;
+height: 300px;
+}
+
+select{
+padding: 2px;
+font-size: 1rem;
+margin-bottom: 2px;
+}
+
+input{
+padding: 2px;
+font-size: 1rem;
+margin-bottom: 2px;
+}
+
+.drop label{
+font-size: 0.9rem;
+}
+
+.title{
+font-size: 1rem;
+margin-bottom: 1rem;
+}
+
+a{
+font-size: 0.9rem;
+margin: 1rem 0 0 0;
+}
+}
+

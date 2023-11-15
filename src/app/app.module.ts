@@ -6,8 +6,6 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -33,10 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { StoryCreationComponent } from './components/story-creation/story-creation.component';
-
-
-
-
+import { FAQComponent } from './components/faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +45,7 @@ import { StoryCreationComponent } from './components/story-creation/story-creati
     CharacterCreationComponent,
     UserProfileComponent,
     StoryCreationComponent,
-
+    FAQComponent,
   ],
   imports: [
     AngularFireModule,
@@ -71,10 +66,7 @@ import { StoryCreationComponent } from './components/story-creation/story-creati
     FormsModule,
     HttpClientModule,
   ],
-  providers: [
-    AuthGuard,
-  ],
-  bootstrap: [AppComponent]
+  providers: [AuthGuard, FAQComponent],
+  bootstrap: [AppComponent],
 })
-export class AppModule { 
-}
+export class AppModule {}

@@ -25,14 +25,16 @@
 
 <p class="title" *ngIf="tagsSection">ELIGE TAGS</p>
 <div class="tags-container" *ngIf="tagsSection">
-  <label
+  <div class="tag-labels">
+    <label
     *ngFor="let tag of arrayTags"
     class="tag-label"
     [ngClass]="{ 'selected': selectedTags.includes(tag) }"
     (click)="toggleTagSelection(tag)"
-  >
-    {{ tag }}
-  </label>
+    >
+      {{ tag }}
+    </label>
+  </div>
   <a (click)="refillArrayTags()">Regenerar Tags</a>
-  <a (click)="sendCharacterAndTagsPrompt()">Comenzar</a>
+  <a class="back"(click)="sendCharacterAndTagsPrompt()">Comenzar</a>
 </div>
