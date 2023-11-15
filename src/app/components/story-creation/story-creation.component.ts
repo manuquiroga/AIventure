@@ -5,6 +5,7 @@ import { NonCharacterCardComponent } from '../non-character-card/non-character-c
 import { AuthService } from 'src/app/services/auth.service';
 import { Character } from 'src/app/models/character.model';
 
+
 interface Tipo {
   value: string;
   viewValue: string;
@@ -36,73 +37,67 @@ export class StoryCreationComponent {
   tagsSection: boolean = false;
 
   tipos: Tipo[] = [
-    { value: 'aventura', viewValue: 'Aventura' },
-    { value: 'fantasia', viewValue: 'Fantasía' },
-    { value: 'misterio', viewValue: 'Misterio' },
-    { value: 'realismo', viewValue: 'Realismo' },
+    { value: 'adventure', viewValue: 'Adventure' },
+    { value: 'fantasy', viewValue: 'Fantasy' },
+    { value: 'mystery', viewValue: 'Mystery' },
+    { value: 'realism', viewValue: 'Realism' },
     { value: 'romance', viewValue: 'Romance' },
   ];
-
+  
   lugares: Lugar[] = [
-    { value: 'bosque oscuro magico', viewValue: 'Bosque oscuro mágico' },
-    {
-      value: 'mercado medieval bullicioso',
-      viewValue: 'Mercado medieval bullicioso',
-    },
-    { value: 'pueblo pesquero', viewValue: 'Pueblo pesquero' },
-    { value: 'campo de batalla', viewValue: 'Campo de batalla' },
-    {
-      value: 'cementerio antiguo misterioso',
-      viewValue: 'Cementerio antiguo misterioso',
-    },
+    { value: 'magical dark forest', viewValue: 'Magical Dark Forest' },
+    { value: 'busy medieval market', viewValue: 'Busy Medieval Market' },
+    { value: 'fishing village', viewValue: 'Fishing Village' },
+    { value: 'battlefield', viewValue: 'Battlefield' },
+    { value: 'mysterious ancient cemetery', viewValue: 'Mysterious Ancient Cemetery' },
   ];
-
+  
   tags: Tags[] = [
     { value: 'Medieval', viewValue: 'Medieval' },
-    { value: 'Miedo', viewValue: 'Miedo' },
-    { value: 'Autoestima', viewValue: 'Autoestima' },
-    { value: 'Codicia', viewValue: 'Codicia' },
-    { value: 'Crimen', viewValue: 'Crimen' },
-    { value: 'Infidelidad', viewValue: 'Infidelidad' },
-    { value: 'Politica', viewValue: 'Política' },
+    { value: 'Fear', viewValue: 'Fear' },
+    { value: 'Self-esteem', viewValue: 'Self-esteem' },
+    { value: 'Greed', viewValue: 'Greed' },
+    { value: 'Crime', viewValue: 'Crime' },
+    { value: 'Infidelity', viewValue: 'Infidelity' },
+    { value: 'Politics', viewValue: 'Politics' },
     { value: 'Cyborgs', viewValue: 'Cyborgs' },
-    { value: 'Superpoderes', viewValue: 'Superpoderes' },
+    { value: 'Superpowers', viewValue: 'Superpowers' },
     { value: 'Romance', viewValue: 'Romance' },
-    { value: 'Aventura', viewValue: 'Aventura' },
-    { value: 'Fantasia', viewValue: 'Fantasía' },
-    { value: 'Realeza', viewValue: 'Realeza' },
-    { value: 'Robo', viewValue: 'Robo' },
-    { value: 'Venganza', viewValue: 'Venganza' },
-    { value: 'Alienígenas', viewValue: 'Alienígenas' },
-    { value: 'Viajes en el tiempo', viewValue: 'Viajes en el tiempo' },
-    { value: 'Rebelion', viewValue: 'Rebelión' },
-    { value: 'Supervivencia', viewValue: 'Supervivencia' },
-    { value: 'Artefactos mágicos', viewValue: 'Artefactos mágicos' },
-    { value: 'Amistad', viewValue: 'Amistad' },
-    { value: 'Traición', viewValue: 'Traición' },
-    { value: 'Misterio', viewValue: 'Misterio' },
-    { value: 'Guerra', viewValue: 'Guerra' },
-    { value: 'Exploracion', viewValue: 'Exploración' },
-    { value: 'Piratas', viewValue: 'Piratas' },
-    { value: 'Caza de monstruos', viewValue: 'Caza de monstruos' },
-    { value: 'Magia oscura', viewValue: 'Magia oscura' },
-    { value: 'Religion', viewValue: 'Religión' },
-    { value: 'Crisis ambiental', viewValue: 'Crisis ambiental' },
-    { value: 'Intriga', viewValue: 'Intriga' },
-    { value: 'Ciencia', viewValue: 'Ciencia' },
+    { value: 'Adventure', viewValue: 'Adventure' },
+    { value: 'Fantasy', viewValue: 'Fantasy' },
+    { value: 'Royalty', viewValue: 'Royalty' },
+    { value: 'Theft', viewValue: 'Theft' },
+    { value: 'Vengeance', viewValue: 'Vengeance' },
+    { value: 'Aliens', viewValue: 'Aliens' },
+    { value: 'Time Travel', viewValue: 'Time Travel' },
+    { value: 'Rebellion', viewValue: 'Rebellion' },
+    { value: 'Survival', viewValue: 'Survival' },
+    { value: 'Magical Artifacts', viewValue: 'Magical Artifacts' },
+    { value: 'Friendship', viewValue: 'Friendship' },
+    { value: 'Betrayal', viewValue: 'Betrayal' },
+    { value: 'Mystery', viewValue: 'Mystery' },
+    { value: 'War', viewValue: 'War' },
+    { value: 'Exploration', viewValue: 'Exploration' },
+    { value: 'Pirates', viewValue: 'Pirates' },
+    { value: 'Monster Hunting', viewValue: 'Monster Hunting' },
+    { value: 'Dark Magic', viewValue: 'Dark Magic' },
+    { value: 'Religion', viewValue: 'Religion' },
+    { value: 'Environmental Crisis', viewValue: 'Environmental Crisis' },
+    { value: 'Intrigue', viewValue: 'Intrigue' },
+    { value: 'Science', viewValue: 'Science' },
     { value: 'Robots', viewValue: 'Robots' },
-    { value: 'Mitologia', viewValue: 'Mitología' },
-    { value: 'Aventura espacial', viewValue: 'Aventura espacial' },
-    { value: 'Apocalipsis', viewValue: 'Apocalipsis' },
+    { value: 'Mythology', viewValue: 'Mythology' },
+    { value: 'Space Adventure', viewValue: 'Space Adventure' },
+    { value: 'Apocalypse', viewValue: 'Apocalypse' },
     { value: 'Amnesia', viewValue: 'Amnesia' },
-    { value: 'Conspiracion', viewValue: 'Conspiración' },
-    { value: 'Inmortalidad', viewValue: 'Inmortalidad' },
-    { value: 'Resistencia', viewValue: 'Resistencia' },
-    { value: 'Zombis', viewValue: 'Zombis' },
-    { value: 'Relaciones familiares', viewValue: 'Relaciones familiares' },
-    { value: 'Exploración espacial', viewValue: 'Exploración espacial' },
-    { value: 'Tecnología avanzada', viewValue: 'Tecnología avanzada' },
-    { value: 'Sociedad distópica', viewValue: 'Sociedad distópica' },
+    { value: 'Conspiracy', viewValue: 'Conspiracy' },
+    { value: 'Immortality', viewValue: 'Immortality' },
+    { value: 'Resistance', viewValue: 'Resistance' },
+    { value: 'Zombies', viewValue: 'Zombies' },
+    { value: 'Family Relationships', viewValue: 'Family Relationships' },
+    { value: 'Space Exploration', viewValue: 'Space Exploration' },
+    { value: 'Advanced Technology', viewValue: 'Advanced Technology' },
+    { value: 'Dystopian Society', viewValue: 'Dystopian Society' },
   ];
 
   volver() {
@@ -148,7 +143,7 @@ export class StoryCreationComponent {
     this.arrayTags = this.getRandomTags(20, this.tagValues);
   }
 
-  
+
   @Input() charSlot!:number;
 
   character1!: Character | null | undefined;
@@ -166,11 +161,11 @@ export class StoryCreationComponent {
       });
     switch(charSlot)
     {
-      case 1:  this.charDescription="El nombre de mi personaje es " + this.character1!.nombre + " mi profesion es " + this.character1!.rol + " y soy un/a "+ this.character1!.especie;
+      case 1:  this.charDescription="The name of my character is " + this.character1!.nombre + ", my profession is " + this.character1!.rol + " and I'm a "+ this.character1!.especie;
       break;
-      case 2:  this.charDescription="El nombre de mi personaje es " + this.character2!.nombre + " mi profesion es " + this.character2!.rol + " y soy un/a "+ this.character2!.especie;
+      case 2:  this.charDescription="The name of my character is " + this.character2!.nombre + ", my profession is " + this.character2!.rol + " and I'm a "+ this.character2!.especie;
       break;
-      case 3:  this.charDescription="El nombre de mi personaje es " + this.character3!.nombre + " mi profesion es " + this.character3!.rol + " y soy un/a "+ this.character3!.especie;
+      case 3:  this.charDescription="The name of my character is " + this.character3!.nombre + ", my profession is " + this.character3!.rol + " and I'm a "+ this.character3!.especie;
       break;
     }
     return this.charDescription;
@@ -184,11 +179,11 @@ export class StoryCreationComponent {
     switch(this.selectedTags.length)
     {
       case 0: tagsString=''; break;
-      case 1: tagsString=". Además, mi historia incluye esta temática " + this.selectedTags[0]; break;
-      case 2: tagsString=". Además, mi historia incluye estas temáticas " + this.selectedTags[0] + " y " + this.selectedTags[1]; break;
+      case 1: tagsString=". Moreover, my story includes this topic " + this.selectedTags[0]; break;
+      case 2: tagsString=". Moreover, my story includes these topics " + this.selectedTags[0] + " and " + this.selectedTags[1]; break;
     }
 
-    return contextPrompt="Mi historia se desarrolla en un ambiente de " + this.selectedTipo + ", decidí comenzar en " + this.selectedLugar + tagsString;
+    return contextPrompt="My story develops in a " + this.selectedTipo + " setting, and I decided to start in " + this.selectedLugar + tagsString;
   }
   
   response!: string;
@@ -198,7 +193,7 @@ export class StoryCreationComponent {
     const contextPrompt=this.createContextSettingPrompt();
     const completePrompt = charPrompt + ". " + contextPrompt;
 
-    this.openai.postData(completePrompt).subscribe(
+    /*this.openai.postData(completePrompt).subscribe(
       (data: any) => {
         this.response = data.response; 
         console.log(data.response);
@@ -206,6 +201,9 @@ export class StoryCreationComponent {
       (error) => {
         console.error('Error:', error);
       }
-    );
+    );*/
+
+    /*this.palmAI.sendAPIRequest(completePrompt);*/
   }
+  
 }
