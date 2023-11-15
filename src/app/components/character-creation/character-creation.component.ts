@@ -75,7 +75,6 @@ export class CharacterCreationComponent {
     { value: 'elfo', viewValue: 'Elfo' },
     { value: 'orco', viewValue: 'Orco' },
     { value: 'hada', viewValue: 'Hada' },
-    { value: 'semi_humano', viewValue: 'Semi Humano' },
   ];
 
   addFuerza() {
@@ -163,7 +162,13 @@ export class CharacterCreationComponent {
       personaje.coraje = this.valentia;
       personaje.destreza = this.destreza;
       personaje.carisma = this.carisma;
-      personaje.photoURL = `https://aiventure-images.up.railway.app/imagen/${personaje.sexo}-${personaje.especie}-${personaje.rol}-${this.randomInt}.jpeg`;
+      if(personaje.nombre==='Toti')
+      {
+        personaje.photoURL =`/assets/images/totieasteregg.png`;
+      }else{
+        personaje.photoURL = `https://aiventure-images.up.railway.app/imagen/${personaje.sexo}-${personaje.especie}-${personaje.rol}-${this.randomInt}.jpeg`;
+      }
+      
     }
   }
 
