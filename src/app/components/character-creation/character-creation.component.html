@@ -1,5 +1,5 @@
 <body *ngIf="ocultar">
-  <p class="title" *ngIf="dropdown">CREÁ TU PERSONAJE</p>
+  <p class="title" *ngIf="dropdown">CREATE YOUR CHARACTER</p>
 
   <div class="content">
     <div class="dropdown" *ngIf="dropdown">
@@ -14,7 +14,7 @@
         </div>
 
         <div class="drop" id="especie">
-          <label for="especieSelect">Especie:</label>
+          <label for="especieSelect">Specie:</label>
           <select id="especieSelect" formControlName="selectedEspecie" >
             <option *ngFor="let especie of especies" [value]="especie.value">
               {{ especie.viewValue }}
@@ -23,7 +23,7 @@
         </div>
 
         <div class="drop" id="sexo">
-          <label for="sexoSelect">Sexo:</label>
+          <label for="sexoSelect">Sex:</label>
           <select id="sexoSelect" formControlName="selectedSexo" >
             <option *ngFor="let sexo of sexos" [value]="sexo.value">
               {{ sexo.viewValue }}
@@ -32,7 +32,7 @@
         </div>
 
         <div class="drop" id="nombre">
-          <label for="nombreSelect">Nombre:</label>
+          <label for="nombreSelect">Name:</label>
           <input matInput formControlName="nombre"  />
         </div>
         <div *ngIf="reactiveForm.get('nombre')?.invalid && reactiveForm.get('nombre')?.touched">
@@ -40,16 +40,16 @@
           <div *ngIf="reactiveForm.get('nombre')?.hasError('pattern')"><p class="error-message">El nombre no es válido.</p></div>
           <div *ngIf="reactiveForm.get('nombre')?.hasError('maxLength')"><p class="error-message">El nombre no puede tener más de 16 caracteres.</p> </div>
         </div>
-        <a id="next" (click)="nextButton()" class="nextButton" >Siguiente</a>
-        <a class="back" (click)="volver()">Volver</a>
+        <a id="next" (click)="nextButton()" class="nextButton" >Next</a>
+        <a class="back" (click)="volver()">Back</a>
       </form>
     </div>
 
     <div class="distribution" *ngIf="distribution">
-      <p class="title" *ngIf="distribution">PUNTOS RESTANTES: {{ puntos }}</p>
+      <p class="title" *ngIf="distribution">REMAINING POINTS: {{ puntos }}</p>
       <div class="attributes">
         <div class="attribute fuerza" (data-value)="(fuerza)">
-          <p>Fuerza:</p>
+          <p>Strenght:</p>
           <div class="lineas">
             <div
               class="linea"
@@ -82,7 +82,7 @@
           </div>
         </div>
         <div class="attribute destreza" (data-value)="(destreza)">
-          <p>Destreza:</p>
+          <p>Dexterity:</p>
           <div class="lineas">
             <div
               class="linea"
@@ -115,7 +115,7 @@
           </div>
         </div>
         <div class="attribute inteligencia">
-          <p>Ingenio:</p>
+          <p>Intelligence:</p>
           <div class="lineas">
             <div
               class="linea"
@@ -148,7 +148,7 @@
           </div>
         </div>
         <div class="attribute carisma">
-          <p>Carisma:</p>
+          <p>Charisma:</p>
           <div class="lineas">
             <div
               class="linea"
@@ -180,44 +180,44 @@
             <button (click)="removeCarisma()">-</button>
           </div>
         </div>
-        <div class="attribute valentia">
-          <p>Valentia:</p>
+        <div class="attribute coraje">
+          <p>Courage:</p>
           <div class="lineas">
             <div
               class="linea"
-              [ngClass]="{ 'linea-activa': valentia >= 1 }"
+              [ngClass]="{ 'linea-activa': coraje >= 1 }"
             ></div>
             <div
               class="linea"
-              [ngClass]="{ 'linea-activa': valentia >= 2 }"
+              [ngClass]="{ 'linea-activa': coraje >= 2 }"
             ></div>
             <div
               class="linea"
-              [ngClass]="{ 'linea-activa': valentia >= 3 }"
+              [ngClass]="{ 'linea-activa': coraje >= 3 }"
             ></div>
             <div
               class="linea"
-              [ngClass]="{ 'linea-activa': valentia >= 4 }"
+              [ngClass]="{ 'linea-activa': coraje >= 4 }"
             ></div>
             <div
               class="linea"
-              [ngClass]="{ 'linea-activa': valentia >= 5 }"
+              [ngClass]="{ 'linea-activa': coraje >= 5 }"
             ></div>
             <div
               class="linea"
-              [ngClass]="{ 'linea-activa': valentia >= 6 }"
+              [ngClass]="{ 'linea-activa': coraje >= 6 }"
             ></div>
           </div>
           <div>
-            <button class="add" (click)="addValentia()">+</button>
-            <button (click)="removeValentia()">-</button>
+            <button class="add" (click)="addCoraje()">+</button>
+            <button (click)="removeCoraje()">-</button>
           </div>
         </div>
       </div>
 
-      <a class="end" (click)="finishCharButton()">Crear</a>
+      <a class="end" (click)="finishCharButton()">Create</a>
       <p class="error-message" *ngIf="notGoThrough">
-        *Asigna por lo menos 4 puntos
+        *Assign at least 4 points
       </p>
     </div>
   </div>

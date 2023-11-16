@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Story } from 'src/app/models/story.model';
 import { OpenaiService } from 'src/app/services/openai.service';
-import { NonCharacterCardComponent } from '../non-character-card/non-character-card.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { Character } from 'src/app/models/character.model';
 
@@ -28,6 +27,7 @@ interface Tags {
 export class StoryCreationComponent {
   @Output() ocultar = new EventEmitter<boolean>();
 
+
   story: Story | null | undefined;
 
   selectedTipo: string = '';
@@ -49,18 +49,23 @@ export class StoryCreationComponent {
     { value: 'busy medieval market', viewValue: 'Busy Medieval Market' },
     { value: 'fishing village', viewValue: 'Fishing Village' },
     { value: 'battlefield', viewValue: 'Battlefield' },
+    { value: 'village', viewValue: 'Village' },
+    { value: 'capital city', viewValue: 'Capital City' },
+    { value: 'adventurers guild headquarters', viewValue: 'Adventurers Guild HQ' },
+    { value: 'tabern', viewValue: 'Tabern' },
+    { value: 'ancient ruins', viewValue: 'Ancient Ruins' },
+    { value: 'dungeon', viewValue: 'Dungeon' },
+    { value: 'magical school', viewValue: 'Magical School' },
     { value: 'mysterious ancient cemetery', viewValue: 'Mysterious Ancient Cemetery' },
   ];
   
   tags: Tags[] = [
     { value: 'Medieval', viewValue: 'Medieval' },
     { value: 'Fear', viewValue: 'Fear' },
-    { value: 'Self-esteem', viewValue: 'Self-esteem' },
     { value: 'Greed', viewValue: 'Greed' },
     { value: 'Crime', viewValue: 'Crime' },
     { value: 'Infidelity', viewValue: 'Infidelity' },
     { value: 'Politics', viewValue: 'Politics' },
-    { value: 'Cyborgs', viewValue: 'Cyborgs' },
     { value: 'Superpowers', viewValue: 'Superpowers' },
     { value: 'Romance', viewValue: 'Romance' },
     { value: 'Adventure', viewValue: 'Adventure' },
@@ -68,7 +73,6 @@ export class StoryCreationComponent {
     { value: 'Royalty', viewValue: 'Royalty' },
     { value: 'Theft', viewValue: 'Theft' },
     { value: 'Vengeance', viewValue: 'Vengeance' },
-    { value: 'Aliens', viewValue: 'Aliens' },
     { value: 'Time Travel', viewValue: 'Time Travel' },
     { value: 'Rebellion', viewValue: 'Rebellion' },
     { value: 'Survival', viewValue: 'Survival' },
@@ -82,12 +86,8 @@ export class StoryCreationComponent {
     { value: 'Monster Hunting', viewValue: 'Monster Hunting' },
     { value: 'Dark Magic', viewValue: 'Dark Magic' },
     { value: 'Religion', viewValue: 'Religion' },
-    { value: 'Environmental Crisis', viewValue: 'Environmental Crisis' },
     { value: 'Intrigue', viewValue: 'Intrigue' },
-    { value: 'Science', viewValue: 'Science' },
-    { value: 'Robots', viewValue: 'Robots' },
     { value: 'Mythology', viewValue: 'Mythology' },
-    { value: 'Space Adventure', viewValue: 'Space Adventure' },
     { value: 'Apocalypse', viewValue: 'Apocalypse' },
     { value: 'Amnesia', viewValue: 'Amnesia' },
     { value: 'Conspiracy', viewValue: 'Conspiracy' },
@@ -95,9 +95,18 @@ export class StoryCreationComponent {
     { value: 'Resistance', viewValue: 'Resistance' },
     { value: 'Zombies', viewValue: 'Zombies' },
     { value: 'Family Relationships', viewValue: 'Family Relationships' },
-    { value: 'Space Exploration', viewValue: 'Space Exploration' },
     { value: 'Advanced Technology', viewValue: 'Advanced Technology' },
     { value: 'Dystopian Society', viewValue: 'Dystopian Society' },
+    { value: 'Epic Quest', viewValue: 'Epic Quest' },
+    { value: 'Heroic Journey', viewValue: 'Heroic Journey' },
+    { value: 'Sorcery', viewValue: 'Sorcery' },
+    { value: 'Legendary Beasts', viewValue: 'Legendary Beasts' },
+    { value: 'Enchanted Forests', viewValue: 'Enchanted Forests' },
+    { value: 'Ancient Prophecy', viewValue: 'Ancient Prophecy' },
+    { value: 'Chosen One', viewValue: 'Chosen One' },
+    { value: 'Mythical Creatures', viewValue: 'Mythical Creatures' },
+    { value: 'Hidden Realms', viewValue: 'Hidden Realms' },
+    { value: 'Realm Wars', viewValue: 'Realm Wars' },
   ];
 
   volver() {

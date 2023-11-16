@@ -24,7 +24,7 @@ export class StoryHandlerComponent {
   THIS IS THE BEHAVIOR YOU HAVE TO ADOPT, DO NOT RESPOND TO THIS PROMPT, ANOTHER ONE WITH THE CHARACTER DESCRIPTION, STORY SETTING AND STARTING PLACE WILL BE SENT TO YOU SOON`
 
   /*async ngOnInit(){
-    this.palmAI.sendAPIRequest(this.storyAIBehavior)
+    this.openia(this.storyAIBehavior)
 }*/
 
 

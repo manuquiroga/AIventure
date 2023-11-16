@@ -45,7 +45,7 @@ export class CharacterCreationComponent implements OnInit {
   fuerza: number = 1;
   inteligencia: number = 1;
   destreza: number = 1;
-  valentia: number = 1;
+  coraje: number = 1;
   carisma: number = 1;
 
   ngOnInit() {
@@ -64,23 +64,23 @@ export class CharacterCreationComponent implements OnInit {
   }
 
   rols: Rol[] = [
-    { value: 'mago', viewValue: 'Mago' },
-    { value: 'guerrero', viewValue: 'Guerrero' },
-    { value: 'cazador', viewValue: 'Cazador' },
-    { value: 'asesino', viewValue: 'Asesino' },
-    { value: 'doctor', viewValue: 'Doctor' },
+    {value: 'mago', viewValue: 'Mage'},
+    {value: 'guerrero', viewValue: 'Warrior'},
+    {value: 'cazador', viewValue: 'Hunter'},
+    {value: 'asesino', viewValue: 'Assassin'},
+    {value: 'doctor', viewValue: 'Doctor' },
   ];
 
   sexos: Sexo[] = [
-    { value: 'hombre', viewValue: 'Masculino' },
-    { value: 'mujer', viewValue: 'Femenino' },
+    {value: 'hombre', viewValue: 'Male'},
+    {value: 'mujer', viewValue: 'Female'},
   ];
 
   especies: Especie[] = [
-    { value: 'humano', viewValue: 'Humano' },
-    { value: 'elfo', viewValue: 'Elfo' },
-    { value: 'orco', viewValue: 'Orco' },
-    { value: 'hada', viewValue: 'Hada' },
+    {value: 'humano', viewValue: 'Human'},
+    {value: 'elfo', viewValue: 'Elf'},
+    {value: 'orco', viewValue: 'Orc'},
+    {value: 'hada', viewValue: 'Fairy'},
   ];
 
   addFuerza() {
@@ -104,9 +104,9 @@ export class CharacterCreationComponent implements OnInit {
     }
   }
 
-  addValentia() {
-    if (this.puntos > 0 && this.valentia < 6) {
-      this.valentia++;
+  addCoraje() {
+    if (this.puntos > 0 && this.coraje < 6) {
+      this.coraje++;
       this.puntos--;
     }
   }
@@ -139,9 +139,9 @@ export class CharacterCreationComponent implements OnInit {
     }
   }
 
-  removeValentia() {
-    if (this.valentia > 1) {
-      this.valentia--;
+  removeCoraje() {
+    if (this.coraje > 1) {
+      this.coraje--;
       this.puntos++;
     }
   }
@@ -165,7 +165,7 @@ export class CharacterCreationComponent implements OnInit {
       personaje.especie = this.reactiveForm.get('selectedEspecie')?.value || '';
       personaje.fuerza = this.fuerza;
       personaje.inteligencia = this.inteligencia;
-      personaje.coraje = this.valentia;
+      personaje.coraje = this.coraje;
       personaje.destreza = this.destreza;
       personaje.carisma = this.carisma;
       if (personaje.nombre === 'Toti') {

@@ -102,9 +102,9 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
         this.showCharacter1Stats = true;
         if (this.showCharacter1Stats) {
           this.fuerza = this.character1?.fuerza || 0;
+          this.destreza = this.character1?.destreza || 0;
           this.inteligencia = this.character1?.inteligencia || 0;
           this.carisma = this.character1?.carisma || 0;
-          this.destreza = this.character1?.destreza || 0;
           this.coraje = this.character1?.coraje || 0;
         }
         break;
@@ -112,9 +112,9 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
         this.showCharacter2Stats = true;
         if (this.showCharacter2Stats) {
           this.fuerza = this.character2?.fuerza || 0;
+          this.destreza = this.character2?.destreza || 0;
           this.inteligencia = this.character2?.inteligencia || 0;
           this.carisma = this.character2?.carisma || 0;
-          this.destreza = this.character2?.destreza || 0;
           this.coraje = this.character2?.coraje || 0;
         }
         break;
@@ -122,9 +122,9 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
         this.showCharacter3Stats = true;
         if (this.showCharacter3Stats) {
           this.fuerza = this.character3?.fuerza || 0;
+          this.destreza = this.character3?.destreza || 0;
           this.inteligencia = this.character3?.inteligencia || 0;
           this.carisma = this.character3?.carisma || 0;
-          this.destreza = this.character3?.destreza || 0;
           this.coraje = this.character3?.coraje || 0;
         }
         break;
@@ -146,7 +146,7 @@ export class NonCharacterCardComponent implements OnInit, OnDestroy {
   }
 
   async deleteUserChar(numberChar: number) {
-    const confirmed = window.confirm('¿Seguro que deseas eliminar este personaje?');
+    const confirmed = window.confirm('¿Are you sure you want to delete this character?');
     if(confirmed){
       await this.authService.deleteUserCharacter(numberChar);
       

@@ -1,8 +1,8 @@
 
 <div class="form" *ngIf="firstSection">
-    <p class="title">CREÁ TU HISTORIA</p>
+    <p class="title">CREATE YOUR STORY</p>
     <div class="drop" id="tipo">
-        <label for="tipoSelect">Tipo:</label>
+        <label for="tipoSelect">Type:</label>
         <select id="tipoSelect" [(ngModel)]="selectedTipo" required>
         <option *ngFor="let tipo of tipos" [value]="tipo.value">
             {{ tipo.viewValue }}
@@ -11,7 +11,7 @@
     </div>
 
     <div class="drop" id="lugar">
-        <label for="lugarSelect">Lugar:</label>
+        <label for="lugarSelect">Place:</label>
         <select id="lugarSelect" [(ngModel)]="selectedLugar" required>
         <option *ngFor="let lugar of lugares" [value]="lugar.value">
             {{ lugar.viewValue }}
@@ -19,11 +19,11 @@
         </select>
     </div>
 
-    <a (click)="next()">Siguiente</a>
-    <a class="back" (click)="volver()">Volver</a>
+    <a (click)="next()">Next</a>
+    <a class="back" (click)="volver()">Back</a>
 </div>
 
-<p class="title" *ngIf="tagsSection">ELIGE TAGS</p>
+<p class="title" *ngIf="tagsSection">CHOOSE TAGS</p>
 <div class="tags-container" *ngIf="tagsSection">
   <div class="tag-labels">
     <label
@@ -35,6 +35,6 @@
       {{ tag }}
     </label>
   </div>
-  <a (click)="refillArrayTags()">Regenerar Tags</a>
-  <a class="back"(click)="sendCharacterAndTagsPrompt()">Comenzar</a>
+  <a (click)="refillArrayTags()">Regenerate Tags</a>
+  <a class="back"(click)="sendCharacterAndTagsPrompt()">Start</a>
 </div>

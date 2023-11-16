@@ -15,7 +15,7 @@
         (click)="deleteUserChar(1)"
         *ngIf="!showCharacter1Stats"
       >
-        Borrar
+        Delete
       </button>
       <button
         class="stats-btn"
@@ -24,20 +24,20 @@
       >
         Stats
       </button>
-      <button class="play-btn" *ngIf="!showCharacter1Stats" (click)="jugar(1)">Jugar</button>
+      <button class="play-btn" *ngIf="!showCharacter1Stats" (click)="jugar(1)">Play</button>
     </div>
     <div *ngIf="showCharacter1Stats">
-      <p>Fuerza: {{ fuerza }}</p>
-      <p>inteligencia: {{ inteligencia }}</p>
-      <p>Carisma: {{ carisma }}</p>
-      <p>Destreza: {{ destreza }}</p>
-      <p>Coraje: {{ coraje }}</p>
-      <button (click)="hideStatistics(1)">Volver</button>
+      <p>Strenght: {{ fuerza }}</p>
+      <p>Dexterity: {{ destreza }}</p>
+      <p>intelligence: {{ inteligencia }}</p>
+      <p>Charisma: {{ carisma }}</p>
+      <p>Courage: {{ coraje }}</p>
+      <button (click)="hideStatistics(1)">Back</button>
     </div>
   </div>
   <div class="card" *ngIf="character1 === undefined && !crear1">
     <a (click)="showCharacterComponent(1)">+</a>
-    <p class="crear">NUEVO</p>
+    <p class="crear">NEW</p>
   </div>
 
   <app-character-creation class="card" *ngIf="crear1 && ocultarCreacion" (ocultar)="ocultarComponente($event)"></app-character-creation>
@@ -59,7 +59,7 @@
         (click)="deleteUserChar(2)"
         *ngIf="!showCharacter2Stats"
       >
-        Borrar
+        Delete
       </button>
       <button
         class="stats-btn"
@@ -68,20 +68,20 @@
       >
         Stats
       </button>
-      <button class="play-btn" *ngIf="!showCharacter2Stats" (click)="jugar(2)">Jugar</button>
+      <button class="play-btn" *ngIf="!showCharacter2Stats" (click)="jugar(2)">Play</button>
     </div>
     <div *ngIf="showCharacter2Stats">
-      <p>Fuerza: {{ fuerza }}</p>
-      <p>inteligencia: {{ inteligencia }}</p>
-      <p>Carisma: {{ carisma }}</p>
-      <p>Destreza: {{ destreza }}</p>
-      <p>Coraje: {{ coraje }}</p>
-      <button (click)="hideStatistics(2)">Volver</button>
+      <p>Strenght: {{ fuerza }}</p>
+      <p>Dexterity: {{ destreza }}</p>
+      <p>intelligence: {{ inteligencia }}</p>
+      <p>Charisma: {{ carisma }}</p>
+      <p>Courage: {{ coraje }}</p>
+      <button (click)="hideStatistics(2)">Back</button>
     </div>
   </div>
   <div class="card" *ngIf="character2 === undefined  && !crear2">
     <a (click)="showCharacterComponent(2)">+</a>
-    <p class="crear">NUEVO</p>
+    <p class="crear">NEW</p>
   </div>
   <app-character-creation class="card" *ngIf="crear2 && ocultarCreacion" (ocultar)="ocultarComponente($event)"></app-character-creation>
   <app-story-creation [charSlot]="2" class="card" *ngIf="jugar2" (ocultar)="ocultarJugarComponente($event)"></app-story-creation> 
@@ -102,7 +102,7 @@
         (click)="deleteUserChar(3)"
         *ngIf="!showCharacter3Stats"
       >
-        Borrar
+        Delete
       </button>
       <button
         class="stats-btn"
@@ -111,20 +111,20 @@
       >
         Stats
       </button>
-      <button class="play-btn" *ngIf="!showCharacter3Stats" (click)="jugar(3)">Jugar</button>
+      <button class="play-btn" *ngIf="!showCharacter3Stats" (click)="jugar(3)">Play</button>
     </div>
     <div *ngIf="showCharacter3Stats">
-      <p>Fuerza: {{ fuerza }}</p>
-      <p>inteligencia: {{ inteligencia }}</p>
-      <p>Carisma: {{ carisma }}</p>
-      <p>Destreza: {{ destreza }}</p>
-      <p>Coraje: {{ coraje }}</p>
-      <button (click)="hideStatistics(3)">Volver</button>
+      <p>Strenght: {{ fuerza }}</p>
+      <p>Dexterity: {{ destreza }}</p>
+      <p>intelligence: {{ inteligencia }}</p>
+      <p>Charisma: {{ carisma }}</p>
+      <p>Courage: {{ coraje }}</p>
+      <button (click)="hideStatistics(3)">Back</button>
     </div>
   </div>
   <div class="card" *ngIf="character3 === undefined  && !crear3">
     <a (click)="showCharacterComponent(3)">+</a>
-    <p class="crear">NUEVO</p>
+    <p class="crear">NEW</p>
   </div>
   <app-character-creation class="card" *ngIf="crear3 && ocultarCreacion" (ocultar)="ocultarComponente($event)"></app-character-creation>
   <app-story-creation [charSlot]="3" class="card" *ngIf="jugar3" (ocultar)="ocultarJugarComponente($event)"></app-story-creation> 

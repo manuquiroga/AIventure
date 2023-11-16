@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class InfoComponent  {
   
-  slogan: string = 'CREA TU AVENTURA...';
+  slogan: string = 'CREATE YOUR ADVENTURE...';
 
   constructor(public auth: AuthService) {}
 
