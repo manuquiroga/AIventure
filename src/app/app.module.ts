@@ -21,6 +21,7 @@ import { CharacterDisplayComponent } from './components/character-display/charac
 import { NonCharacterCardComponent } from './components/non-character-card/non-character-card.component';
 import { CharacterCreationComponent } from './components/character-creation/character-creation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
@@ -48,6 +49,7 @@ import { FAQComponent } from './components/faq/faq.component';
     FAQComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     AngularFireModule,
     AngularFirestoreModule,
     AngularFireAuthModule,

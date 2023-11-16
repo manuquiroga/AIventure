@@ -1,7 +1,9 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Character } from 'src/app/models/character.model';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 interface Rol {
   value: string;
@@ -27,21 +29,15 @@ interface Nombre {
   templateUrl: './character-creation.component.html',
   styleUrls: ['./character-creation.component.css'],
 })
-export class CharacterCreationComponent {
+export class CharacterCreationComponent implements OnInit {
+  reactiveForm: FormGroup;
+  formdata: any = {};
   @Output() ocultar = new EventEmitter<boolean>();
 
   personaje: Character | null | undefined;
 
   dropdown: boolean = true;
   distribution: boolean = false;
-  showErrorMessage: boolean = false;
-  showErrorName:boolean = false;
-  showErrorCaracter:boolean = false;
-
-  selectedRol: string = '';
-  selectedEspecie: string = '';
-  selectedSexo: string = '';
-  nombre: string = '';
 
   puntos: number = 7;
   randomInt: number = this.getRandomInt();
@@ -52,9 +48,19 @@ export class CharacterCreationComponent {
   valentia: number = 1;
   carisma: number = 1;
 
-  onNombreChange(event: any) {
-    this.nombre = event.target.value;
-    console.log(this.nombre);
+  ngOnInit() {
+    
+  }
+
+  OnFormSubmitted() {
+    console.log(this.reactiveForm.value);
+    this.formdata = this.reactiveForm.value;
+    this.reactiveForm.reset({
+      nombre: null,
+      selectedRol: null,
+      selectedSexo: null,
+      selectedEspecie: null,
+    });
   }
 
   rols: Rol[] = [
@@ -153,22 +159,20 @@ export class CharacterCreationComponent {
 
   assignValues(personaje: Character | null | undefined) {
     if (personaje) {
-      personaje.rol = this.selectedRol;
-      personaje.sexo = this.selectedSexo;
-      personaje.nombre = this.nombre;
-      personaje.especie = this.selectedEspecie;
+      personaje.rol = this.reactiveForm.get('selectedRol')?.value || '';
+      personaje.sexo = this.reactiveForm.get('selectedSexo')?.value || '';
+      personaje.nombre = this.reactiveForm.get('nombre')?.value || '';
+      personaje.especie = this.reactiveForm.get('selectedEspecie')?.value || '';
       personaje.fuerza = this.fuerza;
       personaje.inteligencia = this.inteligencia;
       personaje.coraje = this.valentia;
       personaje.destreza = this.destreza;
       personaje.carisma = this.carisma;
-      if(personaje.nombre==='Toti')
-      {
-        personaje.photoURL =`/assets/images/totieasteregg.png`;
-      }else{
+      if (personaje.nombre === 'Toti') {
+        personaje.photoURL = `/assets/images/totieasteregg.png`;
+      } else {
         personaje.photoURL = `https://aiventure-images.up.railway.app/imagen/${personaje.sexo}-${personaje.especie}-${personaje.rol}-${this.randomInt}.jpeg`;
       }
-      
     }
   }
 
@@ -201,8 +205,7 @@ export class CharacterCreationComponent {
   finishCharButton() {
     if (this.isAttributesDistributed() || this.puntos >= 4) {
       this.notGoThrough = true;
-    } 
-    else {
+    } else {
       this.logCharacterData();
       this.ocultar.emit(true);
     }
@@ -226,49 +229,35 @@ export class CharacterCreationComponent {
     }
   }
 
-  validateCaracters(nombre:string): boolean{
-    const maxLength = 16;
-    if (nombre.length > maxLength) {
-      return false; // Supera los 16 caracteres
-    }else{
-      return true
-    }
-  }
-
-  validateName(nombre: string): boolean {
-    const regex = /^[A-Za-z\s]+$/;
-    
-  
-    return regex.test(nombre);
-  }
-
   nextButton() {
-    if (!this.isFormComplete()) {
-      this.showErrorMessage = true;
-      this.showErrorName = false;
-      this.showErrorCaracter = false;
-    } else if (!this.validateName(this.nombre)){
-      this.showErrorMessage = false;
-      this.showErrorName = true;
-    } else if(!this.validateCaracters(this.nombre)){
-      this.showErrorCaracter = true;
-      this.showErrorName = false
-    }else {
+    if (this.reactiveForm.valid) {
       this.dropdown = false;
       this.distribution = true;
+    } else {
+      this.reactiveForm.markAllAsTouched();
     }
   }
 
-  isFormComplete(): boolean {
-    return (
-      !!this.selectedRol &&
-      !!this.selectedEspecie &&
-      !!this.selectedSexo &&
-      !!this.nombre
-    );
-  }
-
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {
     this.personaje = {} as Character;
+    this.reactiveForm = new FormGroup({
+      nombre: new FormControl(null, [
+        Validators.required,
+        Validators.pattern(/^[A-Za-z\s]+$/),
+        Validators.maxLength(16),
+      ]),
+      selectedRol: new FormControl(null, [Validators.required]),
+      selectedSexo: new FormControl(null, [Validators.required]),
+      selectedEspecie: new FormControl(null, [Validators.required]),
+    });
+
+    // this.reactiveForm.statusChanges.subscribe((status) => {
+    //   console.log(status);
+    //   this.formStatus = status;
+    // });
   }
 }

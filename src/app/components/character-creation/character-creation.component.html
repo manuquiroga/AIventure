@@ -3,10 +3,10 @@
 
   <div class="content">
     <div class="dropdown" *ngIf="dropdown">
-      <div class="form">
+      <form [formGroup]="reactiveForm" (ngSubmit)="OnFormSubmitted()">
         <div class="drop" id="rol">
           <label for="rolSelect">Rol:</label>
-          <select id="rolSelect" [(ngModel)]="selectedRol" required>
+          <select id="rolSelect" formControlName="selectedRol" >
             <option *ngFor="let rol of rols" [value]="rol.value">
               {{ rol.viewValue }}
             </option>
@@ -15,7 +15,7 @@
 
         <div class="drop" id="especie">
           <label for="especieSelect">Especie:</label>
-          <select id="especieSelect" [(ngModel)]="selectedEspecie" required>
+          <select id="especieSelect" formControlName="selectedEspecie" >
             <option *ngFor="let especie of especies" [value]="especie.value">
               {{ especie.viewValue }}
             </option>
@@ -24,7 +24,7 @@
 
         <div class="drop" id="sexo">
           <label for="sexoSelect">Sexo:</label>
-          <select id="sexoSelect" [(ngModel)]="selectedSexo" required>
+          <select id="sexoSelect" formControlName="selectedSexo" >
             <option *ngFor="let sexo of sexos" [value]="sexo.value">
               {{ sexo.viewValue }}
             </option>
@@ -33,14 +33,16 @@
 
         <div class="drop" id="nombre">
           <label for="nombreSelect">Nombre:</label>
-          <input matInput (input)="onNombreChange($event)" required />
+          <input matInput formControlName="nombre"  />
         </div>
-          <p class="error-message" *ngIf="showErrorMessage">*Completa todos los campos</p>
-          <p class="error-message" *ngIf="showErrorName">*No permitimos caracteres especiales</p>
-          <p class="error-message" *ngIf="showErrorCaracter">*No supere los 16 caracteres</p>
-        <a id="next" (click)="nextButton()" class="nextButton">Siguiente</a>
+        <div *ngIf="reactiveForm.get('nombre')?.invalid && reactiveForm.get('nombre')?.touched">
+          <div *ngIf="reactiveForm.get('nombre')?.hasError('required')"><p class="error-message">El nombre es obligatorio.</p></div>
+          <div *ngIf="reactiveForm.get('nombre')?.hasError('pattern')"><p class="error-message">El nombre no es válido.</p></div>
+          <div *ngIf="reactiveForm.get('nombre')?.hasError('maxLength')"><p class="error-message">El nombre no puede tener más de 16 caracteres.</p> </div>
+        </div>
+        <a id="next" (click)="nextButton()" class="nextButton" >Siguiente</a>
         <a class="back" (click)="volver()">Volver</a>
-      </div>
+      </form>
     </div>
 
     <div class="distribution" *ngIf="distribution">
