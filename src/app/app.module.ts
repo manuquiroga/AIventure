@@ -33,6 +33,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { MatMenuModule } from '@angular/material/menu';
 import { StoryCreationComponent } from './components/story-creation/story-creation.component';
 import { FAQComponent } from './components/faq/faq.component';
+import { OpenaiService } from './services/openai.service';
 
 @NgModule({
   declarations: [
