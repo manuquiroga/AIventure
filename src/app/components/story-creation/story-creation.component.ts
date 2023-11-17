@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Character } from 'src/app/models/character.model';
 
 
+
 interface Tipo {
   value: string;
   viewValue: string;
@@ -24,7 +25,7 @@ interface Tags {
   templateUrl: './story-creation.component.html',
   styleUrls: ['./story-creation.component.css'],
 })
-export class StoryCreationComponent {
+export class StoryCreationComponent{
   @Output() ocultar = new EventEmitter<boolean>();
 
 
@@ -196,24 +197,14 @@ export class StoryCreationComponent {
     return contextPrompt="My story develops in a " + this.selectedTipo + " setting, and I decided to start in " + this.selectedLugar + tagsString;
   }
   
-  response!: string;
   sendCharacterAndTagsPrompt()
   {
     const charPrompt=this.createCharPrompt(this.charSlot);
     const contextPrompt=this.createContextSettingPrompt();
     const completePrompt = charPrompt + ". " + contextPrompt;
 
-    /*this.openai.postData(completePrompt).subscribe(
-      (data: any) => {
-        this.response = data.response; 
-        console.log(data.response);
-      },
-      (error) => {
-        console.error('Error:', error);
-      }
-    );*/
-
-    /*this.palmAI.sendAPIRequest(completePrompt);*/
+    this.openai.sendMessageSystem(completePrompt);
   }
   
 }
+

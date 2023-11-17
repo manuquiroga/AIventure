@@ -45,17 +45,6 @@ export class NavBarComponent implements OnInit, OnDestroy {
     }
   }
 
-  enviarSolicitud(question: string) {
-    this.openai.postData(question).subscribe(
-      (data: any) => {
-        this.response = data.response;
-        console.log(data.response);
-      },
-      (error) => {
-        console.error('Error:', error);
-      }
-    );
-  }
 
   scrollToFAQ() {
 
