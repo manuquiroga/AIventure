@@ -6,25 +6,33 @@ import { StoryService } from 'src/app/services/storyService';
 @Component({
   selector: 'app-story-handler',
   templateUrl: './story-handler.component.html',
-  styleUrls: ['./story-handler.component.css']
+  styleUrls: ['./story-handler.component.css'],
 })
 export class StoryHandlerComponent implements OnInit {
   userChoice: string = '';
   story: string[] = [];
   aiResponse: string = '';
+  storyString: string[] = [];
 
-  constructor(private storyService: StoryService,private openai:OpenaiService) {}
+  constructor(
+    private storyService: StoryService,
+    private openai: OpenaiService
+  ) {}
 
+  pushUserChoicePullLegs() {
+    this.storyString.push(this.userChoice);
+  }
 
-  continueStory() {
-    this.openai.sendMessage(this.userChoice)
+  async continueStory() {
+    await this.openai.sendMessage(this.userChoice);
     this.userChoice = '';
   }
 
   ngOnInit(): void {
     this.storyService.aiResponse$.subscribe((response) => {
       this.aiResponse = response;
-      // Aquí puedes realizar cualquier otra lógica que necesites con la respuesta de la IA
+      this.storyString.push(this.aiResponse);
+      
     });
 
     this.storyService.story$.subscribe((story) => {

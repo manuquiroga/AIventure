@@ -34,6 +34,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { StoryCreationComponent } from './components/story-creation/story-creation.component';
 import { FAQComponent } from './components/faq/faq.component';
 import { OpenaiService } from './services/openai.service';
+import { StoryHandlerComponent } from './components/story-handler/story-handler.component';
+
+
 
 @NgModule({
   declarations: [
@@ -48,6 +51,7 @@ import { OpenaiService } from './services/openai.service';
     UserProfileComponent,
     StoryCreationComponent,
     FAQComponent,
+    StoryHandlerComponent,
   ],
   imports: [
     ReactiveFormsModule,
