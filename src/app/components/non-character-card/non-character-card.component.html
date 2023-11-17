@@ -85,6 +85,7 @@
   </div>
   <app-character-creation class="card" *ngIf="crear2 && ocultarCreacion" (ocultar)="ocultarComponente($event)"></app-character-creation>
   <app-story-creation [charSlot]="2" class="card" *ngIf="jugar2" (ocultar)="ocultarJugarComponente($event)"></app-story-creation> 
+  
 
   <!-- PERSONAJE 3 -->
   <div class="card character" *ngIf="character3 && !jugar3" >

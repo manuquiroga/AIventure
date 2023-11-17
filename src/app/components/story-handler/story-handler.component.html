@@ -7,12 +7,14 @@
         </p>
     </main>
     <section class="prompt">
-        <textarea name="prompt-textarea" id="prompt-textarea" maxlength="100" placeholder="A healer appears to support me..." (ngModel)="userChoice"></textarea>
+        <input name="prompt-textarea" id="prompt-textarea" maxlength="100" placeholder="{{placeHolder}}" (ngModel)="userChoice" (keyup.enter)="onEnterKeyPressed($event)"/>
         <button (click)="continueStory()">Submit</button>
         <div class="buttons">
-            <button> Do </button>
-            <button> Talk </button>
-            <button> End </button>
+            <button (click)="actionHandler(1)"> Do </button>
+            <button (click)="actionHandler(2)"> Create event </button>
+            <button (click)="actionHandler(3)"> Say </button>
+            <button (click)="actionHandler(4)"> Talk </button>
+            <button (click)="actionHandler(5)"> End </button>
         </div>
     </section>
     </div>

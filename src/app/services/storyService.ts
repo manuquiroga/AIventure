@@ -1,4 +1,3 @@
-// story.service.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -13,20 +12,28 @@ export class StoryService {
   public story$: Observable<string[]> = this.storySubject.asObservable();
 
   setAiResponse(response: string) {
+
     this.aiResponseSubject.next(response);
   }
 
   addToStory(message: string) {
+
     const currentStory = this.storySubject.value;
-    const updatedStory = [...currentStory, message];
+    const updatedStory = [...currentStory, message + '\n'];
     this.storySubject.next(updatedStory);
   }
 
   userChooseOption(optionText: string) {
-    // Agregar lógica necesaria para manejar la elección del usuario
-    // Puedes llamar a otras funciones del servicio o realizar acciones específicas aquí
+
     const userChoiceMessage = `User chose: ${optionText}`;
-    this.addToStory(userChoiceMessage); // Agregar la elección del usuario a la historia
-    // Puedes agregar más lógica según sea necesario
+    this.addToStory(userChoiceMessage); 
+  
   }
+
+  endStory(): string
+  {
+    const str="After this message, put an end to the story and create a fitting title for it";
+    return str
+  }
+
 }
