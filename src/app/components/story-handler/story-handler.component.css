@@ -1,0 +1,113 @@
+body{
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+
+}
+
+.ancient-cemetery{
+    background: url('../../../assets/images/ancient_cemetery.jpg');
+}
+
+.magical-dark-forest{
+    background: url('../../../assets/images/magical_dark_forest.jpg');
+}
+
+.fishing-village{
+    background: url('../../../assets/images/pueblo-pesquero.jpeg');
+}
+
+.container{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0 20% 0 20%;
+}
+
+main{
+    width: 100%;
+    background-color: rgba(0, 0, 0, .3);
+    backdrop-filter: blur(40px);
+    padding: 3rem;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    color: #ffffffef;
+}
+
+h1{
+    width: 100%;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 5%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(50px);
+    padding: 1rem 0;
+
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.story{
+    overflow-y: scroll;
+    height: 500px;
+    padding-right: 20px;
+    font-size: 1rem;
+}
+
+.story::-webkit-scrollbar {
+    width: 5px;
+    background: rgba(0, 0, 0, 0.8); 
+}
+
+.story::-webkit-scrollbar-thumb {
+    background: #474747;
+    border-radius: 10px;
+}
+
+textarea{
+    resize: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(50px);
+    padding: 1rem;
+    font-size: 1rem;
+    border: none;
+    color: #ffffffef;
+    border-radius: 4px;
+    margin: 1rem 0 0 0;
+}
+
+textarea:focus{
+    outline: none;
+}
+
+.buttons{
+    width: 100%;
+}
+
+.buttons button{
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+    border: #2c2c2c 2px solid;
+    border-radius: 4px;
+    padding: 0 20px;
+    transition: 0.3s ease-out;
+
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(50px);
+    margin-right: 1rem;
+}
+
+.buttons button:hover {
+  border: #fff 2px solid;
+}
+
+.buttons button:active {
+  border: #fff 2px solid; 
+}

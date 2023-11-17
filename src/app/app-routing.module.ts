@@ -4,11 +4,12 @@ import { CharacterMenuComponent } from './pages/character-menu/character-menu.co
 import { CharacterCreationComponent } from './components/character-creation/character-creation.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { AuthGuard } from './guards/auth.guard';
+import { StoryHandlerComponent } from './components/story-handler/story-handler.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'characters', component: CharacterMenuComponent, canActivate: [AuthGuard] },
-  
+  { path: 'story', component: StoryHandlerComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
