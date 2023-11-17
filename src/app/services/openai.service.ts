@@ -16,6 +16,7 @@ export class OpenaiService{
   apiKey: string = environment.openAi.apiKey;
   chatHistory: any[] = [];
 
+
   constructor(private storyService: StoryService) {}
 
   handleOption(optionText: string) {
@@ -46,7 +47,7 @@ export class OpenaiService{
       this.chatHistory.push({ role: 'assistant', content: aiMessage });
       this.messages.push(aiMessage);
       
-      this.storyService.setAiResponse(aiMessage); // Almacena la respuesta en StoryService
+      this.storyService.setAiResponse(aiMessage); 
       this.storyService.addToStory(aiMessage);
       
 
@@ -105,9 +106,11 @@ export class OpenaiService{
     
     As we go along, we will be adding some parameters that are needed when they come up. If there are any other rules / parameters you think you want to clarify, let me know.
     
-    And I want the Story to begin here with some details about the story to start with: (${prompt})`;
-
+    And I want the Story to begin here with some details about the story to start with: (${prompt})
     
+    When the system sends you a message asking you to put an end to the story and create a fitting title, do it and don't continue the story.
+    `;
+
     this.chatHistory.push({ role: 'system', content: rulesMessage });
 
     try {
@@ -133,6 +136,7 @@ export class OpenaiService{
       this.storyService.setAiResponse(aiMessage);
       this.storyService.addToStory(aiMessage);
 
+
       console.log('Información de uso:', axiosResponse.data.usage);
     } catch (error: any) {
       console.error('Error al obtener la completitud del chat:', error);
@@ -142,4 +146,41 @@ export class OpenaiService{
       }
     }
   }
+  
+  async endStory()
+  {
+    const str=this.storyService.endStory();
+    this.chatHistory.push({ role: 'system', content: str });
+    try {
+      const axiosResponse = await axios.post(
+        'https://api.openai.com/v1/chat/completions',
+        {
+          messages: this.chatHistory,
+          model: 'gpt-3.5-turbo',
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.apiKey}`,
+          },
+        }
+      );
+      const aiMessage = axiosResponse.data.choices[0].message.content;
+
+      this.chatHistory.push({ role: 'assistant', content: aiMessage });
+      this.messages.push(aiMessage);
+
+      this.storyService.setAiResponse(aiMessage);
+      this.storyService.addToStory(aiMessage);
+
+      console.log('Información de uso:', axiosResponse.data.usage);
+    } catch (error: any) {
+      console.error('Error al obtener la completitud del chat:', error);
+
+      if (error.response) {
+        console.error('Respuesta de la API:', error.response.data);
+      }
+    }
+  }
+
 }

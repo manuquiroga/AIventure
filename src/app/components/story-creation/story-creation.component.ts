@@ -25,7 +25,7 @@ interface Tags {
   templateUrl: './story-creation.component.html',
   styleUrls: ['./story-creation.component.css'],
 })
-export class StoryCreationComponent{
+export class StoryCreationComponent {
   @Output() ocultar = new EventEmitter<boolean>();
 
 
@@ -181,7 +181,6 @@ export class StoryCreationComponent{
     }
     return this.charDescription;
   }
-  
   
   createContextSettingPrompt():string
   {
