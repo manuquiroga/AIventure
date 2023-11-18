@@ -1,4 +1,4 @@
-<body class="magical-dark-forest">
+<body class={{backgroundClass}}>
     <div class="container">
         <h1>MY STORY</h1>
     <main>
@@ -6,8 +6,10 @@
     </main>
     <div *ngIf="!isHidden">
         <section class="prompt">
-            <input name="prompt-textarea" id="prompt-textarea" maxlength="100" placeholder="{{placeHolder}}" (ngModel)="userChoice" (keyup.enter)="onEnterKeyPressed($event)"/>
-            <button (click)="continueStory()">Submit</button>
+            <div class="custom-input">
+                <input name="prompt-textarea" id="prompt-textarea" maxlength="100" placeholder="{{placeHolder}}" (ngModel)="userChoice" (keyup.enter)="onEnterKeyPressed($event)"/>
+                <button class="submit" (click)="continueStory()">Submit</button>
+            </div>
             <div class="buttons">
                 <button (click)="actionHandler(1)"> Do </button>
                 <button (click)="actionHandler(2)"> Create event </button>
@@ -17,6 +19,5 @@
             </div>
         </section>
       </div>
-    
     </div>
 </body>

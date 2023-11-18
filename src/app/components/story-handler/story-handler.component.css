@@ -7,6 +7,10 @@ body{
 
 }
 
+.default-background{
+    background: url('../../../assets/images/background.jpeg');
+}
+
 .ancient-cemetery{
     background: url('../../../assets/images/ancient_cemetery.jpg');
 }
