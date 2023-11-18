@@ -4,16 +4,19 @@
     <main>
         <p class="story" *ngFor="let string of storyString">{{ string }} <br></p>
     </main>
-    <section class="prompt">
-        <input name="prompt-textarea" id="prompt-textarea" maxlength="100" placeholder="{{placeHolder}}" (ngModel)="userChoice" (keyup.enter)="onEnterKeyPressed($event)"/>
-        <button (click)="continueStory()">Submit</button>
-        <div class="buttons">
-            <button (click)="actionHandler(1)"> Do </button>
-            <button (click)="actionHandler(2)"> Create event </button>
-            <button (click)="actionHandler(3)"> Say </button>
-            <button (click)="actionHandler(4)"> Talk </button>
-            <button (click)="actionHandler(5)"> End </button>
-        </div>
-    </section>
+    <div *ngIf="!isHidden">
+        <section class="prompt">
+            <input name="prompt-textarea" id="prompt-textarea" maxlength="100" placeholder="{{placeHolder}}" (ngModel)="userChoice" (keyup.enter)="onEnterKeyPressed($event)"/>
+            <button (click)="continueStory()">Submit</button>
+            <div class="buttons">
+                <button (click)="actionHandler(1)"> Do </button>
+                <button (click)="actionHandler(2)"> Create event </button>
+                <button (click)="actionHandler(3)"> Say </button>
+                <button (click)="actionHandler(4)"> Talk </button>
+                <button (click)="actionHandler(5)" (click)="toggleVisibility()"> End </button>
+            </div>
+        </section>
+      </div>
+    
     </div>
 </body>

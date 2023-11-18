@@ -14,9 +14,17 @@ body{
 .magical-dark-forest{
     background: url('../../../assets/images/magical_dark_forest.jpg');
 }
-
 .fishing-village{
     background: url('../../../assets/images/pueblo-pesquero.jpeg');
+}
+.ancient-ruins{
+    background: url('../../../assets/images/ancient_ruins.jpg');
+}
+.dungeon{
+    background: url('../../../assets/images/dungeon.jpg');
+}
+.magical-school{
+    background: url('../../../assets/images/magical_school.jpg');
 }
 
 .container{

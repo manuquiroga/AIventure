@@ -1,4 +1,3 @@
-// story-handler.component.ts
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { OpenaiService } from 'src/app/services/openai.service';
@@ -41,7 +40,6 @@ export class StoryHandlerComponent implements OnInit {
   ngOnInit(): void {
     this.storyService.aiResponse$.subscribe((response) => {
       this.aiResponse = response;
-      // Aquí puedes realizar cualquier otra lógica que necesites con la respuesta de la IA
     });
 
     this.storyService.story$.subscribe((story) => {
@@ -84,5 +82,10 @@ export class StoryHandlerComponent implements OnInit {
       case 5: await this.openai.endStory();
           break;
     }
+  }
+
+  isHidden:boolean=false;
+  toggleVisibility() {
+    this.isHidden = !this.isHidden;
   }
 }
