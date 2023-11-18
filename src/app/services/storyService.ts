@@ -32,7 +32,7 @@ export class StoryService {
 
   endStory(): string
   {
-    const str="After this message, put an end to the story and create a fitting title for it";
+    const str="After this message, I want you to give a small ending to the story related to the last thing that happened in the story and create a fitting title for it";
     return str
   }
 
