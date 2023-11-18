@@ -132,4 +132,8 @@ export class StoryHandlerComponent implements OnInit {
   toggleVisibility() {
     this.isHidden = !this.isHidden;
   }
+  manageActions(){
+    this.actions++;
+    this.auth.saveActionCount(this.actions);
+  }
 }
