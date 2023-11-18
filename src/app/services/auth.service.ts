@@ -192,5 +192,17 @@ export class AuthService {
       }
   }
 
-  
+  async saveActionCount(count:number){
+    const user = await this.firebaseAuthenticationService.currentUser;
+    if (user) {
+      const userRef = this.afs.doc(`users/${user.uid}`);
+      const userDoc = await userRef.get().toPromise();
+      const actionCount=count;
+      if (actionCount!=-1) {
+        await userRef.update({ historias: actionCount });
+    }
+  }else {
+    console.error('Usuario no autenticado. No se puede guardar la cantidad de acciones.');
+  }
+  }
 }

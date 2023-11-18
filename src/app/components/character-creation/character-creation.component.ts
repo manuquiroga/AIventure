@@ -64,23 +64,23 @@ export class CharacterCreationComponent implements OnInit {
   }
 
   rols: Rol[] = [
-    {value: 'mago', viewValue: 'Mage'},
-    {value: 'guerrero', viewValue: 'Warrior'},
-    {value: 'cazador', viewValue: 'Hunter'},
-    {value: 'asesino', viewValue: 'Assassin'},
+    {value: 'mage', viewValue: 'Mage'},
+    {value: 'warrior', viewValue: 'Warrior'},
+    {value: 'hunter', viewValue: 'Hunter'},
+    {value: 'assasin', viewValue: 'Assassin'},
     {value: 'doctor', viewValue: 'Doctor' },
   ];
 
   sexos: Sexo[] = [
-    {value: 'hombre', viewValue: 'Male'},
-    {value: 'mujer', viewValue: 'Female'},
+    {value: 'male', viewValue: 'Male'},
+    {value: 'female', viewValue: 'Female'},
   ];
 
   especies: Especie[] = [
-    {value: 'humano', viewValue: 'Human'},
-    {value: 'elfo', viewValue: 'Elf'},
-    {value: 'orco', viewValue: 'Orc'},
-    {value: 'hada', viewValue: 'Fairy'},
+    {value: 'human', viewValue: 'Human'},
+    {value: 'elf', viewValue: 'Elf'},
+    {value: 'orc', viewValue: 'Orc'},
+    {value: 'fairy', viewValue: 'Fairy'},
   ];
 
   addFuerza() {

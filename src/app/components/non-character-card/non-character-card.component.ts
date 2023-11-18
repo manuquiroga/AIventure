@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Character } from 'src/app/models/character.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Subscription } from 'rxjs';
-import { ChangeDetectorRef, NgZone } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-non-character-card',

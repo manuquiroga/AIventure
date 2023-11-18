@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { OpenaiService } from 'src/app/services/openai.service';
 import { Subscription } from 'rxjs';
 import { FAQComponent } from '../faq/faq.component';
+import { ChangeDetectorRef} from '@angular/core';
 
 @Component({
   selector: 'nav-bar',
@@ -25,6 +26,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
     public auth: AuthService,
     private openai: OpenaiService,
     private FAQ: FAQComponent,
+    private cd: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -45,6 +47,16 @@ export class NavBarComponent implements OnInit, OnDestroy {
     }
   }
 
+  addActions()
+  {
+    this.historias!++;
+    this.auth.saveActionCount(this.historias!);
+    this.refreshComponent();
+  }
+
+  refreshComponent() {
+    this.cd.detectChanges();
+  }
 
   scrollToFAQ() {
 

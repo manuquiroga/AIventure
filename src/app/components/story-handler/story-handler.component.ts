@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { OpenaiService } from 'src/app/services/openai.service';
 import { StoryService } from 'src/app/services/storyService';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -15,7 +16,9 @@ export class StoryHandlerComponent implements OnInit {
   story: string[] = [];
   aiResponse: string = '';
   storyString: string[] = [];
+  actions!:number;
 
+  private userSubscription: Subscription | undefined;
 
   constructor(private storyService: StoryService,private openai:OpenaiService, private auth:AuthService) {}
 
@@ -24,8 +27,15 @@ export class StoryHandlerComponent implements OnInit {
   }
 
   async continueStory() {
+    if(this.actions>0)
+    {
     await this.openai.sendMessage(this.userChoice);
     this.userChoice = '';
+    this.actions--;
+    this.auth.saveActionCount(this.actions);
+    }else{
+      alert("You've got no more actions left, consider getting more to continue the story");
+    }
   }
 
   ngOnInit(): void {
@@ -37,20 +47,30 @@ export class StoryHandlerComponent implements OnInit {
     this.storyService.story$.subscribe((story) => {
       this.story = story;
     });
+
+    this.userSubscription = this.auth.user$.subscribe((user) => {
+      if (user) {
+        this.actions = user.historias!;
+      }})
   }
 
 
   onEnterKeyPressed(event: any) {
+    if(this.actions>0)
+    {
     this.continueStory();
+    this.actions--;
+    this.auth.saveActionCount(this.actions);
+    }else{
+      alert("You've got no more actions left, consider getting more to continue the story");
+    }
   }
-  
-
 
   placeHolder:string="A healer appears to support me...";
 
   async actionHandler(actionSlot:number)
   {
-
+    
     switch(actionSlot)
     {
       case 1: this.placeHolder="(Name) then the action... ex: Tony swings at the monster with his mighty sword"
