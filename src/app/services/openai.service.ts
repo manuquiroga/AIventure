@@ -33,6 +33,7 @@ export class OpenaiService{
         {
           messages: this.chatHistory.concat({ role: 'user', content: userMessage }),
           model: 'gpt-3.5-turbo',
+          temperature: 0.6,
         },
         {
           headers: {
@@ -98,7 +99,7 @@ export class OpenaiService{
     
     Let's have a day/night cycle. And let me know every once and a while what time it is.
     
-    Don't be afraid to write long passages. I don't mind you explaining all the fine details in the settings and people around. You can even have my character speak , if it's light conversation and within the context of what you know of my character. But I'd like to be in control of decisions and most of the talking.
+    Don't write too long passages but still close the idea you were writing. I don't mind you explaining all the fine details in the settings and people around. You can even have my character speak , if it's light conversation and within the context of what you know of my character. But I'd like to be in control of decisions and most of the talking.
     
     Please provide responses and reactions from the people and world around me as I talk and interact with them.
     
@@ -107,6 +108,8 @@ export class OpenaiService{
     As we go along, we will be adding some parameters that are needed when they come up. If there are any other rules / parameters you think you want to clarify, let me know.
     
     And I want the Story to begin here with some details about the story to start with: (${prompt})
+
+    The character will have 5 attributes, I want you to take them into account for the development of the story, the maximum score is 6 and the minimum score is 1.
     
     When the system sends you a message asking you to put an end to the story and create a fitting title, do it and don't continue the story.
     `;
@@ -119,6 +122,7 @@ export class OpenaiService{
         {
           messages: this.chatHistory,
           model: 'gpt-3.5-turbo',
+          temperature: 0.6,
         },
         {
           headers: {
