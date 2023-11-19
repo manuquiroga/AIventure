@@ -169,6 +169,10 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
           '(Name) talks to... ex: Tony talks to Ronnie and tells him to pick up his sword';
         break;
       case 5:
+        this.storyString.push({
+          text: 'AI is thinking...',
+          class: 'thinking-text cursor',
+        });
         await this.openai.endStory();
         this.openai.closeConnection();
         localStorage.removeItem('token');
