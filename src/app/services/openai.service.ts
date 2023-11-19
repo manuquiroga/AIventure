@@ -28,16 +28,14 @@ export class OpenaiService{
   }
 
   async sendMessage(input:string) {
-    const userMessage = input;
-    this.userInput = '';
-
+    let userMessage = input;
     try {
       const axiosResponse = await axios.post(
         'https://api.openai.com/v1/chat/completions',
         {
           messages: this.chatHistory.concat({ role: 'user', content: userMessage }),
           model: 'gpt-3.5-turbo',
-          temperature: 0.6,
+          temperature: 0.2,
         },
         {
           headers: {
@@ -48,13 +46,15 @@ export class OpenaiService{
       );
 
       const aiMessage = axiosResponse.data.choices[0].message.content;
-
+      this.chatHistory.push({ role: 'user', content: userMessage });
       this.chatHistory.push({ role: 'assistant', content: aiMessage });
+
       this.messages.push(aiMessage);
       
       this.storyService.setAiResponse(aiMessage); 
       this.storyService.addToStory(aiMessage);
       
+      console.log('Chat History:', this.chatHistory);
 
       console.log('Información de uso:', axiosResponse.data.usage);
       this.messages.push({ text: aiMessage, role: 'assistant' });
@@ -128,7 +128,7 @@ export class OpenaiService{
         {
           messages: this.chatHistory,
           model: 'gpt-3.5-turbo',
-          temperature: 0.6,
+          temperature: 0.2,
         },
         {
           headers: {
@@ -145,6 +145,8 @@ export class OpenaiService{
 
       this.storyService.setAiResponse(aiMessage);
       this.storyService.addToStory(aiMessage);
+
+      console.log('Chat History:', this.chatHistory);
 
 
       console.log('Información de uso:', axiosResponse.data.usage);
@@ -167,6 +169,7 @@ export class OpenaiService{
         {
           messages: this.chatHistory,
           model: 'gpt-3.5-turbo',
+          temperature: 0.2,
         },
         {
           headers: {
@@ -182,6 +185,7 @@ export class OpenaiService{
 
       this.storyService.setAiResponse(aiMessage);
       this.storyService.addToStory(aiMessage);
+      
 
       this.chatHistory = [];
       
