@@ -6,9 +6,11 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { AuthGuard } from './guards/auth.guard';
 import { StoryHandlerComponent } from './components/story-handler/story-handler.component';
 import { StoryGuard } from './guards/story.guard';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
+  { path: '**', component: PageNotFoundComponent },
   { path: 'characters', component: CharacterMenuComponent, canActivate: [AuthGuard] },
   { path: 'story', component: StoryHandlerComponent, canActivate: [AuthGuard, StoryGuard] },
 ];

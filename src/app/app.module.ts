@@ -36,6 +36,7 @@ import { FAQComponent } from './components/faq/faq.component';
 import { OpenaiService } from './services/openai.service';
 import { StoryHandlerComponent } from './components/story-handler/story-handler.component';
 import { StoryGuard } from './guards/story.guard';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 
 
@@ -53,6 +54,7 @@ import { StoryGuard } from './guards/story.guard';
     StoryCreationComponent,
     FAQComponent,
     StoryHandlerComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     ReactiveFormsModule,
