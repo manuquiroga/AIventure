@@ -18,6 +18,7 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
   storyString: string[] = [];
   actions!: number;
   backgroundClass!: string;
+  isInputDisabled: boolean = false;
 
   private userSubscription: Subscription | undefined;
   private storySubscription: Subscription | undefined;
@@ -72,14 +73,20 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
   }
 
   async continueStory() {
-    if (this.actions > 0) {
+    if (this.actions > 0 && !this.isInputDisabled) {
+      this.isInputDisabled = true;
       await this.openai.sendMessage(this.userChoice);
+      this.isInputDisabled = false;
       this.userChoice = '';
       this.actions--;
       this.auth.saveActionCount(this.actions);
-    } else {
+    } else if(this.actions === 0){
       alert(
         "You've got no more actions left, consider getting more to continue the story"
+      );
+    } else if(this.isInputDisabled){
+      alert(
+        "You cannot send more than one message"
       );
     }
   }
@@ -175,6 +182,7 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     this.aiResponse = '';
     this.storyString = [];
   }
+  
   manageActions(){
     this.actions++;
     this.auth.saveActionCount(this.actions);

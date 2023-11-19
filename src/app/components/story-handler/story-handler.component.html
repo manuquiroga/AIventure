@@ -7,7 +7,7 @@
     <div *ngIf="!isHidden">
         <section class="prompt">
             <div class="custom-input">
-                <input name="prompt-textarea" id="prompt-textarea" maxlength="100" placeholder="{{placeHolder}}" (ngModel)="userChoice" (keyup.enter)="onEnterKeyPressed($event)"/>
+                <input name="prompt-textarea" id="prompt-textarea" maxlength="100" placeholder="{{placeHolder}}" (ngModel)="userChoice" (keyup.enter)="onEnterKeyPressed($event)" [disabled]="isInputDisabled"/>
                 <button class="submit" (click)="continueStory()">Submit</button>
             </div>
             <div class="buttons">
