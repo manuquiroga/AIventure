@@ -144,6 +144,7 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
       case 5:
         await this.openai.endStory();
         this.openai.closeConnection();
+        localStorage.removeItem('token');
         break;
     }
   }

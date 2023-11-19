@@ -261,7 +261,9 @@ export class StoryCreationComponent {
     const completePrompt = charPrompt + '. ' + contextPrompt;
 
     this.sharedDataService.updateSharedBackground(this.backgroundToStory);
-
+  
     this.openai.sendMessageSystem(completePrompt);
+
+    localStorage.setItem('token', Math.random().toString());
   }
 }
