@@ -35,6 +35,7 @@ import { StoryCreationComponent } from './components/story-creation/story-creati
 import { FAQComponent } from './components/faq/faq.component';
 import { OpenaiService } from './services/openai.service';
 import { StoryHandlerComponent } from './components/story-handler/story-handler.component';
+import { StoryGuard } from './guards/story.guard';
 
 
 
@@ -73,7 +74,7 @@ import { StoryHandlerComponent } from './components/story-handler/story-handler.
     FormsModule,
     HttpClientModule,
   ],
-  providers: [AuthGuard, FAQComponent],
+  providers: [AuthGuard, FAQComponent, StoryGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
