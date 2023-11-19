@@ -175,4 +175,8 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     this.aiResponse = '';
     this.storyString = [];
   }
+  manageActions(){
+    this.actions++;
+    this.auth.saveActionCount(this.actions);
+  }
 }
