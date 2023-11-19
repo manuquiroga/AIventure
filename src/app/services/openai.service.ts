@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import axios from 'axios';
 import { environment } from 'environments';
 import { StoryService } from './storyService';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 
 
@@ -15,6 +16,9 @@ export class OpenaiService{
   userInput: string = '';
   apiKey: string = environment.openAi.apiKey;
   chatHistory: any[] = [];
+
+  private connectionClosedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public connectionClosed$: Observable<boolean> = this.connectionClosedSubject.asObservable();
 
 
   constructor(private storyService: StoryService) {}
@@ -105,6 +109,8 @@ export class OpenaiService{
     
     Please provide a jumping off statement when you are finished with your writing. Something such as: What do you do now? How do you respond? Something open -ended but also guiding me to make a decision.
     
+    And I'd appreciate it if you could keep your responses concise. Let's aim for shorter replies to keep the pace of the game. If a detailed response is necessary, you can do it, but not too often and otherwise, brevity is key.
+    
     As we go along, we will be adding some parameters that are needed when they come up. If there are any other rules / parameters you think you want to clarify, let me know.
     
     And I want the Story to begin here with some details about the story to start with: (${prompt})
@@ -177,6 +183,8 @@ export class OpenaiService{
       this.storyService.setAiResponse(aiMessage);
       this.storyService.addToStory(aiMessage);
 
+      this.chatHistory = [];
+      
       console.log('Información de uso:', axiosResponse.data.usage);
     } catch (error: any) {
       console.error('Error al obtener la completitud del chat:', error);
@@ -185,6 +193,11 @@ export class OpenaiService{
         console.error('Respuesta de la API:', error.response.data);
       }
     }
+  }
+
+  closeConnection(): void {
+    this.connectionClosedSubject.next(true);
+    console.log('Cerrando conexión con la API');
   }
 
 }

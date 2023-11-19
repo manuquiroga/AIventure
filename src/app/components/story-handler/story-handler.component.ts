@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { OpenaiService } from 'src/app/services/openai.service';
 import { StoryService } from 'src/app/services/storyService';
@@ -11,7 +11,7 @@ import { SharedDataService } from 'src/app/services/background.service';
   templateUrl: './story-handler.component.html',
   styleUrls: ['./story-handler.component.css'],
 })
-export class StoryHandlerComponent implements OnInit {
+export class StoryHandlerComponent implements OnInit, OnDestroy {
   userChoice: string = '';
   story: string[] = [];
   aiResponse: string = '';
@@ -20,6 +20,10 @@ export class StoryHandlerComponent implements OnInit {
   backgroundClass!: string;
 
   private userSubscription: Subscription | undefined;
+  private storySubscription: Subscription | undefined;
+  private responseSubscription: Subscription | undefined;
+  private connectionClosedSubscription: Subscription | undefined;
+  private responseBackground: Subscription | undefined;
 
   constructor(
     private storyService: StoryService,
@@ -27,7 +31,13 @@ export class StoryHandlerComponent implements OnInit {
     private auth: AuthService,
     private sharedDataService: SharedDataService
   ) {
-    this.sharedDataService.sharedBackground$.subscribe((dato) => {
+    this.connectionClosedSubscription = this.openai.connectionClosed$.subscribe((closed) => {
+      if (closed) {
+        // Realizar acciones adicionales al cerrar la conexión
+        console.log('Conexión cerrada. Realizando acciones adicionales.');
+      }
+    });
+    this.responseBackground = this.sharedDataService.sharedBackground$.subscribe((dato) => {
       console.log(dato);
       switch (dato) {
         case 'magical dark forest':
@@ -75,12 +85,21 @@ export class StoryHandlerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.storyService.aiResponse$.subscribe((response) => {
+
+    this.userChoice = '';
+    this.story = [];
+    this.aiResponse = '';
+    this.storyString = [];
+    
+    // Inicia una nueva historia al elegir un nuevo personaje
+    this.storyService.startNewStory();
+
+    this.responseSubscription = this.storyService.aiResponse$.subscribe((response) => {
       this.aiResponse = response;
       this.storyString.push(this.aiResponse);
     });
 
-    this.storyService.story$.subscribe((story) => {
+    this.storySubscription = this.storyService.story$.subscribe((story) => {
       this.story = story;
     });
 
@@ -124,6 +143,7 @@ export class StoryHandlerComponent implements OnInit {
         break;
       case 5:
         await this.openai.endStory();
+        this.openai.closeConnection();
         break;
     }
   }
@@ -131,5 +151,28 @@ export class StoryHandlerComponent implements OnInit {
   isHidden: boolean = false;
   toggleVisibility() {
     this.isHidden = !this.isHidden;
+  }
+
+  ngOnDestroy(): void {
+    if(this.userSubscription){
+      this.userSubscription.unsubscribe();
+    }
+    if(this.storySubscription){
+      this.storySubscription.unsubscribe();
+    }
+    if(this.responseSubscription){
+      this.responseSubscription.unsubscribe();
+    }
+    if (this.connectionClosedSubscription) {
+      this.connectionClosedSubscription.unsubscribe();
+    }
+    if(this.responseBackground){
+      this.responseBackground.unsubscribe();
+    }
+    this.openai.closeConnection();
+    this.userChoice  = '';
+    this.story  = [];
+    this.aiResponse = '';
+    this.storyString = [];
   }
 }

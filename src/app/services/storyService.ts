@@ -16,6 +16,12 @@ export class StoryService {
     this.aiResponseSubject.next(response);
   }
 
+  startNewStory() {
+    // Limpiar cualquier estado anterior al comenzar una nueva historia
+    this.storySubject.next([]);
+    this.aiResponseSubject.next('');
+  }
+
   addToStory(message: string) {
 
     const currentStory = this.storySubject.value;
