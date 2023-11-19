@@ -15,7 +15,7 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
   userChoice: string = '';
   story: string[] = [];
   aiResponse: string = '';
-  storyString: string[] = [];
+  storyString: { text: string; class: string }[] = [];
   actions!: number;
   backgroundClass!: string;
 
@@ -78,11 +78,20 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
   async continueStory() {
     const input = document.getElementById('prompt-input') as HTMLInputElement;
     if (input) {
+      this.storyString.push({
+        text: " - " + input.value,
+        class: 'user-text',
+      });
       input.value = '';
     }
     if (this.actions > 0 && !this.isInputDisabled) {
       this.isInputDisabled = true;
+      this.storyString.push({
+        text: 'AI is thinking...',
+        class: 'thinking-text cursor',
+      });
       await this.openai.sendMessage(this.userChoice);
+
       this.isInputDisabled = false;
       this.userChoice = '';
       this.actions--;
@@ -97,7 +106,7 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(this.storyString)
+    console.log(this.storyString);
     this.userChoice = '';
     this.story = [];
     this.aiResponse = '';
@@ -109,7 +118,11 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     this.responseSubscription = this.storyService.aiResponse$.subscribe(
       (response) => {
         this.aiResponse = response;
-        this.storyString.push(this.aiResponse);
+        this.storyString.pop();
+        this.storyString.push({
+          text: this.aiResponse,
+          class: 'response-text',
+        });
       }
     );
 

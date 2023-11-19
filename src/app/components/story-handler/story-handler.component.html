@@ -1,9 +1,9 @@
 
-<body *ngIf="story.length >= 1" class={{backgroundClass}}>
+<body class={{backgroundClass}}>
     <div class="container">
         <h1>MY STORY</h1>
     <main>
-        <p class="story" *ngFor="let string of storyString">{{ string }} <br></p>
+        <p *ngFor="let item of storyString" [ngClass]="item.class">{{ item.text }} <br></p>
     </main>
     <div *ngIf="!isHidden">
         <section class="prompt">
@@ -23,6 +23,6 @@
     </div>
 </body>
 
-<app-story-load *ngIf="story.length === 0"></app-story-load>
-
+<!-- <app-story-load *ngIf="story.length === 0"></app-story-load> -->
+<!-- *ngIf="story.length >= 1"  -->
 

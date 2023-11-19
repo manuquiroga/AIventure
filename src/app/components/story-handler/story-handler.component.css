@@ -152,3 +152,27 @@ input:focus{
   pointer-events: none;
   opacity: 0.5;
 }
+
+.thinking-text {
+    width: 7rem;
+    animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
+    
+@keyframes blink {
+  50% {
+    border-color: transparent
+  }
+}
+.user-text{
+    color: rgb(167, 167, 167);
+    margin: 1rem 0;
+}

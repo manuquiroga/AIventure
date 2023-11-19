@@ -26,8 +26,6 @@ section{
     opacity: 0;
 }
 
-/* -----------------------------------------TITLE ANIMATION----------------------------------------- */
-
 .title{
     display: inline;
     position:relative;
@@ -37,9 +35,6 @@ section{
     white-space : nowrap;
     text-transform: uppercase;
 }
-
-
-/* -----------------------------------------TITLE ANIMATION----------------------------------------- */
 
 p{
     font-size: 1.5rem;
