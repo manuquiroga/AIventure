@@ -4,6 +4,7 @@ import { OpenaiService } from 'src/app/services/openai.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Character } from 'src/app/models/character.model';
 import { SharedDataService } from 'src/app/services/background.service';
+import { Router } from '@angular/router';
 
 
 
@@ -32,7 +33,8 @@ export class StoryCreationComponent {
   constructor(
     private openai: OpenaiService,
     private userData: AuthService,
-    private sharedDataService: SharedDataService
+    private sharedDataService: SharedDataService,
+    private router: Router
   ) {
     this.refillArrayTags();
   }
@@ -254,15 +256,16 @@ export class StoryCreationComponent {
   }
 
   backgroundToStory!: string;
-  sendCharacterAndTagsPrompt() {
+  async sendCharacterAndTagsPrompt() {
     this.backgroundToStory = this.selectedLugar;
+    
     const charPrompt = this.createCharPrompt(this.charSlot);
     const contextPrompt = this.createContextSettingPrompt();
     const completePrompt = charPrompt + '. ' + contextPrompt;
 
     this.sharedDataService.updateSharedBackground(this.backgroundToStory);
   
-    this.openai.sendMessageSystem(completePrompt);
+    await this.openai.sendMessageSystem(completePrompt);
 
     localStorage.setItem('token', Math.random().toString());
   }
