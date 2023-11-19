@@ -18,7 +18,6 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
   storyString: string[] = [];
   actions!: number;
   backgroundClass!: string;
-  isInputDisabled: boolean = false;
 
   private userSubscription: Subscription | undefined;
   private storySubscription: Subscription | undefined;
@@ -32,47 +31,55 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     private auth: AuthService,
     private sharedDataService: SharedDataService
   ) {
-    this.connectionClosedSubscription = this.openai.connectionClosed$.subscribe((closed) => {
-      if (closed) {
-        // Realizar acciones adicionales al cerrar la conexión
-        console.log('Conexión cerrada. Realizando acciones adicionales.');
+    this.connectionClosedSubscription = this.openai.connectionClosed$.subscribe(
+      (closed) => {
+        if (closed) {
+          // Realizar acciones adicionales al cerrar la conexión
+          console.log('Conexión cerrada. Realizando acciones adicionales.');
+        }
       }
-    });
-    this.responseBackground = this.sharedDataService.sharedBackground$.subscribe((dato) => {
-      console.log(dato);
-      switch (dato) {
-        case 'magical dark forest':
-          this.backgroundClass = 'magical-dark-forest';
-          break;
-        case 'busy medieval market':
-          this.backgroundClass = 'busy-medieval-market';
-          break;
-        case 'fishing village':
-          this.backgroundClass = 'fishing-village';
-          break;
-        case 'battlefield':
-          this.backgroundClass = 'battlefield';
-          break;
-        case 'ancient ruins':
-          this.backgroundClass = 'ancient-ruins';
-          break;
-        case 'dungeon':
-          this.backgroundClass = 'dungeon';
-          break;
-        case 'magical school':
-          this.backgroundClass = 'magical-school';
-          break;
-        case 'mysterious ancient cemetery':
-          this.backgroundClass = 'ancient-cemetery';
-          break;
-        default:
-          this.backgroundClass = 'default-background';
-          break;
-      }
-    });
+    );
+    this.responseBackground =
+      this.sharedDataService.sharedBackground$.subscribe((dato) => {
+        console.log(dato);
+        switch (dato) {
+          case 'magical dark forest':
+            this.backgroundClass = 'magical-dark-forest';
+            break;
+          case 'busy medieval market':
+            this.backgroundClass = 'busy-medieval-market';
+            break;
+          case 'fishing village':
+            this.backgroundClass = 'fishing-village';
+            break;
+          case 'battlefield':
+            this.backgroundClass = 'battlefield';
+            break;
+          case 'ancient ruins':
+            this.backgroundClass = 'ancient-ruins';
+            break;
+          case 'dungeon':
+            this.backgroundClass = 'dungeon';
+            break;
+          case 'magical school':
+            this.backgroundClass = 'magical-school';
+            break;
+          case 'mysterious ancient cemetery':
+            this.backgroundClass = 'ancient-cemetery';
+            break;
+          default:
+            this.backgroundClass = 'default-background';
+            break;
+        }
+      });
   }
 
+  isInputDisabled = false;
   async continueStory() {
+    const input = document.getElementById('prompt-input') as HTMLInputElement;
+    if (input) {
+      input.value = '';
+    }
     if (this.actions > 0 && !this.isInputDisabled) {
       this.isInputDisabled = true;
       await this.openai.sendMessage(this.userChoice);
@@ -80,31 +87,30 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
       this.userChoice = '';
       this.actions--;
       this.auth.saveActionCount(this.actions);
-    } else if(this.actions === 0){
+    } else if (this.actions === 0) {
       alert(
         "You've got no more actions left, consider getting more to continue the story"
       );
-    } else if(this.isInputDisabled){
-      alert(
-        "You cannot send more than one message"
-      );
+    } else if (this.isInputDisabled) {
+      alert('You cannot send more than one message');
     }
   }
 
   ngOnInit(): void {
-
     this.userChoice = '';
     this.story = [];
     this.aiResponse = '';
     this.storyString = [];
-    
+
     // Inicia una nueva historia al elegir un nuevo personaje
     this.storyService.startNewStory();
 
-    this.responseSubscription = this.storyService.aiResponse$.subscribe((response) => {
-      this.aiResponse = response;
-      this.storyString.push(this.aiResponse);
-    });
+    this.responseSubscription = this.storyService.aiResponse$.subscribe(
+      (response) => {
+        this.aiResponse = response;
+        this.storyString.push(this.aiResponse);
+      }
+    );
 
     this.storySubscription = this.storyService.story$.subscribe((story) => {
       this.story = story;
@@ -162,29 +168,29 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.userSubscription){
+    if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }
-    if(this.storySubscription){
+    if (this.storySubscription) {
       this.storySubscription.unsubscribe();
     }
-    if(this.responseSubscription){
+    if (this.responseSubscription) {
       this.responseSubscription.unsubscribe();
     }
     if (this.connectionClosedSubscription) {
       this.connectionClosedSubscription.unsubscribe();
     }
-    if(this.responseBackground){
+    if (this.responseBackground) {
       this.responseBackground.unsubscribe();
     }
     this.openai.closeConnection();
-    this.userChoice  = '';
-    this.story  = [];
+    this.userChoice = '';
+    this.story = [];
     this.aiResponse = '';
     this.storyString = [];
   }
-  
-  manageActions(){
+
+  manageActions() {
     this.actions++;
     this.auth.saveActionCount(this.actions);
   }
