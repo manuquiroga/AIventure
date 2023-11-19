@@ -1,5 +1,5 @@
 
-<body class={{backgroundClass}}>
+<body *ngIf="story.length >= 1" class={{backgroundClass}}>
     <div class="container">
         <h1>MY STORY</h1>
     <main>
@@ -23,6 +23,6 @@
     </div>
 </body>
 
-<!-- <app-story-load *ngIf="story.length === 0"></app-story-load> -->
-<!-- *ngIf="story.length >= 1"  -->
+<app-story-load *ngIf="story.length === 0"></app-story-load> 
+
 
