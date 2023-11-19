@@ -96,7 +96,8 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    console.log(this.storyString)
     this.userChoice = '';
     this.story = [];
     this.aiResponse = '';

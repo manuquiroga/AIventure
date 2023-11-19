@@ -10,9 +10,9 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
-  { path: '**', component: PageNotFoundComponent },
   { path: 'characters', component: CharacterMenuComponent, canActivate: [AuthGuard] },
   { path: 'story', component: StoryHandlerComponent, canActivate: [AuthGuard, StoryGuard] },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
