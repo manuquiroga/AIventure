@@ -229,14 +229,27 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     this.auth.saveActionCount(this.actions);
   }
 
+removeWhatDoYouDoNow(text: string): string {
+  const separator = 'What do you do now?.';
+
+  const parts = text.split(separator);
+
+  const filteredParts = parts.filter(part => part.trim() !== '');
+  
+  const result = filteredParts.join('. ');
+  
+  return result;
+}
+
 cleanStory()
   {
     this.backup = '';
     this.storyString.forEach(item=>{
       if(item.class==='response-text' && item!=undefined){
-        this.backup+=item.text+ ". "
+        this.backup+=item.text
       }
     })
+    this.backup = this.removeWhatDoYouDoNow(this.backup);
     this.pdf.generatePDF(this.backup);
   }  
 }
