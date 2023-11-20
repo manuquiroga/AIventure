@@ -5,6 +5,8 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class SharedDataService {
+  firstSection: boolean = false;
+
   private sharedBackgroundSource = new BehaviorSubject<string>('');
   sharedBackground$ = this.sharedBackgroundSource.asObservable();
 

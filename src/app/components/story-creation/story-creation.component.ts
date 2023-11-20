@@ -34,7 +34,6 @@ export class StoryCreationComponent {
     private openai: OpenaiService,
     private userData: AuthService,
     private sharedDataService: SharedDataService,
-    private router: Router
   ) {
     this.refillArrayTags();
   }
@@ -257,6 +256,7 @@ export class StoryCreationComponent {
 
   backgroundToStory!: string;
   async sendCharacterAndTagsPrompt() {
+     this.sharedDataService.firstSection = true;
     this.backgroundToStory = this.selectedLugar;
     
     const charPrompt = this.createCharPrompt(this.charSlot);

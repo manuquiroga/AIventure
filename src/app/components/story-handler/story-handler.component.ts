@@ -175,7 +175,7 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
         });
         await this.openai.endStory();
         this.openai.closeConnection();
-        localStorage.removeItem('token');
+        this.sharedDataService.firstSection = false;
         break;
     }
   }

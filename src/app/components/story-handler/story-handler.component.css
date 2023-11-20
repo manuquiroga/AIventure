@@ -48,6 +48,10 @@ main{
     border-bottom-right-radius: 4px;
     color: #ffffffef;
 
+    border-bottom: #2c2c2c 1px solid;
+    border-left: #2c2c2c 1px solid;
+    border-right: #2c2c2c 1px solid;
+
     height: 600px;
     overflow-y: auto;
 }
@@ -60,11 +64,15 @@ h1{
     color: #fff;
     margin-top: 5%;
     background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(50px);
+    backdrop-filter: blur(70px);
     padding: 1rem 0;
 
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+
+    border-left: #2c2c2c 1px solid;
+    border-right: #2c2c2c 1px solid;
+    border-top: #2c2c2c 1px solid;
 }
 
 p{
@@ -104,7 +112,7 @@ input{
     backdrop-filter: blur(50px);
     padding: 1rem;
     font-size: 1rem;
-    border: none;
+    border: #2c2c2c 1px solid;
     color: #ffffffef;
     border-radius: 4px;
     margin: 1rem 0 0 0;
