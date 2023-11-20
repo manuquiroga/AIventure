@@ -32,6 +32,11 @@ select {
     border: #2c2c2c 2px solid;
 }
 
+.error-message {
+  color: red;
+  display: block;
+}
+
 select:focus {
     outline: none;
 }

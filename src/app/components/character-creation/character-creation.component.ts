@@ -39,6 +39,8 @@ export class CharacterCreationComponent implements OnInit {
   dropdown: boolean = true;
   distribution: boolean = false;
 
+  selectsNotEmpty:any;
+
   puntos: number = 7;
   randomInt: number = this.getRandomInt();
 
@@ -230,12 +232,18 @@ export class CharacterCreationComponent implements OnInit {
   }
 
   nextButton() {
-    if (this.reactiveForm.valid) {
-      this.dropdown = false;
-      this.distribution = true;
-    } else {
-      this.reactiveForm.markAllAsTouched();
-    }
+    this.selectsNotEmpty =
+    this.reactiveForm.get('selectedRol')?.value &&
+    this.reactiveForm.get('selectedSexo')?.value &&
+    this.reactiveForm.get('selectedEspecie')?.value;
+
+  if (this.reactiveForm.valid && this.selectsNotEmpty) {
+    this.dropdown = false;
+    this.distribution = true;
+  } else {
+    // Marcamos todos los campos como tocados
+    this.reactiveForm.markAllAsTouched();
+  }
   }
 
   constructor(

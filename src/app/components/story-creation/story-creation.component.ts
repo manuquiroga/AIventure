@@ -45,6 +45,7 @@ export class StoryCreationComponent {
 
   firstSection: boolean = true;
   tagsSection: boolean = false;
+  errorMessage: boolean = false;
 
   tipos: Tipo[] = [
     { value: 'adventure', viewValue: 'Adventure' },
@@ -121,8 +122,12 @@ export class StoryCreationComponent {
   }
 
   next() {
-    this.firstSection = false;
-    this.tagsSection = true;
+    if(this.selectedTipo && this.selectedLugar){
+      this.firstSection = false;
+      this.tagsSection = true;
+    }else{
+      this.errorMessage = true;
+    }
   }
 
   checkSelection() {
@@ -236,7 +241,7 @@ export class StoryCreationComponent {
           this.selectedTags[1];
         break;
     }
-
+    
     return (contextPrompt =
       'My story develops in a ' +
       this.selectedTipo +

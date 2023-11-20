@@ -18,7 +18,8 @@
         </option>
         </select>
     </div>
-
+    <br>
+    <p *ngIf="errorMessage" class = "error-message">Selecciona ambos campos</p>
     <a (click)="next()">Next</a>
     <a class="back" (click)="volver()">Back</a>
 </div>

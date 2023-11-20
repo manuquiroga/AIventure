@@ -158,6 +158,7 @@ a:hover {
 .error-message {
   color: red;
   display: block;
+  font-size: 0.85rem;
 }
 
 @media (max-width: 1400px) {
