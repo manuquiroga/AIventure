@@ -26,7 +26,7 @@
     
         <nav class="navbar">
             <a (click)="scrollToFAQ()">FAQ</a>
-            <a class="historias" >{{historias}} Remaining Actions</a> <a class="historias" (click)="addActions()" >+</a>
+            <a class="historias" routerLink="/add-actions" >{{historias}} Remaining Actions</a> <a class="historias" (click)="addActions()" >+</a>
             <a class="usuario" (click)="auth.getCurrentUser()" [matMenuTriggerFor]="profileMenu"><img [src]="icono_path" alt="Perfil"></a>
         </nav>
         <mat-menu #profileMenu="matMenu" class="profile">
