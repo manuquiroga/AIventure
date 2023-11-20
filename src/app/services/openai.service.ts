@@ -72,7 +72,7 @@ export class OpenaiService{
     const rulesMessage = `Hey AI, let's play a choose-your-own-adventure game. 
     You create a story, and I make choices to progress. RPG style with skill development, immersive conversations, and micro-managing decisions. 
     Keep it immersive, creative, and challenging. it's ok for you to tell me that something didn't go to plan from one of my actions. Grounded theme, with conflicts and surprises. it's ok for this to be mature. As in, mature themes.
-    Limit powers and have a day/night cycle. Keep it mature. Track inventory and provide reactions. Keep responses concise, not more than 100 words but still close the idea you were writing. Don't provide options; ask 'What do you do now?' when you need my input. 
+    Limit powers. Track inventory and provide reactions. Keep responses concise, not more than 100 words, keep passages short, but still close the idea you were writing. Don't provide options; ask 'What do you do now?' when you need my input. 
     Ensure character decisions from past interactions are considered for story development. Let's start the story with: (${prompt}).
     The character will have 5 attributes, I want you to take them into account for the development of the story, the maximum score is 6 and the minimum score is 1.
     When the system sends you a message asking you to put an end to the story and create a fitting title, do it and don't continue the story.

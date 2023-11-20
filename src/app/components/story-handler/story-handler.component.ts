@@ -231,6 +231,7 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
 
 cleanStory()
   {
+    this.backup = '';
     this.storyString.forEach(item=>{
       if(item.class==='response-text' && item!=undefined){
         this.backup+=item.text+ ". "

@@ -14,13 +14,14 @@ export class DownloadStoryComponent {
 
   generatePDF(input:string)
   {
-    let docDefinition = {
-      content: [
-        input
-      ]
+    const docDefinition = {
+      content: [input],
+      footer: function(currentPage, pageCount) {
+        return { text: `AIVENTURE ${pageCount}`, alignment: 'center' };
+      },
     };
 
-    pdfMake.createPdf(docDefinition).open();
+    pdfMake.createPdf(docDefinition).download('Your-History.pdf');
   }
 
 }
