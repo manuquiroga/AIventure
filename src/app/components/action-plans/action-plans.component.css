@@ -39,7 +39,13 @@ span{
     transition: 0.3s;
 }
 
-a{
+.back{
     color: #fff;
     width: 65rem;
+}
+
+@media (max-width: 1100px){
+    .back{
+        width: 45rem;
+    }
 }

@@ -56,6 +56,13 @@ main{
     overflow-y: auto;
 }
 
+@media (max-width: 1400px) {
+    main{
+        height: 400px;
+    }
+}
+
+
 h1{
     width: 100%;
     font-size: 2rem;

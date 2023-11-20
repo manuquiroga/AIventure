@@ -114,3 +114,28 @@ a:hover {
   color: #fff;
   border: #fff 2px solid;
 }
+
+@media (max-width: 1400px) {
+  .tag-labels {
+  height: 250px;
+}
+
+.tag-labels::-webkit-scrollbar {
+  width: 5px;
+  background: rgba(0, 0, 0, 0.8); 
+}
+
+.tag-labels::-webkit-scrollbar-thumb {
+  background: rgba(150, 150, 150); 
+  border-radius: 10px;
+}
+
+.tag-label {
+  margin: 3px;
+  padding: 0 3px;
+}
+
+.title{
+  margin: 1rem 0 1rem 0;
+}
+}

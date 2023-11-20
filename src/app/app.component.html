@@ -1,1 +1,12 @@
-<router-outlet></router-outlet>
+<div *ngIf="isDesktop">
+    <router-outlet></router-outlet>
+</div>
+
+<div class="small-devices" *ngIf="!isDesktop">
+    <body>
+        <div class="container">
+            <h1><SPAN>AIVENTURE</SPAN></h1>
+            <p>is only for desktop now</p>
+        </div>
+    </body>
+</div>

@@ -127,7 +127,7 @@ button {
 }
 
 button:hover {
-  background-color: #38220e67;
+  cursor:pointer;
 }
 
 /* BOTON CREAR */
@@ -161,35 +161,65 @@ a:hover {
 }
 
 @media (max-width: 1400px) {
-.dropdown{
-width: 200px;
-height: 300px;
+  .dropdown{
+  width: 200px;
+  height: 300px;
+  }
+
+  select{
+  padding: 2px;
+  font-size: 1rem;
+  margin-bottom: 2px;
+  }
+
+  input{
+  padding: 2px;
+  font-size: 1rem;
+  margin-bottom: 2px;
+  }
+
+  .drop label{
+  font-size: 0.9rem;
+  }
+
+  .title{
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  }
+
+  a{
+  font-size: 0.9rem;
+  margin: 1rem 0 0 0;
+  }
+
+  .attribute p {
+  font-size: 0.8rem;
+
 }
 
-select{
-padding: 2px;
-font-size: 1rem;
-margin-bottom: 2px;
+.lineas {
+  margin: 0 0.5rem;
 }
 
-input{
-padding: 2px;
-font-size: 1rem;
-margin-bottom: 2px;
+.linea {
+  height: 0.8rem;
+  width: 0.8rem;
+  margin: 0 0.3rem;
 }
 
-.drop label{
-font-size: 0.9rem;
+button {
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 
-.title{
-font-size: 1rem;
-margin-bottom: 1rem;
+.add {
+  margin-right: 8px;
 }
 
-a{
-font-size: 0.9rem;
-margin: 1rem 0 0 0;
+.attribute {
+  margin-bottom: 1rem;
+  padding: 0.2rem;
 }
+
 }
 

@@ -26,3 +26,10 @@ h3{
 span{
     color: #ffaa21;
 }
+
+@media (max-width: 1100px){
+    .container{
+        width: 50rem;
+    }
+
+}

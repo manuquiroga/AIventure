@@ -95,4 +95,11 @@ main{
     }
   }
 
-
+@media (max-width: 1400px){
+    .title{
+        font-size: 3rem;
+    }
+    .info p{
+        font-size: 1.2rem;
+    }
+}

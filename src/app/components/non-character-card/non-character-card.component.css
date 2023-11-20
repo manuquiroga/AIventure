@@ -60,9 +60,9 @@
   background-color: #2c2c2c;
 }
 
-/* .card:hover {
+.card:hover {
    transform: scale(1.01);  
-} */
+} 
 
 .card img {
   width: 100%;
@@ -75,13 +75,13 @@
 }
 
 @media (max-width: 1400px) {
-.card{
-height: 24rem;
-width: 18rem;
-}
+  .card{
+  height: 28rem;
+  width: 20rem;
+  }
 
-.buttons button{
-padding: 0 10px;
-font-size: 0.9rem;
-}
+  .buttons button{
+  padding: 0 10px;
+  font-size: 0.9rem;
+  }
 }
