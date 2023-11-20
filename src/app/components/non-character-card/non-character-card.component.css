@@ -74,7 +74,7 @@
   border-top-right-radius: 4px;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1650px) {
   .card{
   height: 28rem;
   width: 20rem;
