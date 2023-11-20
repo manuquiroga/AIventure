@@ -12,18 +12,14 @@
             </div>
             <div class="buttons" [class.disabled]="isInputDisabled">
                 <button >Actions left: {{actions}} </button>
-                <button (click)="actionHandler(1)" [disabled]="isInputDisabled "> Do </button>
-                <button (click)="actionHandler(2)" [disabled]="isInputDisabled "> Create event </button>
-                <button (click)="actionHandler(3)" [disabled]="isInputDisabled "> Say </button>
-                <button (click)="actionHandler(4)" [disabled]="isInputDisabled "> Talk </button>
-                <button (click)="actionHandler(5)" [disabled]="isInputDisabled " (click)="toggleVisibility()"> End </button>
-                <button (click)="actionHandler(7)" [disabled]="isInputDisabled "> Back </button>
+                <button (click)="actionHandler(1)" [disabled]="isInputDisabled "> End </button>
+                <button [routerLink]="['/characters']" [disabled]="isInputDisabled "> Back </button>
             </div>
         </section>
       </div>
     </div>
     <div *ngIf="isHidden">
-        <button (click)="actionHandler(6)"> Download Story </button>
+        <button (click)="actionHandler(2)"> Download Story </button>
     </div>
 </body>
 

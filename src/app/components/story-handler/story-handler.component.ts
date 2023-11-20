@@ -160,43 +160,26 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
   async actionHandler(actionSlot: number) {
     switch (actionSlot) {
       case 1:
-        this.placeHolder =
-          '(Name) then the action... ex: Tony swings at the monster with his mighty sword';
-        break;
-      case 2:
-        this.placeHolder =
-          'The event... ex: Tony sees a huge stone door with symbols engraved on it';
-        break;
-      case 3:
-        this.placeHolder = '(Name) says... ex: Tony says ¿Who is there?';
-        break;
-      case 4:
-        this.placeHolder =
-          '(Name) talks to... ex: Tony talks to Ronnie and tells him to pick up his sword';
-        break;
-      case 5:
         this.storyString.push({
           text: 'AI is thinking...',
           class: 'thinking-text cursor',
         });
+        this.toggleVisibility();
         await this.openai.endStory();
         this.openai.closeConnection();
         this.sharedDataService.firstSection = false;
         break;
-      case 6:
+      case 2:
         this.cleanStory();
-        break;
-      case 7:
-        this.router.navigate['/characters'];
         break;
     }
   }
 
   isHidden: boolean = false;
-  inputsAreHidden:boolean = true;
   toggleVisibility() {
-    timeout(300);
-    this.isHidden=true;
+    setTimeout(() => {
+      this.isHidden = true;
+    }, 200);
     
   }
 
