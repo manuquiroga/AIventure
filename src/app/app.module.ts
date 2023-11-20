@@ -38,6 +38,7 @@ import { StoryHandlerComponent } from './components/story-handler/story-handler.
 import { StoryGuard } from './guards/story.guard';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { StoryLoadComponent } from './components/story-load/story-load.component';
+import { DownloadStoryComponent } from './components/download-story/download-story.component';
 
 
 
@@ -57,6 +58,7 @@ import { StoryLoadComponent } from './components/story-load/story-load.component
     StoryHandlerComponent,
     PageNotFoundComponent,
     StoryLoadComponent,
+    DownloadStoryComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -78,7 +80,7 @@ import { StoryLoadComponent } from './components/story-load/story-load.component
     FormsModule,
     HttpClientModule,
   ],
-  providers: [AuthGuard, FAQComponent, StoryGuard],
+  providers: [AuthGuard, FAQComponent, StoryGuard, DownloadStoryComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

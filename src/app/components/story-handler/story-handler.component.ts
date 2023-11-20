@@ -2,8 +2,10 @@ import { Component, OnInit,OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { OpenaiService } from 'src/app/services/openai.service';
 import { StoryService } from 'src/app/services/storyService';
-import { Subscription } from 'rxjs';
+import { Subscription, timeout } from 'rxjs';
 import { SharedDataService } from 'src/app/services/background.service';
+import { Router } from '@angular/router';
+import { DownloadStoryComponent } from '../download-story/download-story.component';
 
 
 @Component({
@@ -19,6 +21,8 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
   actions!: number;
   backgroundClass!: string;
 
+  backup!:string;
+
   private userSubscription: Subscription | undefined;
   private storySubscription: Subscription | undefined;
   private responseSubscription: Subscription | undefined;
@@ -29,7 +33,9 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     private storyService: StoryService,
     private openai: OpenaiService,
     private auth: AuthService,
-    private sharedDataService: SharedDataService
+    private sharedDataService: SharedDataService,
+    private router:Router,
+    private pdf:DownloadStoryComponent,
   ) {
     this.connectionClosedSubscription = this.openai.connectionClosed$.subscribe(
       (closed) => {
@@ -83,6 +89,8 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
         class: 'user-text',
       });
       input.value = '';
+      this.actions--;
+      this.auth.saveActionCount(this.actions);
     }
     if (this.actions > 0 && !this.isInputDisabled) {
       this.isInputDisabled = true;
@@ -94,8 +102,7 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
 
       this.isInputDisabled = false;
       this.userChoice = '';
-      this.actions--;
-      this.auth.saveActionCount(this.actions);
+      
     } else if (this.actions === 0) {
       alert(
         "You've got no more actions left, consider getting more to continue the story"
@@ -112,7 +119,6 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     this.aiResponse = '';
     this.storyString = [];
 
-    // Inicia una nueva historia al elegir un nuevo personaje
     this.storyService.startNewStory();
 
     this.responseSubscription = this.storyService.aiResponse$.subscribe(
@@ -135,13 +141,13 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
         this.actions = user.historias!;
       }
     });
+
+    this.actions--;
   }
 
   onEnterKeyPressed(event: any) {
     if (this.actions > 0) {
       this.continueStory();
-      this.actions--;
-      this.auth.saveActionCount(this.actions);
     } else {
       alert(
         "You've got no more actions left, consider getting more to continue the story"
@@ -177,12 +183,21 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
         this.openai.closeConnection();
         this.sharedDataService.firstSection = false;
         break;
+      case 6:
+        this.cleanStory();
+        break;
+      case 7:
+        this.router.navigate['/characters'];
+        break;
     }
   }
 
   isHidden: boolean = false;
+  inputsAreHidden:boolean = true;
   toggleVisibility() {
-    this.isHidden = !this.isHidden;
+    timeout(300);
+    this.isHidden=true;
+    
   }
 
   ngOnDestroy(): void {
@@ -213,4 +228,14 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     this.actions++;
     this.auth.saveActionCount(this.actions);
   }
+
+cleanStory()
+  {
+    this.storyString.forEach(item=>{
+      if(item.class==='response-text' && item!=undefined){
+        this.backup+=item.text+ ". "
+      }
+    })
+    this.pdf.generatePDF(this.backup);
+  }  
 }
