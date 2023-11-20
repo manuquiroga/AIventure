@@ -145,7 +145,7 @@ export class OpenaiService{
       this.storyService.addToStory(aiMessage);
       
 
-      this.chatHistory = [];
+      this.cleanChat();
       
       console.log('Información de uso:', axiosResponse.data.usage);
     } catch (error: any) {
@@ -155,6 +155,11 @@ export class OpenaiService{
         console.error('Respuesta de la API:', error.response.data);
       }
     }
+  }
+
+  async cleanChat(){
+    this.chatHistory = [];
+    console.log('Se limpio el chat history');
   }
 
   closeConnection(): void {

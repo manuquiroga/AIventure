@@ -196,6 +196,7 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
       this.responseSubscription.unsubscribe();
     }
     if (this.connectionClosedSubscription) {
+      this.openai.cleanChat();
       this.connectionClosedSubscription.unsubscribe();
     }
     if (this.responseBackground) {
