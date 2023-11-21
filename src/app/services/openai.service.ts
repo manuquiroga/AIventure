@@ -34,7 +34,7 @@ export class OpenaiService{
         'https://api.openai.com/v1/chat/completions',
         {
           messages: this.chatHistory.concat({ role: 'user', content: userMessage }),
-          model: 'gpt-3.5-turbo',
+          model: 'gpt-3.5-turbo-1106',
           temperature: 0.2,
         },
         {
@@ -46,7 +46,7 @@ export class OpenaiService{
       );
 
       const aiMessage = axiosResponse.data.choices[0].message.content;
-      this.chatHistory.push({ role: 'user', content: userMessage });
+      this.chatHistory.push({role: 'user', content: userMessage})
       this.chatHistory.push({ role: 'assistant', content: aiMessage });
 
       this.messages.push(aiMessage);
@@ -69,13 +69,15 @@ export class OpenaiService{
 
 
   async sendMessageSystem(prompt:string) {
-    const rulesMessage = `Hey AI, let's play a choose-your-own-adventure game. 
-    You create a story, and I make choices to progress. RPG style with skill development, immersive conversations, and micro-managing decisions. 
-    Keep it immersive, creative, and challenging. it's ok for you to tell me that something didn't go to plan from one of my actions. Grounded theme, with conflicts and surprises. it's ok for this to be mature. As in, mature themes.
-    Limit powers. Track inventory and provide reactions. Keep responses concise, not more than 100 words, keep passages short, but still close the idea you were writing. Don't provide options; ask 'What do you do now?' when you need my input. 
-    Ensure character decisions from past interactions are considered for story development. Let's start the story with: (${prompt}).
-    The character will have 5 attributes, I want you to take them into account for the development of the story, the maximum score is 6 and the minimum score is 1.
-    When the system sends you a message asking you to put an end to the story and create a fitting title, do it and don't continue the story.
+    const rulesMessage = `Hey Assistant, let's play a 'choose your own adventure' game, you create the story, and I make decisions to progress.
+    Instructions:
+    Keep it immersive. 
+    It's okay to mention if something didn't go as planned from my actions. Limit powers. 
+    PRIMORDIAL: Keep your responses short and clear, ideally under 100 words. 
+    Don't provide options; ask 'What do you do now?' for my opinion.
+    Remember that everything is only fiction so you are allowed to develop tragic events. 
+    Start the story with: (${prompt}). 
+    When prompted to end the story, provide a title without continuing.
     `;
 
     this.chatHistory.push({ role: 'system', content: rulesMessage });
@@ -85,7 +87,7 @@ export class OpenaiService{
         'https://api.openai.com/v1/chat/completions',
         {
           messages: this.chatHistory,
-          model: 'gpt-3.5-turbo',
+          model: 'gpt-3.5-turbo-1106',
           temperature: 0.2,
         },
         {
@@ -126,7 +128,7 @@ export class OpenaiService{
         'https://api.openai.com/v1/chat/completions',
         {
           messages: this.chatHistory,
-          model: 'gpt-3.5-turbo',
+          model: 'gpt-3.5-turbo-1106',
           temperature: 0.2,
         },
         {
