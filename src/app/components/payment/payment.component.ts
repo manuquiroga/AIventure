@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,7 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class PaymentComponent {
   tarjetaForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth:AuthService) {
+  constructor(private fb: FormBuilder, private auth:AuthService, private router: Router) {
     this.tarjetaForm = this.fb.group({
       cardNumber: [
         '',
@@ -111,10 +113,19 @@ export class PaymentComponent {
     return sum % 10 === 0;
   }
 
-  onSubmit() {
+  private userSubscription: Subscription | undefined;
+  previousActions!:number | undefined;
+  async onSubmit() {
     console.log(this.tarjetaForm.value);
     if (this.tarjetaForm.valid) {
-      this.auth.saveActionCount(this.actions);
+      this.userSubscription = this.auth.user$.subscribe((user) => {
+        if(user){
+          this.previousActions = user.historias;
+        }
+      });
+
+      await this.auth.saveActionCount((this.actions + this.previousActions!));
+      this.router.navigate(['/']);
     }
     else{
       alert('Tarjeta de crédito inválida');

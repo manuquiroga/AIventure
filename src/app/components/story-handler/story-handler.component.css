@@ -141,7 +141,7 @@ input:focus{
     margin: 1rem 0 0 0;
 }
 
-.buttons button{
+.buttons button, .submit-btn{
     font-size: 1rem;
     color: #fff;
     cursor: pointer;

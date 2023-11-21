@@ -125,6 +125,13 @@ input[type="submit"] {
     background-color: #FFAA21;
     cursor: pointer;
     color:black;
+    transition: 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #ffaa21b4;
+    transition: transform 0.3s;
+    transition: 0.3s;
 }
 
 .infos-container {
