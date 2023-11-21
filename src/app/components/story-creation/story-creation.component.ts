@@ -250,6 +250,7 @@ export class StoryCreationComponent {
       tagsString);
   }
 
+ 
   actions!:number;
   userSuscription=this.userData.user$.subscribe((user) => {
     if (user) {
