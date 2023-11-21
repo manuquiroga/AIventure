@@ -35,20 +35,19 @@
           <label for="nombreSelect">Name:</label>
           <input matInput formControlName="nombre"  />
         </div>
-        <div *ngIf="!selectsNotEmpty && reactiveForm.invalid">
-          <p class="error-message">Los campos son obligatorios</p>
+        <div *ngIf="reactiveForm.get('selectedRol')?.invalid || reactiveForm.get('selectedSexo')?.invalid || reactiveForm.get('selectedEspecie')?.invalid">
+          <p class="error-message">All fields are required</p>
         </div>
         
-        <div *ngIf="reactiveForm.get('nombre')?.invalid && reactiveForm.get('nombre')?.touched && selectsNotEmpty">
-          <div *ngIf="reactiveForm.get('nombre')?.hasError('required')">
-            <p class="error-message">El nombre es obligatorio.</p>
-          </div>
-          <div *ngIf="reactiveForm.get('nombre')?.hasError('pattern')">
-            <p class="error-message">El nombre no es válido.</p>
-          </div>
-          <div *ngIf="reactiveForm.get('nombre')?.hasError('maxLength')">
-            <p class="error-message">El nombre no puede tener más de 16 caracteres.</p>
-          </div>
+        
+        <div *ngIf="reactiveForm.get('nombre')?.hasError('required')">
+          <p class="error-message">Name field is required.</p>
+        </div>
+        <div *ngIf="reactiveForm.get('nombre')?.hasError('pattern')">
+          <p class="error-message">Name is not valid.</p>
+        </div>
+        <div *ngIf="reactiveForm.get('nombre')?.hasError('minLength') || reactiveForm.get('nombre')?.hasError('maxLength')">
+          <p class="error-message">Name's lenght is invalid.</p>
         </div>
         
         <a id="next" (click)="nextButton()" class="nextButton" >Next</a>

@@ -144,3 +144,8 @@ a:hover {
   margin: 1rem 0 1rem 0;
 }
 }
+
+#createStory.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

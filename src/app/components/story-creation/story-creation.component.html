@@ -19,7 +19,7 @@
         </select>
     </div>
     <br>
-    <p *ngIf="errorMessage" class = "error-message">Selecciona ambos campos</p>
+    <p *ngIf="errorMessage" class = "error-message">Select both fields</p>
     <a (click)="next()">Next</a>
     <a class="back" (click)="volver()">Back</a>
 </div>
@@ -37,5 +37,7 @@
     </label>
   </div>
   <a (click)="refillArrayTags()">Regenerate Tags</a>
-  <a class="back"(click)="sendCharacterAndTagsPrompt()" [routerLink]="['/story']">Start</a>
+  <p *ngIf="actions <= 0" class = "error-message">You have 0 actions</p>
+  <a *ngIf="actions > 0" id="createStory" class="back"(click)="sendCharacterAndTagsPrompt()" [routerLink]="['/story']">Start</a>
+ 
 </div>

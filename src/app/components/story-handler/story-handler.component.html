@@ -18,8 +18,11 @@
         </section>
       </div>
     </div>
-    <div *ngIf="isHidden">
-        <button (click)="actionHandler(2)"> Download Story </button>
+    <div *ngIf="isHidden" class="prompt">
+        <div class="buttons">
+            <button (click)="actionHandler(2)"> Download Story </button>
+        </div>
+        
     </div>
 </body>
 

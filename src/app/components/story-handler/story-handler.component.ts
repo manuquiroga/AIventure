@@ -2,7 +2,7 @@ import { Component, OnInit,OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { OpenaiService } from 'src/app/services/openai.service';
 import { StoryService } from 'src/app/services/storyService';
-import { Subscription, timeout } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { SharedDataService } from 'src/app/services/background.service';
 import { Router } from '@angular/router';
 import { DownloadStoryComponent } from '../download-story/download-story.component';
@@ -40,7 +40,6 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     this.connectionClosedSubscription = this.openai.connectionClosed$.subscribe(
       (closed) => {
         if (closed) {
-          // Realizar acciones adicionales al cerrar la conexión
           console.log('Conexión cerrada. Realizando acciones adicionales.');
         }
       }
@@ -119,9 +118,10 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     this.aiResponse = '';
     this.storyString = [];
 
-    this.storyService.startNewStory();
+    
+      this.storyService.startNewStory();
 
-    this.responseSubscription = this.storyService.aiResponse$.subscribe(
+      this.responseSubscription = this.storyService.aiResponse$.subscribe(
       (response) => {
         this.aiResponse = response;
         this.storyString.pop();
@@ -132,17 +132,16 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.storySubscription = this.storyService.story$.subscribe((story) => {
+      this.storySubscription = this.storyService.story$.subscribe((story) => {
       this.story = story;
     });
 
-    this.userSubscription = this.auth.user$.subscribe((user) => {
+      this.userSubscription = this.auth.user$.subscribe((user) => {
       if (user) {
         this.actions = user.historias!;
       }
     });
-
-    this.actions--;
+    this.actions--;    
   }
 
   onEnterKeyPressed(event: any) {
@@ -212,27 +211,25 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     this.auth.saveActionCount(this.actions);
   }
 
-removeWhatDoYouDoNow(text: string): string {
-  const separator = 'What do you do now?.';
-
-  const parts = text.split(separator);
-
-  const filteredParts = parts.filter(part => part.trim() !== '');
+  removeWhatDoYouDoNow(text: string): string {
+    const separatorRegex = /What do you do now\?\.?/gi;
   
-  const result = filteredParts.join('. ');
+    const parts = text.split(separatorRegex);
   
-  return result;
-}
-
-cleanStory()
-  {
-    this.backup = '';
-    this.storyString.forEach(item=>{
-      if(item.class==='response-text' && item!=undefined){
-        this.backup+=item.text
-      }
-    })
-    this.backup = this.removeWhatDoYouDoNow(this.backup);
-    this.pdf.generatePDF(this.backup);
-  }  
+    const filteredParts = parts.filter(part => part.trim() !== '');
+  
+    const result = filteredParts.join(' ');
+  
+    return result;
+  }
+  
+  cleanStory() {
+    const responseTexts = this.storyString
+      .filter(item => item.class === 'response-text' && item !== undefined)
+      .map(item => item.text);
+  
+    const backup = this.removeWhatDoYouDoNow(responseTexts.join('\n'));
+  
+    this.pdf.generatePDF(backup);
+  }
 }
