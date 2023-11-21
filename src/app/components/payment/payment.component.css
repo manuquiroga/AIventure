@@ -31,6 +31,7 @@
 .container-right {
     width: 50%;
     display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -144,4 +145,15 @@ input[type="submit"] {
     .container-left, .container-right {
         width: 100%;
     }
+}
+
+span{
+    color: #ffaa21;
+}
+h1{
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 2rem;
 }

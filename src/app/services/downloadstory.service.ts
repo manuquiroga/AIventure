@@ -1,15 +1,14 @@
-import { Component } from '@angular/core';
+import { Injectable } from '@angular/core';
 import * as pdfMake from "pdfmake/build/pdfmake"
 import * as pdfFonts from "pdfmake/build/vfs_fonts"
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
-@Component({
-  selector: 'app-download-story',
-  templateUrl: './download-story.component.html',
-  styleUrls: ['./download-story.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-export class DownloadStoryComponent {
+export class DownloadstoryService {
 
+  constructor() { }
   generatePDF(input:string)
   {
     const docDefinition = {
@@ -34,3 +33,9 @@ export class DownloadStoryComponent {
     pdfMake.createPdf(docDefinition).download('Your-Story.pdf');
   }
 }
+
+
+
+
+
+  

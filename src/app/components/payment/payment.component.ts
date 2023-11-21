@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-payment',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class PaymentComponent {
   tarjetaForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private auth:AuthService) {
     this.tarjetaForm = this.fb.group({
       cardNumber: [
         '',
@@ -86,6 +87,8 @@ export class PaymentComponent {
     cardCVVElement.innerText = values.cardCVV || '123';
   }
 
+  @Input() actions!:number;
+  @Input() price!:number;
   //algoritmo de luhn
   luhnCheck(cardNumber: string): boolean {
     let sum = 0;
@@ -111,7 +114,7 @@ export class PaymentComponent {
   onSubmit() {
     console.log(this.tarjetaForm.value);
     if (this.tarjetaForm.valid) {
-      
+      this.auth.saveActionCount(this.actions);
     }
     else{
       alert('Tarjeta de crédito inválida');

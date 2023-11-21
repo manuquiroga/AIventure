@@ -2,9 +2,9 @@
     <a href="/" class="back">Go home</a>
     <h2 class="title">Get more <span>actions</span> here</h2>
     <div class="plans">
-        <app-action-plan (click)="goToPayment()" class="plan" [actions]="100" [price]="5" [classDisabled]="planPressed" [ngClass]="{ 'classDisabled': planPressed}"></app-action-plan>
-        <app-action-plan (click)="goToPayment()" class="plan" [actions]="250" [price]="10" [classDisabled]="planPressed" [ngClass]="{ 'classDisabled': planPressed}"></app-action-plan>
-        <app-action-plan (click)="goToPayment()" class="plan" [actions]="550" [price]="18" [classDisabled]="planPressed" [ngClass]="{ 'classDisabled': planPressed}"></app-action-plan>
+        <app-action-plan (click)="goToPayment(100, 5)" class="plan" [actions]="100" [price]="5" [classDisabled]="planPressed" [ngClass]="{ 'classDisabled': planPressed}"></app-action-plan>
+        <app-action-plan (click)="goToPayment(250, 10)" class="plan" [actions]="250" [price]="10" [classDisabled]="planPressed" [ngClass]="{ 'classDisabled': planPressed}"></app-action-plan>
+        <app-action-plan (click)="goToPayment(550, 18)" class="plan" [actions]="550" [price]="18" [classDisabled]="planPressed" [ngClass]="{ 'classDisabled': planPressed}"></app-action-plan>
     </div>
-    <app-payment *ngIf="planPressed"></app-payment>
+    <app-payment *ngIf="planPressed" [actions]="actions" [price]="price"></app-payment>
 </div>

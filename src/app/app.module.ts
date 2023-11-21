@@ -38,7 +38,6 @@ import { StoryHandlerComponent } from './components/story-handler/story-handler.
 import { StoryGuard } from './guards/story.guard';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { StoryLoadComponent } from './components/story-load/story-load.component';
-import { DownloadStoryComponent } from './components/download-story/download-story.component';
 import { AddActionsComponent } from './pages/add-actions/add-actions.component';
 import { ActionPlansComponent } from './components/action-plans/action-plans.component';
 import { ActionPlanComponent } from './components/action-plan/action-plan.component';
@@ -65,7 +64,6 @@ import { PaymentComponent } from './components/payment/payment.component';
     AddActionsComponent,
     ActionPlansComponent,
     ActionPlanComponent,
-    DownloadStoryComponent,
     PaymentComponent,
   ],
   imports: [
@@ -88,7 +86,7 @@ import { PaymentComponent } from './components/payment/payment.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [AuthGuard, FAQComponent, StoryGuard, DownloadStoryComponent],
+  providers: [AuthGuard, FAQComponent, StoryGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

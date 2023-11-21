@@ -5,7 +5,7 @@ import { StoryService } from 'src/app/services/storyService';
 import { Subscription } from 'rxjs';
 import { SharedDataService } from 'src/app/services/background.service';
 import { Router } from '@angular/router';
-import { DownloadStoryComponent } from '../download-story/download-story.component';
+import { DownloadstoryService } from 'src/app/services/downloadstory.service';
 
 
 @Component({
@@ -35,7 +35,7 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     private auth: AuthService,
     private sharedDataService: SharedDataService,
     private router:Router,
-    private pdf:DownloadStoryComponent,
+    private pdf:DownloadstoryService,
   ) {
     this.connectionClosedSubscription = this.openai.connectionClosed$.subscribe(
       (closed) => {
