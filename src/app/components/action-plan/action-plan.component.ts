@@ -8,5 +8,6 @@ import { Component, Input } from '@angular/core';
 export class ActionPlanComponent {
   @Input() actions!: number;
   @Input() price!: number;
+  @Input() classDisabled!: boolean;
 
 }

@@ -42,6 +42,7 @@ import { DownloadStoryComponent } from './components/download-story/download-sto
 import { AddActionsComponent } from './pages/add-actions/add-actions.component';
 import { ActionPlansComponent } from './components/action-plans/action-plans.component';
 import { ActionPlanComponent } from './components/action-plan/action-plan.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 
 
@@ -65,6 +66,7 @@ import { ActionPlanComponent } from './components/action-plan/action-plan.compon
     ActionPlansComponent,
     ActionPlanComponent,
     DownloadStoryComponent,
+    PaymentComponent,
   ],
   imports: [
     ReactiveFormsModule,

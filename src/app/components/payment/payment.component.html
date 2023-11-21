@@ -1,0 +1,59 @@
+<div class="black-background">
+    <section class="container">
+        <form [formGroup]="tarjetaForm" (ngSubmit)="onSubmit()" id="credit-card">
+            <div class="ui">
+                <div class="container-left">
+                <div class="number-container">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" formControlName="cardNumber" maxlength="19" placeholder="1234 5678 9101 1121" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                </div>
+
+                <div class="name-container">
+                    <label for="cardHolder">Holder</label>
+                    <input type="text" id="cardHolder" formControlName="cardHolder" maxlength="30" placeholder="TOMAS CORSO" required>
+                </div>
+
+                <div class="infos-container">
+                    <div class="expiration-container">
+                    <label for="cardExpiration">Valid-thru</label>
+                    <input type="text" id="cardExpiration" formControlName="cardExpiration" maxlength="5" placeholder="02/40" required>
+                    </div>
+
+                    <div class="cvv-container">
+                    <label for="cardCVV">CVV</label>
+                    <input type="text" id="cardCVV" formControlName="cardCVV" maxlength="4" placeholder="1234" required>
+                    </div>
+                </div>
+
+                <input type="submit" value="ADD" id="add">
+                </div>
+
+                <div class="container-right">
+                <div class="card">
+                    <div class="intern">
+
+                    <div class="card-number">
+                        <div class="number-vl">1234 5678 9101 1121</div>
+                    </div>
+                    <div class="card-holder">
+                        <label>Holder</label>
+                        <div class="name-vl">TOMAS CORSO</div>
+                    </div>
+                    <div class="card-infos">
+                        <div class="exp">
+                        <label>valid-thru</label>
+                        <div class="expiration-vl">02/40</div>
+                        </div>
+                        <div class="cvv">
+                        <label>CVV</label>
+                        <div class="cvv-vl">123</div>
+                        </div>
+                    </div>
+                    <img class="chip" src="../../../assets/images/chip.png" alt="chip">
+                    </div>
+                </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>

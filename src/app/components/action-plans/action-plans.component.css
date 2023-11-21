@@ -49,3 +49,8 @@ span{
         width: 45rem;
     }
 }
+
+.classDisabled:hover{
+    transform: none;
+    background-color: transparent;
+}

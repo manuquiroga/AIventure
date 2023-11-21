@@ -33,3 +33,12 @@ span{
     }
 
 }
+
+.classDisabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.classDisabled:hover{
+    transform: none;
+}

@@ -1,5 +1,5 @@
 
-<div class="container">
+<div [ngClass]="{ 'classDisabled': classDisabled}" class="container">
     <h3 class="plan">{{actions}} Actions | <span>${{price}}</span></h3>
     <h3 class="buy">Purchase <span>-></span></h3>
 </div>
