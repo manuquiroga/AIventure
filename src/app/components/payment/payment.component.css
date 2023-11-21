@@ -130,6 +130,12 @@ input[type="submit"] {
     display: flex;
 }
 
+.error{
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+}
+
 @media (max-width: 1024px) {
     .ui {
         flex-direction: column-reverse;

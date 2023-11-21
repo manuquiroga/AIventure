@@ -38,6 +38,8 @@ export class PaymentComponent {
       this.tarjetaForm
         .get('cardNumber')
         ?.setValue(formattedValue, { emitEvent: false });
+
+      this.validateCardNumber(formattedValue);
     });
 
     //en el input de fecha de la tarjeta agrega una barra cada 2 numeros
@@ -54,9 +56,9 @@ export class PaymentComponent {
 
   //valida que el numero de tarjeta sea correcto
   validateCardNumber(cardNumber: string) {
-    const sanitizedCardNumber = cardNumber.replace(/\s/g, '');
+    const card = cardNumber.replace(/\s/g, '');
 
-    const isValid = this.luhnCheck(sanitizedCardNumber);
+    const isValid = this.luhnCheck(card);
 
     this.tarjetaForm
       .get('cardNumber')
@@ -107,6 +109,7 @@ export class PaymentComponent {
   }
 
   onSubmit() {
+    console.log(this.tarjetaForm.value);
     if (this.tarjetaForm.valid) {
       
     }
