@@ -141,11 +141,7 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
         this.actions = user.historias!;
       }
     });
-    this.actions--;
-    
-    
-
-    
+    this.actions--;    
   }
 
   onEnterKeyPressed(event: any) {
@@ -215,27 +211,25 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     this.auth.saveActionCount(this.actions);
   }
 
-removeWhatDoYouDoNow(text: string): string {
-  const separator = 'What do you do now?.';
-
-  const parts = text.split(separator);
-
-  const filteredParts = parts.filter(part => part.trim() !== '');
+  removeWhatDoYouDoNow(text: string): string {
+    const separatorRegex = /What do you do now\?\.?/gi;
   
-  const result = filteredParts.join('. ');
+    const parts = text.split(separatorRegex);
   
-  return result;
-}
-
-cleanStory()
-  {
-    this.backup = '';
-    this.storyString.forEach(item=>{
-      if(item.class==='response-text' && item!=undefined){
-        this.backup+=item.text + '\n'; 
-      }
-    })
-    this.backup = this.removeWhatDoYouDoNow(this.backup);
-    this.pdf.generatePDF(this.backup);
-  }  
+    const filteredParts = parts.filter(part => part.trim() !== '');
+  
+    const result = filteredParts.join(' ');
+  
+    return result;
+  }
+  
+  cleanStory() {
+    const responseTexts = this.storyString
+      .filter(item => item.class === 'response-text' && item !== undefined)
+      .map(item => item.text);
+  
+    const backup = this.removeWhatDoYouDoNow(responseTexts.join('\n'));
+  
+    this.pdf.generatePDF(backup);
+  }
 }
