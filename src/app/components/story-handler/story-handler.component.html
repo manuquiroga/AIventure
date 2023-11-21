@@ -17,14 +17,15 @@
             </div>
         </section>
       </div>
-    </div>
-    <div *ngIf="isHidden" class="prompt">
+      <div *ngIf="isHidden" class="prompt">
         <div class="buttons">
             <button (click)="actionHandler(2)"> Download Story </button>
-            <button [routerLink]="['/characters']"> Back </button>
+            <button routerLink="/characters"> Go Back </button>
         </div>
         
     </div>
+    </div>
+    
 </body>
 
 <app-story-load *ngIf="story.length === 0"></app-story-load> 
