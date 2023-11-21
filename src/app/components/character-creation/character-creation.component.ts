@@ -241,7 +241,7 @@ export class CharacterCreationComponent implements OnInit {
     this.dropdown = false;
     this.distribution = true;
   } else {
-    // Marcamos todos los campos como tocados
+
     this.reactiveForm.markAllAsTouched();
   }
   }
@@ -252,15 +252,16 @@ export class CharacterCreationComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.personaje = {} as Character;
-    this.reactiveForm = new FormGroup({
-      nombre: new FormControl(null, [
+    this.reactiveForm = this.fb.group({
+      nombre: [null, [
         Validators.required,
+        Validators.maxLength(15),
+        Validators.minLength(3),
         Validators.pattern(/^[A-Za-z\s]+$/),
-        Validators.maxLength(16),
-      ]),
-      selectedRol: new FormControl(null, [Validators.required]),
-      selectedSexo: new FormControl(null, [Validators.required]),
-      selectedEspecie: new FormControl(null, [Validators.required]),
+      ]],
+      selectedRol: [null, [Validators.required]],
+      selectedSexo: [null, [Validators.required]],
+      selectedEspecie: [null, [Validators.required]],
     });
 
   }
