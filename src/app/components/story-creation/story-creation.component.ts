@@ -4,7 +4,6 @@ import { OpenaiService } from 'src/app/services/openai.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Character } from 'src/app/models/character.model';
 import { SharedDataService } from 'src/app/services/background.service';
-import { Router } from '@angular/router';
 
 
 
@@ -125,7 +124,8 @@ export class StoryCreationComponent {
     if(this.selectedTipo && this.selectedLugar){
       this.firstSection = false;
       this.tagsSection = true;
-    }else{
+    }
+    else{
       this.errorMessage = true;
     }
   }
@@ -250,7 +250,15 @@ export class StoryCreationComponent {
       tagsString);
   }
 
+  actions!:number;
+  userSuscription=this.userData.user$.subscribe((user) => {
+    if (user) {
+      this.actions = user.historias!;
+    }
+  });
+
   backgroundToStory!: string;
+
   async sendCharacterAndTagsPrompt() {
      this.sharedDataService.firstSection = true;
     this.backgroundToStory = this.selectedLugar;
@@ -259,10 +267,15 @@ export class StoryCreationComponent {
     const contextPrompt = this.createContextSettingPrompt();
     const completePrompt = charPrompt + '. ' + contextPrompt;
 
+    const but=document.getElementById('createStory') as HTMLElement;
+    
+   if(this.actions>0 )
+   {
     this.sharedDataService.updateSharedBackground(this.backgroundToStory);
-  
     await this.openai.sendMessageSystem(completePrompt);
-
-    localStorage.setItem('token', Math.random().toString());
+    
+   }else if(this.actions<=0){
+    alert('You cant start a new story without having actions left')
+   }
   }
 }

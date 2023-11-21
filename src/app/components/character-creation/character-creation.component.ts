@@ -263,9 +263,5 @@ export class CharacterCreationComponent implements OnInit {
       selectedEspecie: new FormControl(null, [Validators.required]),
     });
 
-    // this.reactiveForm.statusChanges.subscribe((status) => {
-    //   console.log(status);
-    //   this.formStatus = status;
-    // });
   }
 }

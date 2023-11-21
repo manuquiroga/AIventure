@@ -36,18 +36,18 @@
           <input matInput formControlName="nombre"  />
         </div>
         <div *ngIf="!selectsNotEmpty && reactiveForm.invalid">
-          <p class="error-message">Los campos son obligatorios</p>
+          <p class="error-message">All fields are required</p>
         </div>
         
         <div *ngIf="reactiveForm.get('nombre')?.invalid && reactiveForm.get('nombre')?.touched && selectsNotEmpty">
           <div *ngIf="reactiveForm.get('nombre')?.hasError('required')">
-            <p class="error-message">El nombre es obligatorio.</p>
+            <p class="error-message">Name field is required.</p>
           </div>
           <div *ngIf="reactiveForm.get('nombre')?.hasError('pattern')">
-            <p class="error-message">El nombre no es válido.</p>
+            <p class="error-message">Name is not valid.</p>
           </div>
           <div *ngIf="reactiveForm.get('nombre')?.hasError('maxLength')">
-            <p class="error-message">El nombre no puede tener más de 16 caracteres.</p>
+            <p class="error-message">Name cannot be longer than 16 characters.</p>
           </div>
         </div>
         
