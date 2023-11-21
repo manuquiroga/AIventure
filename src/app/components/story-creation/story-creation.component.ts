@@ -180,13 +180,13 @@ export class StoryCreationComponent {
           ', my profession is ' +
           this.character1!.rol +
           " and I'm a " +
-          this.character1!.especie  /*+
+          this.character1!.especie  +
           "My attributes are: [" +
           "Strenght: " + this.character1?.fuerza +
           "Dexterity: " + this.character1?.destreza +
           "Intelligence: " + this.character1?.inteligencia +
           "Charisma: " + this.character1?.carisma +
-          "Courage: " + this.character1?.coraje + "]"*/;
+          "Courage: " + this.character1?.coraje + "]";
         break;
       case 2:
         this.charDescription =
@@ -195,13 +195,13 @@ export class StoryCreationComponent {
           ', my profession is ' +
           this.character2!.rol +
           " and I'm a " +
-          this.character2!.especie /*+
+          this.character2!.especie +
           "My attributes are: [" +
           "Strenght: " + this.character2?.fuerza +
           "Dexterity: " + this.character2?.destreza +
           "Intelligence: " + this.character2?.inteligencia +
           "Charisma: " + this.character2?.carisma +
-          "Courage: " + this.character2?.coraje + "]"*/;
+          "Courage: " + this.character2?.coraje + "]";
         break;
       case 3:
         this.charDescription =
@@ -210,13 +210,13 @@ export class StoryCreationComponent {
           ', my profession is ' +
           this.character3!.rol +
           " and I'm a " +
-          this.character3!.especie /*+
+          this.character3!.especie +
           "My attributes are: [" +
           "Strenght: " + this.character3?.fuerza +
           "Dexterity: " + this.character3?.destreza +
           "Intelligence: " + this.character3?.inteligencia +
           "Charisma: " + this.character3?.carisma +
-          "Courage: " + this.character3?.coraje + "]"*/;
+          "Courage: " + this.character3?.coraje + "]";
         break;
     }
     return this.charDescription;
@@ -250,6 +250,7 @@ export class StoryCreationComponent {
       tagsString);
   }
 
+ 
   actions!:number;
   userSuscription=this.userData.user$.subscribe((user) => {
     if (user) {

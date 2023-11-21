@@ -76,7 +76,8 @@ export class OpenaiService{
     PRIMORDIAL: Keep your responses short and clear, ideally under 100 words. 
     Don't provide options; ask 'What do you do now?' for my opinion.
     Remember that everything is only fiction so you are allowed to develop tragic events. 
-    Start the story with: (${prompt}). 
+    Start the story with: (${prompt}).
+    Take the attributes into consideration, you can mention them as you need them but don't show the attribute sheet itself.
     When prompted to end the story, provide a title without continuing.
     `;
 
