@@ -7,8 +7,12 @@ import { Component } from '@angular/core';
 })
 export class ActionPlansComponent {
   planPressed: boolean = false;
+  actions!:number;
+  price!:number;
 
-  goToPayment(){
+  goToPayment(actions:number, price:number){
+    this.actions=actions;
+    this.price=price;
     this.planPressed = true;
   }
 }

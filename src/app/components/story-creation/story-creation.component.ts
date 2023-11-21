@@ -268,7 +268,6 @@ export class StoryCreationComponent {
     const contextPrompt = this.createContextSettingPrompt();
     const completePrompt = charPrompt + '. ' + contextPrompt;
 
-    const but=document.getElementById('createStory') as HTMLElement;
     
    if(this.actions>0 )
    {
