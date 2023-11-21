@@ -26,12 +26,14 @@
       </button>
       <button class="play-btn" *ngIf="!showCharacter1Stats" (click)="jugar(1)">Play</button>
     </div>
-    <div *ngIf="showCharacter1Stats">
-      <p>Strenght: {{ fuerza }}</p>
-      <p>Dexterity: {{ destreza }}</p>
-      <p>intelligence: {{ inteligencia }}</p>
-      <p>Charisma: {{ carisma }}</p>
-      <p>Courage: {{ coraje }}</p>
+    <div class="stats-card" *ngIf="showCharacter1Stats">
+      <div class="stats">
+        <p>Strenght: <span>{{ fuerza }}</span></p>
+        <p>Dexterity: <span>{{ destreza }}</span></p>
+        <p>intelligence: <span>{{ inteligencia }}</span></p>
+        <p>Charisma: <span>{{ carisma }}</span></p>
+        <p>Courage: <span>{{ coraje }}</span></p>
+      </div>
       <button (click)="hideStatistics(1)">Back</button>
     </div>
   </div>
@@ -70,12 +72,14 @@
       </button>
       <button class="play-btn" *ngIf="!showCharacter2Stats" (click)="jugar(2)">Play</button>
     </div>
-    <div *ngIf="showCharacter2Stats">
-      <p>Strenght: {{ fuerza }}</p>
-      <p>Dexterity: {{ destreza }}</p>
-      <p>intelligence: {{ inteligencia }}</p>
-      <p>Charisma: {{ carisma }}</p>
-      <p>Courage: {{ coraje }}</p>
+    <div class="stats-card" *ngIf="showCharacter2Stats">
+      <div class="stats">
+        <p>Strenght: <span>{{ fuerza }}</span></p>
+        <p>Dexterity: <span>{{ destreza }}</span></p>
+        <p>intelligence: <span>{{ inteligencia }}</span></p>
+        <p>Charisma: <span>{{ carisma }}</span></p>
+        <p>Courage: <span>{{ coraje }}</span></p>
+      </div>
       <button (click)="hideStatistics(2)">Back</button>
     </div>
   </div>
@@ -114,12 +118,14 @@
       </button>
       <button class="play-btn" *ngIf="!showCharacter3Stats" (click)="jugar(3)">Play</button>
     </div>
-    <div *ngIf="showCharacter3Stats">
-      <p>Strenght: {{ fuerza }}</p>
-      <p>Dexterity: {{ destreza }}</p>
-      <p>intelligence: {{ inteligencia }}</p>
-      <p>Charisma: {{ carisma }}</p>
-      <p>Courage: {{ coraje }}</p>
+    <div class="stats-card" *ngIf="showCharacter3Stats">
+      <div class="stats">
+        <p>Strenght: <span>{{ fuerza }}</span></p>
+        <p>Dexterity: <span>{{ destreza }}</span></p>
+        <p>intelligence: <span>{{ inteligencia }}</span></p>
+        <p>Charisma: <span>{{ carisma }}</span></p>
+        <p>Courage: <span>{{ coraje }}</span></p>
+      </div>
       <button (click)="hideStatistics(3)">Back</button>
     </div>
   </div>
