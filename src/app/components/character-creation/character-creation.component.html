@@ -1,56 +1,54 @@
-<body *ngIf="ocultar">
+<body [hidden]="!ocultar">
   <p class="title" *ngIf="dropdown">CREATE YOUR CHARACTER</p>
 
-  <div class="content">
-    <div class="dropdown" *ngIf="dropdown">
-      <form [formGroup]="reactiveForm" (ngSubmit)="OnFormSubmitted()">
+    <div class="content">
+      <form [formGroup]="reactiveForm" (ngSubmit)="OnFormSubmitted()" *ngIf="dropdown">
         <div class="drop" id="rol">
           <label for="rolSelect">Rol:</label>
-          <select id="rolSelect" formControlName="selectedRol" >
-            <option *ngFor="let rol of rols" [value]="rol.value">
-              {{ rol.viewValue }}
-            </option>
+          <select id="rolSelect" formControlName="selectedRol">
+            <option *ngFor="let rol of rols" [value]="rol.value">{{ rol.viewValue }}</option>
           </select>
         </div>
-
+  
         <div class="drop" id="especie">
-          <label for="especieSelect">Specie:</label>
-          <select id="especieSelect" formControlName="selectedEspecie" >
-            <option *ngFor="let especie of especies" [value]="especie.value">
-              {{ especie.viewValue }}
-            </option>
+          <label for="especieSelect">Species:</label>
+          <select id="especieSelect" formControlName="selectedEspecie">
+            <option *ngFor="let especie of especies" [value]="especie.value">{{ especie.viewValue }}</option>
           </select>
         </div>
-
+  
         <div class="drop" id="sexo">
           <label for="sexoSelect">Sex:</label>
-          <select id="sexoSelect" formControlName="selectedSexo" >
-            <option *ngFor="let sexo of sexos" [value]="sexo.value">
-              {{ sexo.viewValue }}
-            </option>
+          <select id="sexoSelect" formControlName="selectedSexo">
+            <option *ngFor="let sexo of sexos" [value]="sexo.value">{{ sexo.viewValue }}</option>
           </select>
         </div>
-
+  
         <div class="drop" id="nombre">
           <label for="nombreSelect">Name:</label>
-          <input matInput formControlName="nombre"  />
+          <input matInput formControlName="nombre" />
         </div>
-        <div *ngIf="reactiveForm.get('selectedRol')?.invalid || reactiveForm.get('selectedSexo')?.invalid || reactiveForm.get('selectedEspecie')?.invalid">
-          <p class="error-message">All fields are required</p>
+  
+        <div *ngIf="showAllFieldsRequiredMessage && (reactiveForm.get('selectedRol')?.touched || reactiveForm.get('selectedSexo')?.touched || reactiveForm.get('selectedEspecie')?.touched)">
+          <p class="error-message">All fields are required.</p>
         </div>
-        
-        
-        <div *ngIf="reactiveForm.get('nombre')?.hasError('required')">
-          <p class="error-message">Name field is required.</p>
+
+        <div *ngIf="reactiveForm.get('nombre')?.touched">
+          <div *ngIf="reactiveForm.get('nombre')?.hasError('required')">
+            <p class="error-message">Name is required.</p>
+          </div>
+          <div *ngIf="reactiveForm.get('nombre')?.hasError('pattern')">
+            <p class="error-message">Name is not valid.</p>
+          </div>
+          <div *ngIf="reactiveForm.get('nombre')?.hasError('minlength')">
+            <p class="error-message">Name too short.</p>
+          </div>
+          <div *ngIf="reactiveForm.get('nombre')?.hasError('maxlength')">
+            <p class="error-message">Name too long.</p>
+          </div>
         </div>
-        <div *ngIf="reactiveForm.get('nombre')?.hasError('pattern')">
-          <p class="error-message">Name is not valid.</p>
-        </div>
-        <div *ngIf="reactiveForm.get('nombre')?.hasError('minLength') || reactiveForm.get('nombre')?.hasError('maxLength')">
-          <p class="error-message">Name's lenght is invalid.</p>
-        </div>
-        
-        <a id="next" (click)="nextButton()" class="nextButton" >Next</a>
+  
+        <a id="next" (click)="nextButton()" class="nextButton">Next</a>
         <a class="back" (click)="volver()">Back</a>
       </form>
     </div>
@@ -230,5 +228,4 @@
         *Assign at least 4 points
       </p>
     </div>
-  </div>
 </body>

@@ -1,9 +1,9 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Character } from 'src/app/models/character.model';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 interface Rol {
   value: string;
@@ -29,7 +29,7 @@ interface Nombre {
   templateUrl: './character-creation.component.html',
   styleUrls: ['./character-creation.component.css'],
 })
-export class CharacterCreationComponent implements OnInit {
+export class CharacterCreationComponent {
   reactiveForm: FormGroup;
   formdata: any = {};
   @Output() ocultar = new EventEmitter<boolean>();
@@ -38,6 +38,8 @@ export class CharacterCreationComponent implements OnInit {
 
   dropdown: boolean = true;
   distribution: boolean = false;
+  showAllFieldsRequiredMessage: boolean = false;
+  
 
   selectsNotEmpty:any;
 
@@ -50,9 +52,6 @@ export class CharacterCreationComponent implements OnInit {
   coraje: number = 1;
   carisma: number = 1;
 
-  ngOnInit() {
-    
-  }
 
   OnFormSubmitted() {
     console.log(this.reactiveForm.value);
@@ -232,19 +231,25 @@ export class CharacterCreationComponent implements OnInit {
   }
 
   nextButton() {
-    this.selectsNotEmpty =
-    this.reactiveForm.get('selectedRol')?.value &&
-    this.reactiveForm.get('selectedSexo')?.value &&
-    this.reactiveForm.get('selectedEspecie')?.value;
-
-  if (this.reactiveForm.valid && this.selectsNotEmpty) {
-    this.dropdown = false;
-    this.distribution = true;
-  } else {
-
-    this.reactiveForm.markAllAsTouched();
+    const allSelectsNotEmpty =
+      this.reactiveForm.get('selectedRol')?.value &&
+      this.reactiveForm.get('selectedSexo')?.value &&
+      this.reactiveForm.get('selectedEspecie')?.value;
+  
+    if (allSelectsNotEmpty) {
+      this.reactiveForm.get('nombre')?.markAsTouched();
+  
+      if (this.reactiveForm.valid) {
+        this.dropdown = false;
+        this.distribution = true;
+      }
+      this.showAllFieldsRequiredMessage = false;
+    } else {
+      this.reactiveForm.get('nombre')?.markAsUntouched();
+      this.showAllFieldsRequiredMessage = true;
+    }
   }
-  }
+  
 
   constructor(
     private authService: AuthService,
