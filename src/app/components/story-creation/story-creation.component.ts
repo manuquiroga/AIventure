@@ -4,7 +4,7 @@ import { OpenaiService } from 'src/app/services/openai.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Character } from 'src/app/models/character.model';
 import { SharedDataService } from 'src/app/services/background.service';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 interface Tipo {
@@ -28,13 +28,20 @@ interface Tags {
 })
 export class StoryCreationComponent {
   @Output() ocultar = new EventEmitter<boolean>();
+  reactiveForm:FormGroup;
 
   constructor(
     private openai: OpenaiService,
     private userData: AuthService,
     private sharedDataService: SharedDataService,
+    private fb: FormBuilder
   ) {
     this.refillArrayTags();
+    this.reactiveForm = this.fb.group({
+      selectedTipo: ['', Validators.required],
+      selectedLugar: ['', Validators.required],
+    });
+    this.subscribeToFormChanges();
   }
 
   story: Story | null | undefined;
@@ -119,14 +126,26 @@ export class StoryCreationComponent {
   }
 
   next() {
-    if(this.selectedTipo && this.selectedLugar){
+    if (this.reactiveForm.valid) {
       this.firstSection = false;
       this.tagsSection = true;
-    }
-    else{
-      this.errorMessage = true;
+      this.errorMessage = false; // Oculta el mensaje de error
+    } else {
+      this.errorMessage = true; // Muestra el mensaje de error
     }
   }
+  
+  
+
+  subscribeToFormChanges() {
+    this.reactiveForm.valueChanges.subscribe(() => {
+      if (this.reactiveForm.valid) {
+        this.errorMessage = false;
+      }
+    });
+  }
+  
+  
 
   checkSelection() {
     if (this.selectedTags.length > 2) {
@@ -242,9 +261,9 @@ export class StoryCreationComponent {
     
     return (contextPrompt =
       'My story develops in a ' +
-      this.selectedTipo +
+      this.reactiveForm.get('selectedTipo')?.value +
       ' setting, and I decided to start in ' +
-      this.selectedLugar +
+      this.reactiveForm.get('selectedLugar')?.value +
       tagsString);
   }
 
@@ -260,7 +279,7 @@ export class StoryCreationComponent {
 
   async sendCharacterAndTagsPrompt() {
      this.sharedDataService.firstSection = true;
-    this.backgroundToStory = this.selectedLugar;
+    this.backgroundToStory = this.reactiveForm.get('selectedLugar')?.value;
     
     const charPrompt = this.createCharPrompt(this.charSlot);
     const contextPrompt = this.createContextSettingPrompt();

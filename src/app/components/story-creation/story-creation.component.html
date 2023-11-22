@@ -1,28 +1,32 @@
 
-<div class="form" *ngIf="firstSection">
+<form [formGroup]="reactiveForm" (ngSubmit)="next()">
+  <div class="form" *ngIf="firstSection">
     <p class="title">CREATE YOUR STORY</p>
+
     <div class="drop" id="tipo">
-        <label for="tipoSelect">Type:</label>
-        <select id="tipoSelect" [(ngModel)]="selectedTipo" required>
+      <label for="tipoSelect">Type:</label>
+      <select id="tipoSelect" formControlName="selectedTipo" required>
         <option *ngFor="let tipo of tipos" [value]="tipo.value">
-            {{ tipo.viewValue }}
+          {{ tipo.viewValue }}
         </option>
-        </select>
+      </select>
     </div>
 
     <div class="drop" id="lugar">
-        <label for="lugarSelect">Place:</label>
-        <select id="lugarSelect" [(ngModel)]="selectedLugar" required>
+      <label for="lugarSelect">Place:</label>
+      <select id="lugarSelect" formControlName="selectedLugar" required>
         <option *ngFor="let lugar of lugares" [value]="lugar.value">
-            {{ lugar.viewValue }}
+          {{ lugar.viewValue }}
         </option>
-        </select>
+      </select>
     </div>
+
     <br>
-    <p *ngIf="errorMessage" class = "error-message">Select both fields</p>
+    <p *ngIf="errorMessage" class="error-message">Select both fields</p>
     <a (click)="next()">Next</a>
     <a class="back" (click)="volver()">Back</a>
-</div>
+  </div>
+</form>
 
 <p class="title" *ngIf="tagsSection">CHOOSE TAGS</p>
 <div class="tags-container" *ngIf="tagsSection">
