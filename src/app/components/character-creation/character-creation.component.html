@@ -29,7 +29,7 @@
           <input matInput formControlName="nombre" />
         </div>
   
-        <div *ngIf="showAllFieldsRequiredMessage && (reactiveForm.get('selectedRol')?.touched || reactiveForm.get('selectedSexo')?.touched || reactiveForm.get('selectedEspecie')?.touched)">
+        <div *ngIf="showAllFieldsRequiredMessage">
           <p class="error-message">All fields are required.</p>
         </div>
 

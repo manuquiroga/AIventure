@@ -230,23 +230,23 @@ export class CharacterCreationComponent {
     }
   }
 
-  nextButton() {
+ nextButton() {
     const allSelectsNotEmpty =
       this.reactiveForm.get('selectedRol')?.value &&
       this.reactiveForm.get('selectedSexo')?.value &&
       this.reactiveForm.get('selectedEspecie')?.value;
-  
+
     if (allSelectsNotEmpty) {
+      this.showAllFieldsRequiredMessage = false;
       this.reactiveForm.get('nombre')?.markAsTouched();
-  
+
       if (this.reactiveForm.valid) {
         this.dropdown = false;
         this.distribution = true;
       }
-      this.showAllFieldsRequiredMessage = false;
     } else {
-      this.reactiveForm.get('nombre')?.markAsUntouched();
       this.showAllFieldsRequiredMessage = true;
+      this.reactiveForm.get('nombre')?.markAsUntouched();
     }
   }
   
