@@ -91,14 +91,13 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
   isInputDisabled = false;
   async continueStory() {
     const input = document.getElementById('prompt-input') as HTMLInputElement;
-    if (input) {
+    if (input && this.actions > 0) {
       this.storyString.push({
         text: " - " + input.value,
         class: 'user-text',
       });
       input.value = '';
-      this.actions--;
-      this.auth.saveActionCount(this.actions);
+
     }
     if (this.actions > 0 && !this.isInputDisabled) {
       this.isInputDisabled = true;
@@ -108,10 +107,13 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
       });
       await this.openai.sendMessage(this.userChoice);
 
+      this.actions--;
+      this.auth.saveActionCount(this.actions);
       this.isInputDisabled = false;
       this.userChoice = '';
       
-    } else if (this.actions === 0) {
+      
+    } else if (this.actions <= 0) {
       alert(
         "You've got no more actions left, consider getting more to continue the story"
       );
