@@ -91,7 +91,11 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
   isInputDisabled = false;
   async continueStory() {
     const input = document.getElementById('prompt-input') as HTMLInputElement;
-    if (input && this.actions > 0) {
+    if (input && this.actions > 0 ) {
+      if(input.value.trim().length < 5){
+        alert("Your input will not be sent as it's too short")
+        return;
+      }
       this.storyString.push({
         text: " - " + input.value,
         class: 'user-text',
