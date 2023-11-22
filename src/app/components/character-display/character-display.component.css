@@ -78,3 +78,9 @@ h3{
 }
 }
 
+@media (max-width: 1300px){
+
+    .character-cards{
+        display: block;
+    }
+}
