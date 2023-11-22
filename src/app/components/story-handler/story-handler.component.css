@@ -31,6 +31,26 @@ body{
     background: url('../../../assets/images/magical_school.jpg');
 }
 
+.medieval-market{
+    background: url('../../../assets/images/busy-medieval-market.jpg');
+}
+
+.capital-city{
+    background: url('../../../assets/images/capital-city.jpg');
+}
+
+.tabern{
+    background: url('../../../assets/images/tabern.jpg');
+}
+
+.battlefield{
+    background: url('../../../assets/images/battlefield.jpg');
+}
+
+.av-guild{
+    background: url('../../../assets/images/adventures-guild-hq.jpg');
+}
+
 .container{
     min-height: 100vh;
     display: flex;
@@ -141,7 +161,7 @@ input:focus{
     margin: 1rem 0 0 0;
 }
 
-.buttons button, .submit-btn{
+.buttons button, .submit{
     font-size: 1rem;
     color: #fff;
     cursor: pointer;
@@ -153,6 +173,10 @@ input:focus{
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(50px);
     margin-right: 1rem;
+}
+
+.submit:hover{
+    background-color: #2c2c2c;
 }
 
 .buttons button:hover {
@@ -190,4 +214,18 @@ input:focus{
 .user-text{
     color: rgb(167, 167, 167);
     margin: 1rem 0;
+}
+
+.payment{
+    background: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+}
+
+.payment-card{
+    margin-top: 5rem;
 }

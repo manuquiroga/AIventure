@@ -50,7 +50,6 @@ export class StoryCreationComponent {
     { value: 'adventure', viewValue: 'Adventure' },
     { value: 'fantasy', viewValue: 'Fantasy' },
     { value: 'mystery', viewValue: 'Mystery' },
-    { value: 'realism', viewValue: 'Realism' },
     { value: 'romance', viewValue: 'Romance' },
   ];
 
@@ -59,7 +58,6 @@ export class StoryCreationComponent {
     { value: 'busy medieval market', viewValue: 'Busy Medieval Market' },
     { value: 'fishing village', viewValue: 'Fishing Village' },
     { value: 'battlefield', viewValue: 'Battlefield' },
-    { value: 'village', viewValue: 'Village' },
     { value: 'capital city', viewValue: 'Capital City' },
     {
       value: 'adventurers guild headquarters',

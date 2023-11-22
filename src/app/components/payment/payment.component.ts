@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -11,8 +11,13 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class PaymentComponent {
   tarjetaForm: FormGroup;
+  @Output() formSubmitted = new EventEmitter<void>();
 
-  constructor(private fb: FormBuilder, private auth:AuthService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) {
     this.tarjetaForm = this.fb.group({
       cardNumber: [
         '',
@@ -89,8 +94,8 @@ export class PaymentComponent {
     cardCVVElement.innerText = values.cardCVV || '123';
   }
 
-  @Input() actions!:number;
-  @Input() price!:number;
+  @Input() actions!: number;
+  @Input() price!: number;
   //algoritmo de luhn
   luhnCheck(cardNumber: string): boolean {
     let sum = 0;
@@ -114,21 +119,24 @@ export class PaymentComponent {
   }
 
   private userSubscription: Subscription | undefined;
-  previousActions!:number | undefined;
+  previousActions!: number | undefined;
   async onSubmit() {
     console.log(this.tarjetaForm.value);
     if (this.tarjetaForm.valid) {
       this.userSubscription = this.auth.user$.subscribe((user) => {
-        if(user){
+        if (user) {
           this.previousActions = user.historias;
         }
       });
 
-      await this.auth.saveActionCount((this.actions + this.previousActions!));
-      this.router.navigate(['/']);
-    }
-    else{
+      await this.auth.saveActionCount(this.actions + this.previousActions!);
+      this.formSubmitted.emit();
+    } else {
       alert('Tarjeta de crédito inválida');
     }
+  }
+
+  cancel(){
+    this.formSubmitted.emit();
   }
 }

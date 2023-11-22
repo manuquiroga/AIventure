@@ -52,7 +52,7 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
             this.backgroundClass = 'magical-dark-forest';
             break;
           case 'busy medieval market':
-            this.backgroundClass = 'busy-medieval-market';
+            this.backgroundClass = 'medieval-market';
             break;
           case 'fishing village':
             this.backgroundClass = 'fishing-village';
@@ -71,6 +71,15 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
             break;
           case 'mysterious ancient cemetery':
             this.backgroundClass = 'ancient-cemetery';
+            break;
+          case 'capital city':
+            this.backgroundClass = 'capital-city';
+            break;
+          case 'tabern':
+            this.backgroundClass = 'tabern';
+            break;
+          case 'adventurers guild headquarters':
+            this.backgroundClass = 'av-guild';
             break;
           default:
             this.backgroundClass = 'default-background';
@@ -231,5 +240,10 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     const backup = this.removeWhatDoYouDoNow(responseTexts.join('\n'));
   
     this.pdf.generatePDF(backup);
+  }
+
+  onActionsButton: boolean = false;
+  getActions(){
+    this.onActionsButton = true;
   }
 }

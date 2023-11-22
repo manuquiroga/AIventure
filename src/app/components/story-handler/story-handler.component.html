@@ -1,4 +1,9 @@
+ <div *ngIf="onActionsButton" class="payment">
+    <app-payment class="payment-card" [actions]="100" [price]="5" (formSubmitted)="onActionsButton = false"></app-payment>
+</div>
+
 <body *ngIf="story.length >= 1" class={{backgroundClass}}>
+   
     <div class="container">
         <h1>MY STORY</h1>
     <main>
@@ -11,7 +16,7 @@
                 <button [disabled]="isInputDisabled" class="submit" (click)="continueStory()">Submit</button>
             </div>
             <div class="buttons" [class.disabled]="isInputDisabled">
-                <button >Actions left: {{actions}} </button>
+                <button (click)="getActions()">Actions left: {{actions}} </button>
                 <button (click)="actionHandler(1)" [disabled]="isInputDisabled "> End </button>
                 <button [routerLink]="['/characters']" [disabled]="isInputDisabled "> Back </button>
             </div>
