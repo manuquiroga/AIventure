@@ -158,10 +158,9 @@ a:hover {
 .error-message {
   color: red;
   display: block;
-  font-size: 0.85rem;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1650px) {
   .dropdown{
   width: 200px;
   height: 300px;
@@ -221,6 +220,11 @@ button {
   margin-bottom: 1rem;
   padding: 0.2rem;
 }
+
+.error-message {
+  font-size: 0.85rem;
+}
+
 
 }
 
