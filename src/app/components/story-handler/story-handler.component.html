@@ -19,17 +19,18 @@
                 <div class="buttons" [class.disabled]="isInputDisabled">
                     <button (click)="getActions()">Actions left: {{actions}}</button>
                     <button (click)="actionHandler(1)" [disabled]="isInputDisabled "> End the story</button>
+                    <button (click)="actionHandler(3)" [disabled]="isInputDisabled && storyString.length > 1" [class.disabled]="storyString.length <= 1"> Undo action</button>
                 </div>
                 <div class="buttons">
-                    <button [routerLink]="['/characters']" [disabled]="isInputDisabled "> Go Back </button>
+                    <button class="back-btn" [routerLink]="['/characters']" [disabled]="isInputDisabled "> Go Back </button>
                 </div>
             </div>
         </section>
       </div>
-      <div *ngIf="isHidden" class="prompt">
+      <div *ngIf="isHidden" class="prompt margin-top">
         <div class="buttons">
             <button (click)="actionHandler(2)"> Download Story </button>
-            <button routerLink="/characters"> Go Back </button>
+            <button  routerLink="/characters"> Go Back </button>
         </div>
         
         </div>

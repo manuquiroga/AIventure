@@ -160,6 +160,11 @@ export class OpenaiService{
     }
   }
 
+  undo(){
+    this.chatHistory.pop();
+    this.chatHistory.pop();
+  }
+
   async cleanChat(){
     this.chatHistory = [];
     console.log('Se limpio el chat history');
