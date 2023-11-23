@@ -191,6 +191,13 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
       case 2:
         this.cleanStory();
         break;
+      case 3:
+        if(this.storyString.length > 1){
+          this.storyString.pop();
+          this.storyString.pop();
+          this.openai.undo();
+        }
+        break;
     }
   }
 
