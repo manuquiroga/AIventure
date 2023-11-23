@@ -156,7 +156,10 @@ input:focus{
     margin: 0 1rem 1rem 0;
 }
 
-.buttons{
+.buttons-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     width: 100%;
     margin: 1rem 0 0 0;
 }

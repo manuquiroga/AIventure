@@ -15,10 +15,14 @@
                 <input [disabled]="isInputDisabled" name="prompt-textarea" id="prompt-input" required maxlength="100" placeholder="{{placeHolder}}" [(ngModel)]="userChoice" (keyup.enter)="onEnterKeyPressed($event)" [disabled]="isInputDisabled "/>
                 <button [disabled]="isInputDisabled" class="submit" (click)="continueStory()">Submit</button>
             </div>
-            <div class="buttons" [class.disabled]="isInputDisabled">
-                <button (click)="getActions()">Actions left: {{actions}} </button>
-                <button (click)="actionHandler(1)" [disabled]="isInputDisabled "> End </button>
-                <button [routerLink]="['/characters']" [disabled]="isInputDisabled "> Back </button>
+            <div class="buttons-bar">
+                <div class="buttons" [class.disabled]="isInputDisabled">
+                    <button (click)="getActions()">Actions left: {{actions}}</button>
+                    <button (click)="actionHandler(1)" [disabled]="isInputDisabled "> End the story</button>
+                </div>
+                <div class="buttons">
+                    <button [routerLink]="['/characters']" [disabled]="isInputDisabled "> Go Back </button>
+                </div>
             </div>
         </section>
       </div>
@@ -28,7 +32,7 @@
             <button routerLink="/characters"> Go Back </button>
         </div>
         
-    </div>
+        </div>
     </div>
     
 </body>
