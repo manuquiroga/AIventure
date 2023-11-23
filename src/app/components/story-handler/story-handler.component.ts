@@ -264,4 +264,12 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
   getActions() {
     this.onActionsButton = true;
   }
+
+
+  async quitStory() {
+    const confirmed = window.confirm('¿Are you sure you want to leave?');
+    if(confirmed){
+      this.router.navigate(['/']);
+    }
+  }
 }

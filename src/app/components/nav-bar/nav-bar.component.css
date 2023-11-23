@@ -40,7 +40,10 @@ header{
     animation-delay: var(--nav-load-time);
     animation-fill-mode: forwards;
     transform: scale(0);
+
+    cursor:pointer;
 }
+
 
 .navbar .boton-jugar{
     color: #ffaa21;

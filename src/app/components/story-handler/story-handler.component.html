@@ -23,7 +23,7 @@
                     <button (click)="readText()" [disabled]="isInputDisabled || isReading" [class.disabled]="isInputDisabled || isReading">Read text</button>
                 </div>
                 <div class="buttons">
-                    <button class="back-btn" [routerLink]="['/characters']" [disabled]="isInputDisabled "> Go Back </button>
+                    <button class="back-btn" (click)="quitStory()" [disabled]="isInputDisabled "> Go Back </button>
                 </div>
             </div>
         </section>
