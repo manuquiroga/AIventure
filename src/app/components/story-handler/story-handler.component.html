@@ -17,10 +17,10 @@
             </div>
             <div class="buttons-bar">
                 <div class="buttons" [class.disabled]="isInputDisabled">
-                    <button (click)="getActions()">Actions left: {{actions}}</button>
-                    <button (click)="actionHandler(1)" [disabled]="isInputDisabled "> End the story</button>
-                    <button (click)="actionHandler(3)" [disabled]="isInputDisabled && storyString.length > 1" [class.disabled]="storyString.length <= 1"> Undo action</button>
-                    <button (click)="readText()">Read text</button>
+                    <button (click)="getActions()" [class.disabled]="isInputDisabled" >Actions left: {{actions}} </button>
+                    <button (click)="actionHandler(1)" [disabled]="isInputDisabled " [class.disabled]="isInputDisabled"> End the story</button>
+                    <button (click)="actionHandler(3)" [disabled]="isInputDisabled && storyString.length > 1" [class.disabled]=" isInputDisabled || storyString.length <= 1"> Undo action</button>
+                    <button (click)="readText()" [disabled]="isInputDisabled || isReading" [class.disabled]="isInputDisabled || isReading">Read text</button>
                 </div>
                 <div class="buttons">
                     <button class="back-btn" [routerLink]="['/characters']" [disabled]="isInputDisabled "> Go Back </button>

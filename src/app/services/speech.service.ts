@@ -9,8 +9,8 @@ export class SpeechService {
   constructor() {
     this.synth = window.speechSynthesis;
   }
-
-  speak(text: string): void {
+  
+  speak(text: string) {
     const utterance = new SpeechSynthesisUtterance(text);
 
     utterance.lang = 'en-US';

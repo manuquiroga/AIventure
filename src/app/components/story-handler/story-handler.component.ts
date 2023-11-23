@@ -22,7 +22,7 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
   actions!: number;
   backgroundClass!: string;
 
-  backup!:string;
+  backup!: string;
 
   private userSubscription: Subscription | undefined;
   private storySubscription: Subscription | undefined;
@@ -35,9 +35,9 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     private openai: OpenaiService,
     private auth: AuthService,
     private sharedDataService: SharedDataService,
-    private router:Router,
-    private pdf:DownloadstoryService,
-    private speechService: SpeechService,
+    private router: Router,
+    private pdf: DownloadstoryService,
+    private speechService: SpeechService
   ) {
     this.connectionClosedSubscription = this.openai.connectionClosed$.subscribe(
       (closed) => {
@@ -89,24 +89,28 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
         }
       });
   }
-  readText(): void {
-    this.speechService.speak(this.story[this.story.length-1]);
+
+  isReading:boolean = false;
+
+  readText() {
+    this.isReading = true;
+    this.speechService.speak(this.story[this.story.length - 1]);
   }
 
   isInputDisabled = false;
   async continueStory() {
+    this.isReading = false;
     const input = document.getElementById('prompt-input') as HTMLInputElement;
-    if (input && this.actions > 0 ) {
-      if(input.value.trim().length < 5){
-        alert("Your input will not be sent as it's too short")
+    if (input && this.actions > 0) {
+      if (input.value.trim().length < 5) {
+        alert("Your input will not be sent as it's too short");
         return;
       }
       this.storyString.push({
-        text: " - " + input.value,
+        text: ' - ' + input.value,
         class: 'user-text',
       });
       input.value = '';
-
     }
     if (this.actions > 0 && !this.isInputDisabled) {
       this.isInputDisabled = true;
@@ -120,8 +124,6 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
       this.auth.saveActionCount(this.actions);
       this.isInputDisabled = false;
       this.userChoice = '';
-      
-      
     } else if (this.actions <= 0) {
       alert(
         "You've got no more actions left, consider getting more to continue the story"
@@ -138,10 +140,9 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     this.aiResponse = '';
     this.storyString = [];
 
-    
-      this.storyService.startNewStory();
+    this.storyService.startNewStory();
 
-      this.responseSubscription = this.storyService.aiResponse$.subscribe(
+    this.responseSubscription = this.storyService.aiResponse$.subscribe(
       (response) => {
         this.aiResponse = response;
         this.storyString.pop();
@@ -152,16 +153,16 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
       }
     );
 
-      this.storySubscription = this.storyService.story$.subscribe((story) => {
+    this.storySubscription = this.storyService.story$.subscribe((story) => {
       this.story = story;
     });
 
-      this.userSubscription = this.auth.user$.subscribe((user) => {
+    this.userSubscription = this.auth.user$.subscribe((user) => {
       if (user) {
         this.actions = user.historias!;
       }
     });
-    this.actions--;    
+    this.actions--;
   }
 
   onEnterKeyPressed(event: any) {
@@ -192,7 +193,7 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
         this.cleanStory();
         break;
       case 3:
-        if(this.storyString.length > 1){
+        if (this.storyString.length > 1) {
           this.storyString.pop();
           this.storyString.pop();
           this.openai.undo();
@@ -206,7 +207,6 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.isHidden = true;
     }, 200);
-    
   }
 
   ngOnDestroy(): void {
@@ -240,28 +240,28 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
 
   removeWhatDoYouDoNow(text: string): string {
     const separatorRegex = /What do you do now\?\.?/gi;
-  
+
     const parts = text.split(separatorRegex);
-  
-    const filteredParts = parts.filter(part => part.trim() !== '');
-  
+
+    const filteredParts = parts.filter((part) => part.trim() !== '');
+
     const result = filteredParts.join(' ');
-  
+
     return result;
   }
-  
+
   cleanStory() {
     const responseTexts = this.storyString
-      .filter(item => item.class === 'response-text' && item !== undefined)
-      .map(item => item.text);
-  
+      .filter((item) => item.class === 'response-text' && item !== undefined)
+      .map((item) => item.text);
+
     const backup = this.removeWhatDoYouDoNow(responseTexts.join('\n'));
-  
+
     this.pdf.generatePDF(backup);
   }
 
   onActionsButton: boolean = false;
-  getActions(){
+  getActions() {
     this.onActionsButton = true;
   }
 }
