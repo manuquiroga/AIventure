@@ -19,6 +19,7 @@
                 <button (click)="getActions()">Actions left: {{actions}} </button>
                 <button (click)="actionHandler(1)" [disabled]="isInputDisabled "> End </button>
                 <button [routerLink]="['/characters']" [disabled]="isInputDisabled "> Back </button>
+                <button (click)="readText()">Read text</button>
             </div>
         </section>
       </div>

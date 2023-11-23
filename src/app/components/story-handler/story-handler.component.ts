@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { SharedDataService } from 'src/app/services/background.service';
 import { Router } from '@angular/router';
 import { DownloadstoryService } from 'src/app/services/downloadstory.service';
+import { SpeechService } from 'src/app/services/speech.service';
 
 
 @Component({
@@ -36,6 +37,7 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
     private sharedDataService: SharedDataService,
     private router:Router,
     private pdf:DownloadstoryService,
+    private speechService: SpeechService,
   ) {
     this.connectionClosedSubscription = this.openai.connectionClosed$.subscribe(
       (closed) => {
@@ -86,6 +88,9 @@ export class StoryHandlerComponent implements OnInit, OnDestroy {
             break;
         }
       });
+  }
+  readText(): void {
+    this.speechService.speak(this.story[this.story.length-1]);
   }
 
   isInputDisabled = false;
