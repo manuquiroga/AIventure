@@ -20,11 +20,11 @@
                     <button (click)="getActions()">Actions left: {{actions}}</button>
                     <button (click)="actionHandler(1)" [disabled]="isInputDisabled "> End the story</button>
                     <button (click)="actionHandler(3)" [disabled]="isInputDisabled && storyString.length > 1" [class.disabled]="storyString.length <= 1"> Undo action</button>
+                    <button (click)="readText()">Read text</button>
                 </div>
                 <div class="buttons">
                     <button class="back-btn" [routerLink]="['/characters']" [disabled]="isInputDisabled "> Go Back </button>
                 </div>
-                <button (click)="readText()">Read text</button>
             </div>
         </section>
       </div>
