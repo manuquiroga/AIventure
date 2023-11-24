@@ -3,8 +3,8 @@
     flex-direction: column;
     align-items: center;
     padding: 0 10%;
-    margin: 0 4%; 
-    height: 150vh;
+    margin: 0 4%;
+    margin-bottom: 6rem; 
 }
 
 .guide-title{
@@ -13,7 +13,7 @@
     text-align: center;
     font-weight: 700;
     color: #fff;
-    margin: 0 10% 0 10%;
+    margin: 0 10%;
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(50px);
     padding: 1rem 0;

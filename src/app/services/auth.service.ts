@@ -61,7 +61,7 @@ export class AuthService {
           character1: data?.character1 || null,
           character2: data?.character2 || null,
           character3: data?.character3 || null,
-          historias: data?.historias || 0
+          historias: data?.historias || 10 //acciones
         };
   
         await userRef.set(updatedData as User, { merge: true });
